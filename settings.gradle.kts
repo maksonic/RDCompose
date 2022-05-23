@@ -14,3 +14,11 @@ dependencyResolutionManagement {
 }
 rootProject.name = ("RDCompose")
 include (":app")
+include(":data")
+include(":domain")
+include(":core")
+include(":navigation:api")
+include(":navigation:impl")
+include(":shared:ui-model")
+include(":shared:ui-widget")
+include(":shared:theme")

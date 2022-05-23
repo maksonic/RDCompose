@@ -10,8 +10,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.maksonic.rdcompose.ui.theme.RDComposeTheme
+import ru.maksonic.rdcompose.shared.theme.RDComposeTheme
 
+/**
+ * @Author maksonic on 23.05.2022
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

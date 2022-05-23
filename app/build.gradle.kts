@@ -49,6 +49,7 @@ android {
 
 dependencies {
 
+    implementation(project(Module.Shared.THEME))
     implementation(Lib.AndroidX.CORE_KTX)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
