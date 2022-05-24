@@ -44,6 +44,9 @@ android {
 dependencies {
     implementation(project(Module.CORE))
     implementation(project(Module.Navigation.API))
+    implementation(project(Feature.ONBOARDING))
+    implementation(project(Feature.USER_AUTH))
+    implementation(project(Screen.MAIN))
     implementation(Lib.Compose.NAVIGATION)
     implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)

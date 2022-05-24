@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- PRIVACY POLICY BOTTOM SHEET-->
+    <string name="scr_title_privacy_policy">Политика конфиденциальности</string>
+    <string name="content_privacy_policy">Политика конфиденциальности контент</string>
+    <string name="scr_title_teams_of_use">Пользовательское соглашение</string>
+    <string name="content_teams_of_use">Пользовательское соглашение контент</string>
+
+    <!-- AUTH MODAL BOTTOM SHEET-->
+    <string name="btn_title_auth_google">Войти через Google аккаунт</string>
+    <string name="btn_title_auth_sign_up">Регистрация по телефону или почте</string>
+    <string name="btn_title_auth_log_in">Войти в аккаунт</string>
+
+    <string name="auth_caption_part_one">Регистрируясь и используя приложение вы соглашаетесь с &#160;</string>
+    <string name="auth_caption_clickable_part_one">Пользовательским соглашением. &#160;</string>
+    <string name="auth_caption_part_two">И подтверждаете что прочитали нашу &#160;</string>
+    <string name="auth_caption_clickable_part_two">Политику конфиденциальности.</string>
+
+    <string name="txt_google_auth_loading">"Идет авторизация…"</string>
+</resources>

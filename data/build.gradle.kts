@@ -41,7 +41,6 @@ dependencies {
     implementation(project(Module.CORE))
     implementation(project(Module.DOMAIN))
     implementation(Lib.JetBrains.Coroutines.ANDROID)
-    implementation(Lib.JetBrains.Serialization.JSON)
     implementation(Lib.Dagger.HILT)
     kapt(Lib.Dagger.COMPILER)
     implementation(Lib.Room.KTX)

@@ -33,9 +33,19 @@ android {
     kotlinOptions {
         jvmTarget = Config.jvmTarget
     }
+
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Config.composeVersion
+    }
 }
 
 dependencies {
+    implementation(project(Module.Shared.THEME))
+    implementation(Lib.Compose.UI)
+    implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Dagger.HILT)
     kapt(Lib.Dagger.COMPILER)
 }

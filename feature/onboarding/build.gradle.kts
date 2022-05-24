@@ -42,8 +42,18 @@ android {
 }
 
 dependencies {
+    implementation(project(Module.CORE))
+    implementation(project(Module.DOMAIN))
+    implementation(project(Module.Navigation.API))
+    implementation(project(Module.Shared.THEME))
+    implementation(project(Module.Shared.UI_WIDGET))
+    implementation(project(Feature.USER_AUTH))
+    implementation(Lib.Accompanist.PAGER)
+    implementation(Lib.Accompanist.PAGER_INDICATORS)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
+    implementation(Lib.Coil.COMPOSE)
     implementation(Lib.Dagger.HILT)
+    implementation(Lib.Dagger.VIEWMODEL)
     kapt(Lib.Dagger.COMPILER)
 }

@@ -11,7 +11,9 @@ object Lib {
     }
 
     object Accompanist {
-        private const val version = "0.24.8-beta"
+        private const val version = "0.24.9-beta"
+        const val PAGER = "com.google.accompanist:accompanist-pager:$version"
+        const val PAGER_INDICATORS = "com.google.accompanist:accompanist-pager-indicators:$version"
         const val SYSTEM_UI = "com.google.accompanist:accompanist-systemuicontroller:$version"
         const val SWIPE_REFRESH = "com.google.accompanist:accompanist-swiperefresh:$version"
     }
@@ -23,6 +25,10 @@ object Lib {
         const val NAVIGATION = "androidx.navigation:navigation-compose:2.5.0-alpha02"
         const val UI = "androidx.compose.ui:ui:$composeVersion"
         const val UI_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+    }
+    object Coil {
+        private const val version = "2.1.0"
+        const val COMPOSE = "io.coil-kt:coil-compose:$version"
     }
 
     object Dagger {
