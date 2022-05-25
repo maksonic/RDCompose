@@ -10,7 +10,7 @@ import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
 import ru.maksonic.rdcompose.navigation.api.destination.GlobalDestination
 import ru.maksonic.rdcompose.screen.main.view.MainScreen
-import ru.maksonic.rdcompose.screen.settings.SettingsScreen
+import ru.maksonic.rdcompose.screen.settings.view.SettingsScreen
 import ru.maksonic.rdcompose.screen.user_profile.UserProfileScreen
 import javax.inject.Inject
 

@@ -13,6 +13,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -24,7 +25,7 @@ import ru.maksonic.rdcompose.feature.onboarding.model.Msg
 import ru.maksonic.rdcompose.feature.onboarding.update.OnboardingViewModel
 import ru.maksonic.rdcompose.feature.user_auth.auth_bottom_sheet.AuthBottomSheet
 import ru.maksonic.rdcompose.shared.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.R.drawable
+import ru.maksonic.rdcompose.shared.ui_widget.R.*
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.PrimaryButton
 
@@ -115,7 +116,7 @@ private fun OnboardingScreenUi(viewModel: OnboardingViewModel, modifier: Modifie
                     action = {
                         sendMsg(Msg.Ui.OnShowAuthSheet(modalBottomSheetState, scope))
                     },
-                    title = R.string.btn_title_create_account
+                    title = stringResource(string.btn_title_create_account)
                 )
 
                 Spacer(modifier.size(RDTheme.padding.dp16))

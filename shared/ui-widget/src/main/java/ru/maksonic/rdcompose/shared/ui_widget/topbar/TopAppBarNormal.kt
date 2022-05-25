@@ -5,6 +5,7 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import ru.maksonic.rdcompose.shared.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R
@@ -13,7 +14,11 @@ import ru.maksonic.rdcompose.shared.ui_widget.R
  * @Author maksonic on 25.05.2022
  */
 @Composable
-fun TopAppBarNormal(title: String, backPressed: () -> Unit) {
+fun TopAppBarNormal(
+    title: String,
+    backgroundColor: Color = RDTheme.color.background,
+    backPressed: () -> Unit
+) {
     TopAppBar(
         title = {
             Text(
@@ -31,7 +36,7 @@ fun TopAppBarNormal(title: String, backPressed: () -> Unit) {
                 )
             }
         },
-        backgroundColor = RDTheme.color.background,
+        backgroundColor = backgroundColor,
         elevation = RDTheme.elevation.elevationDisable
     )
 }
