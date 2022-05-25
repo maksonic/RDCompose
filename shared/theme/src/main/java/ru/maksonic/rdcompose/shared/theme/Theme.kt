@@ -1,9 +1,7 @@
 package ru.maksonic.rdcompose.shared.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 
@@ -12,8 +10,8 @@ import androidx.compose.runtime.CompositionLocalProvider
  */
 @Composable
 fun RDComposeTheme(
-    lightPalette: RDColor,
-    darkPalette: RDColor,
+    lightPalette: RDColor = baseLightPalette,
+    darkPalette: RDColor = baseDarkPalette,
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -27,6 +25,7 @@ fun RDComposeTheme(
         LocalRDPadding provides paddings,
         LocalRDShape provides shapes,
         LocalRDTypography provides typography,
+        LocalRippleTheme provides RDRipple,
         content = content
     )
 }

@@ -6,7 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.maksonic.rdcompose.domain.onboarding.OnboardingRepository
 import ru.maksonic.rdcompose.feature.onboarding.program.OnboardingProgram
-import ru.maksonic.rdcompose.navigation.api.GlobalNavigator
+import ru.maksonic.rdcompose.navigation.api.navigator.GlobalNavigator
 import javax.inject.Singleton
 
 /**

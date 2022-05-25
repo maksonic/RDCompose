@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scr_settings_toolbar_title">Настройки</string>
+    <string name="title_theme">Оформление</string>
+    <string name="item_change_theme">Выбрать тему</string>
+    <string name="title_notification">Уведомления</string>
+    <string name="item_push_videos">Новые подкасты</string>
+    <string name="item_push_news">Новости и рекомендации</string>
+    <string name="title_app">Приложение</string>
+    <string name="item_rate_app">Оцениить приоложение</string>
+    <string name="item_about_app">О приложении</string>
+    <string name="title_cache">Данные и память</string>
+    <string name="item_remove_cache">Удалить загруженные подкасты</string>
+    <string name="title_info">Сведения</string>
+    <string name="item_write_message">Сообщить об ошибке</string>
+    <string name="item_privacy">Политика конфиденциальности</string>
+    <string name="item_terms_of_use">Пользвовательское соглашение</string>
+</resources>

@@ -14,6 +14,7 @@ val LocalRDPadding = staticCompositionLocalOf<RDPadding> {
 data class RDPadding(
     val dp4: Dp,
     val dp8: Dp,
+    val dp12: Dp,
     val dp16: Dp,
     val dp24: Dp,
     val dp32: Dp,
@@ -25,6 +26,7 @@ data class RDPadding(
 val paddings = RDPadding(
     dp4 = 4.dp,
     dp8 = 8.dp,
+    dp12 = 12.dp,
     dp16 = 16.dp,
     dp24 = 24.dp,
     dp32 = 32.dp,

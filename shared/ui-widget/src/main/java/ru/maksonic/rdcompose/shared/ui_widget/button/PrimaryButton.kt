@@ -9,7 +9,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.shared.theme.RDTheme
@@ -21,7 +20,7 @@ import ru.maksonic.rdcompose.shared.theme.RDTheme
 fun PrimaryButton(
     action: () -> Unit,
     modifier: Modifier = Modifier,
-    title: Int,
+    title: String,
     clickTimeOut: Long = 300
 ) {
 
@@ -40,8 +39,11 @@ fun PrimaryButton(
                 isEnabled = true
             }
         },
-        colors = ButtonDefaults.buttonColors(RDTheme.color.primary),
-        shape = RDTheme.shape.cornerNormal,
+        colors = ButtonDefaults.buttonColors(
+            RDTheme.color.primary,
+            contentColor = RDTheme.color.onPrimary
+        ),
+        shape = RDTheme.shape.cornerBig,
         elevation = ButtonDefaults.elevation(
             defaultElevation = disabledElevation,
             pressedElevation = disabledElevation,
@@ -54,12 +56,11 @@ fun PrimaryButton(
                 start = RDTheme.padding.dp16,
                 end = RDTheme.padding.dp16
             )
-
     ) {
         Text(
-            text = stringResource(id = title),
+            text = title,
             color = RDTheme.color.onPrimary,
-            style = RDTheme.typography.body
+            style = RDTheme.typography.title
         )
     }
 }

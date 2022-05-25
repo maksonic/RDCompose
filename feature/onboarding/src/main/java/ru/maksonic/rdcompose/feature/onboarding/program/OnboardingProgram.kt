@@ -6,7 +6,7 @@ import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.domain.onboarding.OnboardingRepository
 import ru.maksonic.rdcompose.feature.onboarding.model.Cmd
 import ru.maksonic.rdcompose.feature.onboarding.model.Msg
-import ru.maksonic.rdcompose.navigation.api.GlobalNavigator
+import ru.maksonic.rdcompose.navigation.api.navigator.GlobalNavigator
 import javax.inject.Inject
 
 /**
