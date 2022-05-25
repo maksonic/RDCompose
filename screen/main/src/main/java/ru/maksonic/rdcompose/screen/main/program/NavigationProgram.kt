@@ -15,6 +15,7 @@ class NavigationProgram @Inject constructor(
     override suspend fun execute(cmd: Cmd, consumer: (Msg) -> Unit) {
         when (cmd) {
             is Cmd.NavigateToSettings -> navigator.mainToSettings()
+            is Cmd.NavigateToUserProfile -> navigator.mainToUserProfile()
         }
     }
 }

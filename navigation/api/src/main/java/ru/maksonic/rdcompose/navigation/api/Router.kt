@@ -7,6 +7,7 @@ interface Router {
     interface Global {
         fun onboardingToMain()
         fun mainToSettings()
+        fun mainToUserProfile()
     }
     interface Main {
 

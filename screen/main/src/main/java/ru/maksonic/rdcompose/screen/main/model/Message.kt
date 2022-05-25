@@ -11,5 +11,6 @@ sealed class Msg : Message {
 
     sealed class Ui : Msg() {
         object ShowSettings : Ui()
+        object ShowUserProfile : Ui()
     }
 }

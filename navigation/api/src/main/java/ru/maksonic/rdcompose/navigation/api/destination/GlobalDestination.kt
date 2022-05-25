@@ -15,4 +15,5 @@ object GlobalDestination : Route("root") {
     object Onboarding : Route("onboarding")
     object Main : Route("main")
     object Settings : Route("settings")
+    object UserProfile : Route("user_profile")
 }

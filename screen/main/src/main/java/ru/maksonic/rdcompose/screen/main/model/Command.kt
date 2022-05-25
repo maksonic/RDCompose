@@ -7,4 +7,5 @@ import ru.maksonic.rdcompose.core.elm.Command
  */
 sealed class Cmd: Command {
     object NavigateToSettings : Cmd()
+    object NavigateToUserProfile : Cmd()
 }

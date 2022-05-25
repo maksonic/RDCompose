@@ -45,7 +45,7 @@ fun MainScreenUi(
     val context = LocalContext.current
     Scaffold(
         modifier.systemBarsPadding(),
-        topBar = { MainTopAppBar(showSettings = { sendMsg(Msg.Ui.ShowSettings) }) },
+        topBar = { MainTopAppBar(sendMsg) },
         bottomBar = { MainBottomNavBar(navController) },
         backgroundColor = RDTheme.color.background,
     ) { padding ->

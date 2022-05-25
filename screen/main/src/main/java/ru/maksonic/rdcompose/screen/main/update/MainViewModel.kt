@@ -28,5 +28,6 @@ class MainViewModel @Inject constructor(
     override fun update(msg: Msg, model: Model): Update =
         when (msg) {
             is Msg.Ui.ShowSettings -> model to setOf(Cmd.NavigateToSettings)
+            is Msg.Ui.ShowUserProfile -> model to setOf(Cmd.NavigateToUserProfile)
         }
 }

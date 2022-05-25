@@ -51,6 +51,7 @@ dependencies {
     implementation(project(Screen.CATEGORIES))
     implementation(project(Screen.COLLECTIONS))
     implementation(project(Screen.SETTINGS))
+    implementation(project(Screen.USER_PROFILE))
     implementation(Lib.Compose.NAVIGATION)
     implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)

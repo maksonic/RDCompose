@@ -17,4 +17,8 @@ class GlobalNavigator @Inject constructor() : ElmNavigator(), Router.Global {
     override fun mainToSettings() {
         navigate(GlobalDestination.Settings.route)
     }
+
+    override fun mainToUserProfile() {
+        navigate(GlobalDestination.UserProfile.route)
+    }
 }

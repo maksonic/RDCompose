@@ -65,6 +65,7 @@ dependencies {
     implementation(project(Screen.CATEGORIES))
     implementation(project(Screen.COLLECTIONS))
     implementation(project(Screen.SETTINGS))
+    implementation(project(Screen.USER_PROFILE))
 
     implementation(Lib.AndroidX.CORE_KTX)
     implementation(Lib.Compose.UI)
