@@ -56,9 +56,15 @@ dependencies {
     implementation(project(Module.Shared.UI_WIDGET))
     implementation(project(Module.Navigation.API))
     implementation(project(Module.Navigation.IMPL))
+
     implementation(project(Feature.ONBOARDING))
     implementation(project(Feature.USER_AUTH))
+
     implementation(project(Screen.MAIN))
+    implementation(project(Screen.HOME))
+    implementation(project(Screen.CATEGORIES))
+    implementation(project(Screen.COLLECTIONS))
+
     implementation(Lib.AndroidX.CORE_KTX)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
