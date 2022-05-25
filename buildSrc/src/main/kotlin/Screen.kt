@@ -6,4 +6,5 @@ object Screen {
     const val HOME = ":screen:home"
     const val CATEGORIES = ":screen:categories"
     const val COLLECTIONS = ":screen:collections"
+    const val SETTINGS = ":screen:settings"
 }

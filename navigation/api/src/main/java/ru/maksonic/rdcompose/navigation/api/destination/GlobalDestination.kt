@@ -14,4 +14,5 @@ sealed class Route(val route: String) {
 object GlobalDestination : Route("root") {
     object Onboarding : Route("onboarding")
     object Main : Route("main")
+    object Settings : Route("settings")
 }

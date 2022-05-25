@@ -50,6 +50,7 @@ dependencies {
     implementation(project(Screen.HOME))
     implementation(project(Screen.CATEGORIES))
     implementation(project(Screen.COLLECTIONS))
+    implementation(project(Screen.SETTINGS))
     implementation(Lib.Compose.NAVIGATION)
     implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)

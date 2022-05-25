@@ -10,6 +10,7 @@ import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
 import ru.maksonic.rdcompose.navigation.api.destination.GlobalDestination
 import ru.maksonic.rdcompose.screen.main.view.MainScreen
+import ru.maksonic.rdcompose.screen.settings.SettingsScreen
 import javax.inject.Inject
 
 /**
@@ -39,6 +40,11 @@ class GlobalGraph @Inject constructor(
                 GlobalDestination.Main.route
             ) {
                 MainScreen(mainGraphBuilder, mainNavigator)
+            }
+            composable(
+                GlobalDestination.Settings.route
+            ) {
+                SettingsScreen()
             }
         }
     }

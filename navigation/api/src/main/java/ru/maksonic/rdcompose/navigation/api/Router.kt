@@ -6,6 +6,7 @@ package ru.maksonic.rdcompose.navigation.api
 interface Router {
     interface Global {
         fun onboardingToMain()
+        fun mainToSettings()
     }
     interface Main {
 
