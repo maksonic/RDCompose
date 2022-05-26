@@ -47,6 +47,7 @@ dependencies {
     implementation(project(Module.Shared.THEME))
     implementation(project(Module.Shared.UI_MODEL))
     implementation(project(Module.Shared.UI_WIDGET))
+    implementation(Lib.Accompanist.SWIPE_REFRESH)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Coil.COMPOSE)

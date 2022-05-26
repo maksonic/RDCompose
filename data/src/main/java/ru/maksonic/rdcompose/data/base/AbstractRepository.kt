@@ -4,6 +4,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import ru.maksonic.rdcompose.core.common.Abstract
 import ru.maksonic.rdcompose.core.common.Mapper
+import ru.maksonic.rdcompose.data.base.source.BaseCacheDataSource
+import ru.maksonic.rdcompose.data.base.source.BaseCloudDataSource
 import ru.maksonic.rdcompose.domain.base.Repository
 
 /**

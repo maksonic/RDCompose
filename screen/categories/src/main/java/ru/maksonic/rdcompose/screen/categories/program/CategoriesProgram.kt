@@ -1,5 +1,6 @@
 package ru.maksonic.rdcompose.screen.categories.program
 
+import kotlinx.coroutines.delay
 import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.domain.categories.FetchCategoriesUseCase
 import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
@@ -20,9 +21,8 @@ class CategoriesProgram @Inject constructor(
     override suspend fun execute(cmd: Cmd, consumer: (Msg) -> Unit) {
         when (cmd) {
             is Cmd.FetchCategories -> fetchCategories(consumer)
-            is Cmd.RefreshCategories -> {}
+            is Cmd.RefreshCategories -> fetchCategories(consumer)
             is Cmd.NavigateToPodcastList -> navigator.categoriesToCategoryPodcasts(cmd.categoryId)
-
         }
     }
 
@@ -30,6 +30,7 @@ class CategoriesProgram @Inject constructor(
         fetchCategoriesUseCase().collect { categoriesRequest ->
             categoriesRequest.onSuccess { categoriesList ->
                 val categories = mapper.mapFromList(categoriesList)
+                delay(3000)
                 consumer(Msg.Internal.FetchingSuccess(categories))
             }
             categoriesRequest.onFailure { throwable ->

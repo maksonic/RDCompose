@@ -4,6 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ru.maksonic.rdcompose.core.common.ResourceProvider
+import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
 import ru.maksonic.rdcompose.data.onboarding.BaseOnboardingRepository
 import ru.maksonic.rdcompose.domain.onboarding.OnboardingRepository
 import javax.inject.Singleton
@@ -18,4 +20,8 @@ object DataModule {
     @Singleton
     @Provides
     fun provideOnboardingRepository(): OnboardingRepository = BaseOnboardingRepository()
+
+    @Singleton
+    @Provides
+    fun provideExceptionHandler(rp: ResourceProvider): ExceptionHandler = ExceptionHandler.Base(rp)
 }

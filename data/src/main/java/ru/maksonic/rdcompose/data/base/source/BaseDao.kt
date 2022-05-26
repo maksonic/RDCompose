@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.data.base
+package ru.maksonic.rdcompose.data.base.source
 
 import androidx.room.Dao
 import androidx.room.Delete

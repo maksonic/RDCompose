@@ -14,6 +14,7 @@ val LocalRDComponentSize = staticCompositionLocalOf<RDComponentSize> {
 data class RDComponentSize(
     val btnNav: Dp,
     val btnPrimaryHeight: Dp,
+    val circularProgressIndicatorSize: Dp,
     val circularProgressIndicatorStrokeWidth: Dp,
     val enteredMaxLength: Int
 )
@@ -21,6 +22,7 @@ data class RDComponentSize(
 val componentSize = RDComponentSize(
     btnNav = 24.dp,
     btnPrimaryHeight = 54.dp,
+    circularProgressIndicatorSize = 100.dp,
     circularProgressIndicatorStrokeWidth = 5.dp,
     enteredMaxLength = 50
 )

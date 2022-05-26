@@ -27,10 +27,7 @@ interface UpdateResult {
 
         override fun refreshing(model: Model): Update =
             model.copy(
-                isLoading = false,
-                isSuccess = false,
                 isRefreshing = true,
-                isError = false
             ) to setOf(Cmd.RefreshCategories)
 
         override fun onCategoryClicked(model: Model, msg: Msg.Ui.OnCategoryClick): Update =
@@ -40,7 +37,7 @@ interface UpdateResult {
             model.copy(
                 isLoading = false,
                 isSuccess = true,
-                isRefreshing = true,
+                isRefreshing = false,
                 isError = false,
                 categories = msg.categories
             ) to emptySet()
@@ -49,7 +46,7 @@ interface UpdateResult {
             model.copy(
                 isLoading = false,
                 isSuccess = true,
-                isRefreshing = true,
+                isRefreshing = false,
                 isError = false,
                 categories = msg.categories
             ) to emptySet()
