@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import ru.maksonic.rdcompose.core.common.KeyStore
 import ru.maksonic.rdcompose.core.common.ResourceProvider
 import javax.inject.Singleton
 
@@ -15,6 +16,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object CoreModule {
+
+    @Singleton
+    @Provides
+    fun provideNavKeyStore(): KeyStore.NavigationKey = KeyStore.NavigationPassedKey()
 
     @Singleton
     @Provides

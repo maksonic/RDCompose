@@ -38,11 +38,22 @@ object Lib {
         const val VIEWMODEL = "androidx.hilt:hilt-navigation-compose:1.0.0"
     }
 
+    object Firebase {
+
+        const val AUTH_KTX = "com.google.firebase:firebase-auth-ktx:21.0.4"
+        const val FIRESTORE = "com.google.firebase:firebase-firestore-ktx:24.1.2"
+        const val GMS_PLAY_SERVICE = "com.google.android.gms:play-services-tasks:18.0.1"
+       /*"
+        const val gmsTask = "com.google.android.gms:play-services-tasks:17.2.1"*/
+    }
+
     object JetBrains {
 
         object Coroutines {
             private const val version = "1.6.1"
             const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+            const val PLAY_SERVICE = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$version"
+
         }
 
         object Serialization {

@@ -1,7 +1,6 @@
 plugins {
     androidLibrary()
     kotlinAndroid()
-    parcelize()
     hilt()
     kapt()
 }
@@ -46,6 +45,7 @@ dependencies {
     implementation(project(Module.DOMAIN))
     implementation(project(Module.Navigation.API))
     implementation(project(Module.Shared.THEME))
+    implementation(project(Module.Shared.UI_MODEL))
     implementation(project(Module.Shared.UI_WIDGET))
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)

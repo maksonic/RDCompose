@@ -19,6 +19,11 @@ object Build {
         const val init = "com.google.dagger:hilt-android-gradle-plugin:$version"
     }
 
+    object GoogleService {
+        private const val version = "4.3.10"
+        const val init = "com.google.gms:google-services:$version"
+    }
+
 
     object KotlinGradle {
         private const val version = Config.kotlinVersion

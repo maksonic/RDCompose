@@ -40,4 +40,8 @@ object MainDestination : Route("main") {
         @StringRes
         override val labelId: Int = R.string.scr_collections
     }
+
+    object PodcastList : Route("categories.podcast/{categoryId}") {
+        fun id(categoryId: Long) = "/${categoryId}"
+    }
 }

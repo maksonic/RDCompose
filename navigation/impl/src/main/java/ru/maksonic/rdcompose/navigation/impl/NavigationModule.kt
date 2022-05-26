@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ru.maksonic.rdcompose.core.common.KeyStore
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.navigator.GlobalNavigator
 import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
@@ -27,9 +28,13 @@ object NavigationModule {
 
     @Singleton
     @Provides
-    fun provideMainGraphBuilding(): GraphBuilder = MainGraph()
+    fun provideMainGraphBuilding(store: KeyStore.NavigationKey): GraphBuilder = MainGraph(store)
 
     @Singleton
     @Provides
     fun provideGlobalNavigator(): GlobalNavigator = GlobalNavigator()
+
+    @Singleton
+    @Provides
+    fun provideMainNavigator(): MainNavigator = MainNavigator()
 }

@@ -1,6 +1,7 @@
 plugins {
     androidApp()
     kotlinAndroid()
+    googlePlayServices()
     kapt()
     hilt()
 }
@@ -63,6 +64,7 @@ dependencies {
     implementation(project(Screen.MAIN))
     implementation(project(Screen.HOME))
     implementation(project(Screen.CATEGORIES))
+    implementation(project(Screen.PODCAST_LIST))
     implementation(project(Screen.COLLECTIONS))
     implementation(project(Screen.SETTINGS))
     implementation(project(Screen.USER_PROFILE))
@@ -73,6 +75,7 @@ dependencies {
     implementation(Lib.Compose.NAVIGATION)
     implementation(Lib.Compose.UI_PREVIEW)
     implementation(Lib.Lifecycle.RUNTIME_KTX)
+    implementation(Lib.Firebase.FIRESTORE)
     implementation(Lib.Compose.ACTIVITY)
     implementation(Lib.Dagger.HILT)
     kapt(Lib.Dagger.COMPILER)

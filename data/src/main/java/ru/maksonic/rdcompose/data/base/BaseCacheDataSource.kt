@@ -14,8 +14,6 @@ import ru.maksonic.rdcompose.data.R
 /**
  * @Author maksonic on 23.05.2022
  */
-typealias DataList<T> = Flow<Result<List<T>>>
-
 interface BaseCacheDataSource<T> {
     fun fetchCacheList(): DataList<T>
     fun fetchCacheItemById(itemId: Long): Flow<Result<T>>

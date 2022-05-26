@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="error_failed_cloud_fetching">Не удалось загрузить данные из сети!\nПроверьте подключение к интернету.</string>
+    <string name="error_empty_cloud_list">Ошибка. С сервера пришли пустые данные.</string>
     <string name="error_failed_cache_fetching">Ошибка загрузки данных из кеш памяти!</string>
 </resources>

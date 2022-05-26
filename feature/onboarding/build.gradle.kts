@@ -1,7 +1,6 @@
 plugins {
     androidLibrary()
     kotlinAndroid()
-    parcelize()
     hilt()
     kapt()
 }

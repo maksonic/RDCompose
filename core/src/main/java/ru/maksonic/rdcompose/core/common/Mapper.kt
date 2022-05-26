@@ -5,15 +5,15 @@ package ru.maksonic.rdcompose.core.common
  */
 interface Mapper<I, O> {
 
-    fun mapTo(i: I): O
+    fun mapFrom(i: I): O
 
-    fun mapFrom(o: O): I
+    fun mapTo(o: O): I
 
-    fun mapFromList(list: List<O>): List<I> {
+    fun mapFromList(list: List<I>): List<O> {
         return list.mapNotNull { mapFrom(it) }
     }
 
-    fun mapToList(list: List<I>): List<O> {
+    fun mapToList(list: List<O>): List<I> {
         return list.mapNotNull { mapTo(it) }
     }
 }

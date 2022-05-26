@@ -36,3 +36,6 @@ fun PluginDependenciesSpec.parcelize(): PluginDependencySpec =
 
 fun PluginDependenciesSpec.ksp(): PluginDependencySpec =
     id("com.google.devtools.ksp") version Config.kspVersion
+
+fun PluginDependenciesSpec.googlePlayServices(): PluginDependencySpec =
+    id("com.google.gms.google-services")

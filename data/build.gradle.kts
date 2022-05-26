@@ -1,7 +1,6 @@
 plugins {
     androidLibrary()
     kotlinAndroid()
-    kotlinSerialization()
     hilt()
     kapt()
     ksp()
@@ -41,7 +40,10 @@ dependencies {
     implementation(project(Module.CORE))
     implementation(project(Module.DOMAIN))
     implementation(Lib.JetBrains.Coroutines.ANDROID)
+    implementation(Lib.JetBrains.Coroutines.PLAY_SERVICE)
     implementation(Lib.Dagger.HILT)
+    implementation(Lib.Firebase.AUTH_KTX)
+    implementation(Lib.Firebase.FIRESTORE)
     kapt(Lib.Dagger.COMPILER)
     implementation(Lib.Room.KTX)
     implementation(Lib.Room.RUNTIME)

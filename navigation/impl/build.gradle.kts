@@ -49,6 +49,7 @@ dependencies {
     implementation(project(Screen.MAIN))
     implementation(project(Screen.HOME))
     implementation(project(Screen.CATEGORIES))
+    implementation(project(Screen.PODCAST_LIST))
     implementation(project(Screen.COLLECTIONS))
     implementation(project(Screen.SETTINGS))
     implementation(project(Screen.USER_PROFILE))
