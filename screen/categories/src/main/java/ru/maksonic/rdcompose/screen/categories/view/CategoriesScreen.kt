@@ -69,7 +69,7 @@ fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modi
                         }
                     }
                     model.value.isSuccess -> {
-                        items(items = model.value.categories.sortedBy { it.id }) { category ->
+                        items(items = model.value.categories) { category ->
                             ItemCardCategory(
                                 category = category,
                                 onClick = { sendMsg(Msg.Ui.OnCategoryClick(category.id)) }

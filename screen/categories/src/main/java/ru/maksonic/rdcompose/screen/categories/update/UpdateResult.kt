@@ -11,10 +11,9 @@ import javax.inject.Inject
 interface UpdateResult {
     fun fetching(model: Model): Update
     fun refreshing(model: Model): Update
-    fun fetchingSuccess(model: Model, msg: Msg.Internal.FetchingSuccess): Update
-    fun refreshingSuccess(model: Model, msg: Msg.Internal.RefreshingSuccess): Update
-    fun error(model: Model, msg: Msg.Internal.Error): Update
     fun onCategoryClicked(model: Model, msg: Msg.Ui.OnCategoryClick): Update
+    fun success(model: Model, msg: Msg.Internal.Success): Update
+    fun error(model: Model, msg: Msg.Internal.Error): Update
 
     class Base @Inject constructor() : UpdateResult {
         override fun fetching(model: Model): Update =
@@ -33,16 +32,7 @@ interface UpdateResult {
         override fun onCategoryClicked(model: Model, msg: Msg.Ui.OnCategoryClick): Update =
             model to setOf(Cmd.NavigateToPodcastList(msg.categoryId))
 
-        override fun fetchingSuccess(model: Model, msg: Msg.Internal.FetchingSuccess): Update =
-            model.copy(
-                isLoading = false,
-                isSuccess = true,
-                isRefreshing = false,
-                isError = false,
-                categories = msg.categories
-            ) to emptySet()
-
-        override fun refreshingSuccess(model: Model, msg: Msg.Internal.RefreshingSuccess): Update =
+        override fun success(model: Model, msg: Msg.Internal.Success): Update =
             model.copy(
                 isLoading = false,
                 isSuccess = true,

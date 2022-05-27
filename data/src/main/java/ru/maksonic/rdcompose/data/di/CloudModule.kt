@@ -23,16 +23,4 @@ object CloudModule {
     @Singleton
     @Provides
     fun provideFirebaseApi(): FirebaseApi = FirebaseApi.Base()
-
-    @Singleton
-    @Provides
-    fun provideCategoriesRepository(
-        cloudDataSource: CategoriesCloudDataSource,
-        cloudMapper: CategoryCloudToDataMapper,
-        dataToDomainMapper: CategoryDataToDomainMapper
-    ): Repository<CategoryDomain> = CategoriesRepository(
-        cloudDataSource = cloudDataSource,
-        cloudMapper = cloudMapper,
-        dataToDomainMapper = dataToDomainMapper
-    )
 }

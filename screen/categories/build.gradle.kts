@@ -50,7 +50,7 @@ dependencies {
     implementation(Lib.Accompanist.SWIPE_REFRESH)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
-    implementation(Lib.Coil.COMPOSE)
+    implementation (Lib.Landscapist.GLIDE)
     implementation(Lib.Dagger.HILT)
     implementation(Lib.Dagger.VIEWMODEL)
     kapt(Lib.Dagger.COMPILER)

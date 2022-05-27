@@ -19,16 +19,37 @@ abstract class AbstractRepository<
         C : Abstract.DataObject,
         D : Abstract.DomainObject>(
     private val baseCloudDataSource: BaseCloudDataSource.Base<A>,
-    private val baseCacheDataSource: BaseCacheDataSource.Base<B>?,
+    private val baseCacheDataSource: BaseCacheDataSource.Base<B>,
     private val cloudMapper: Mapper<A, C>,
-    private val cacheMapper: Mapper<B, C>?,
+    private val cacheMapper: Mapper<B, C>,
     private val dataToDomainMapper: Mapper<C, D>
 ) : Repository<D> {
 
-    override fun fetchCloudDataList(): Flow<Result<List<D>>> =
+    override fun fetchDataList(): DataList<D> =
+        baseCacheDataSource.fetchCacheList().transform { cacheRequest ->
+            cacheRequest.onSuccess { cacheList ->
+                val dataList = cacheMapper.mapFromList(cacheList)
+                val domainList = dataToDomainMapper.mapFromList(dataList)
+                emit(Result.success(domainList))
+            }
+            cacheRequest.onFailure {
+                fetchCloudDataList().collect { cloudRequest ->
+                    cloudRequest.onSuccess { cloudLists ->
+                        emit(Result.success(cloudLists))
+                    }
+                    cloudRequest.onFailure { throwable ->
+                        emit(Result.failure(throwable))
+                    }
+                }
+            }
+        }
+
+    override fun fetchCloudDataList(): DataList<D> =
         baseCloudDataSource.fetchCloudList().transform { cloudRequest ->
             cloudRequest.onSuccess { cloudList ->
                 val dataList = cloudMapper.mapFromList(cloudList)
+                val cacheList = cacheMapper.mapToList(dataList)
+                baseCacheDataSource.insertCacheList(cacheList)
                 val domainList = dataToDomainMapper.mapFromList(dataList)
                 emit(Result.success(domainList))
             }
@@ -36,4 +57,5 @@ abstract class AbstractRepository<
                 emit(Result.failure(throwable))
             }
         }
+
 }

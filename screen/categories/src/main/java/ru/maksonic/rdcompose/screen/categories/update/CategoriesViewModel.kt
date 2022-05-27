@@ -29,9 +29,7 @@ class CategoriesViewModel @Inject constructor(
         is Msg.Ui.FetchCategories -> updateResult.fetching(model)
         is Msg.Ui.RefreshCategories -> updateResult.refreshing(model)
         is Msg.Ui.OnCategoryClick -> updateResult.onCategoryClicked(model, msg)
-        is Msg.Internal.FetchingSuccess -> updateResult.fetchingSuccess(model, msg)
-        is Msg.Internal.RefreshingSuccess -> updateResult.refreshingSuccess(model, msg)
+        is Msg.Internal.Success -> updateResult.success(model, msg)
         is Msg.Internal.Error -> updateResult.error(model, msg)
-
     }
 }

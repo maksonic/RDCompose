@@ -2,6 +2,8 @@ package ru.maksonic.rdcompose.data.categories
 
 import ru.maksonic.rdcompose.data.base.AbstractRepository
 import ru.maksonic.rdcompose.data.categories.cache.CategoryCache
+import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheDataSource
+import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheToDataMapper
 import ru.maksonic.rdcompose.data.categories.cloud.CategoriesCloudDataSource
 import ru.maksonic.rdcompose.data.categories.cloud.CategoryCloud
 import ru.maksonic.rdcompose.data.categories.cloud.CategoryCloudToDataMapper
@@ -13,12 +15,14 @@ import javax.inject.Inject
  */
 class CategoriesRepository @Inject constructor(
     cloudDataSource: CategoriesCloudDataSource,
+    cacheDataSource: CategoryCacheDataSource,
     cloudMapper: CategoryCloudToDataMapper,
+    cacheMapper: CategoryCacheToDataMapper,
     dataToDomainMapper: CategoryDataToDomainMapper
-): AbstractRepository<CategoryCloud, CategoryCache, CategoryData, CategoryDomain>(
+) : AbstractRepository<CategoryCloud, CategoryCache, CategoryData, CategoryDomain>(
     baseCloudDataSource = cloudDataSource,
-    baseCacheDataSource = null,
+    baseCacheDataSource = cacheDataSource,
     cloudMapper = cloudMapper,
-    cacheMapper = null,
+    cacheMapper = cacheMapper,
     dataToDomainMapper = dataToDomainMapper
 )

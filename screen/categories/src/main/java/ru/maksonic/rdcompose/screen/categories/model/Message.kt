@@ -16,8 +16,7 @@ sealed class Msg : Message {
     }
 
     sealed class Internal : Msg() {
-        class FetchingSuccess(val categories: List<CategoryUi>) : Internal()
-        class RefreshingSuccess(val categories: List<CategoryUi>) : Internal()
+        class Success(val categories: List<CategoryUi>) : Internal()
         class Error(val errorMessage: String? = "") : Internal()
     }
 }

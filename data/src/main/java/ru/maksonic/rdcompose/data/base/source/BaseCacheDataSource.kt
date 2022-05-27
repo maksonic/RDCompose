@@ -29,11 +29,12 @@ interface BaseCacheDataSource<T> {
 
         override fun fetchCacheList() = flow {
             val cacheList = dao.fetchCacheList()
+            Log.e("@@@@", "${cacheList.size}")
             if (cacheList.isEmpty()) {
                 emit(
                     Result.failure(
                         EmptyCacheException(
-                            rp.getString(R.string.error_failed_cache_fetching)
+                            rp.getString(R.string.error_empty_cache_list)
                         )
                     )
                 )

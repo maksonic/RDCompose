@@ -1,11 +1,15 @@
 package ru.maksonic.rdcompose.data.categories.cache
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import ru.maksonic.rdcompose.core.common.Abstract
 
 /**
  * @Author maksonic on 26.05.2022
  */
+@Entity(tableName = "categories")
 data class CategoryCache(
+    @PrimaryKey
     val id: Long,
     val name: String,
     val description: String,

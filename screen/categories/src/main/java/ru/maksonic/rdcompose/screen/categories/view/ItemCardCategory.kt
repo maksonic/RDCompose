@@ -8,13 +8,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.style.TextOverflow
-import coil.compose.AsyncImage
-import coil.request.ImageRequest
-import ru.maksonic.rdcompose.screen.categories.model.Model
+import com.skydoves.landscapist.ShimmerParams
+import com.skydoves.landscapist.glide.GlideImage
 import ru.maksonic.rdcompose.shared.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.CategoryUi
 import ru.maksonic.rdcompose.shared.ui_widget.R
@@ -43,16 +41,18 @@ fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifier: Modifi
             modifier.fillMaxSize(),
             contentAlignment = Alignment.BottomStart
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(category.image)
-                    .build(),
-                alignment = Alignment.Center,
-                contentScale = ContentScale.Crop,
-                placeholder = painterResource(id = R.drawable.podcast_image),
-                contentDescription = "",
-                modifier = modifier.fillMaxSize()
+
+            GlideImage(
+                imageModel = category.image,
+                shimmerParams = ShimmerParams(
+                    baseColor = RDTheme.color.divider,
+                    highlightColor = RDTheme.color.surface,
+                    durationMillis = 350,
+                    dropOff = 0.65f,
+                    tilt = 20f
+                ),
             )
+
             Column(
                 modifier
                     .fillMaxWidth()

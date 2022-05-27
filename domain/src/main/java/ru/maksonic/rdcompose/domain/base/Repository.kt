@@ -10,7 +10,7 @@ import ru.maksonic.rdcompose.domain.categories.CategoryDomain
 typealias Categories = Flow<Result<List<CategoryDomain>>>
 
 interface Repository<T: Abstract.DomainObject> {
-   // fun fetchDataList(): Flow<Result<List<T>>>
+    fun fetchDataList(): Flow<Result<List<T>>>
     fun fetchCloudDataList(): Flow<Result<List<T>>>
   //  fun findItemById(itemId: Long): Flow<Result<T>>
 }

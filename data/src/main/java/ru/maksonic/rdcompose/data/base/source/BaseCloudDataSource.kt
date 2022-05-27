@@ -2,6 +2,7 @@ package ru.maksonic.rdcompose.data.base.source
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Source
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -20,7 +21,6 @@ import ru.maksonic.rdcompose.data.categories.cloud.CloudMapper
  * @Author maksonic on 23.05.2022
  */
 interface BaseCloudDataSource<C : Abstract.CloudObject> {
-
     fun fetchCloudList(): DataList<C>
 
     abstract class Base<C : Abstract.CloudObject>(
@@ -40,8 +40,8 @@ interface BaseCloudDataSource<C : Abstract.CloudObject> {
         override fun fetchCloudList() = flow {
             try {
                 withTimeout(TIME_OUT) {
-                    val snapshot = collection.orderBy(orderByFiled).get().await()
-                    val firestoreList = snapshot.documents.toList().sortedBy { it.id }
+                    val snapshot = collection.orderBy(orderByFiled).get(Source.SERVER).await()
+                    val firestoreList = snapshot.documents.toList()
                     val cloudList = firestoreList.map { baseCloudMapper.invoke(it) }
 
                     if (cloudList.isEmpty()) {

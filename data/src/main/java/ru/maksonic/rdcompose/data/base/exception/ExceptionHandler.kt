@@ -1,5 +1,7 @@
 package ru.maksonic.rdcompose.data.base.exception
 
+import com.google.firebase.firestore.FirebaseFirestoreException
+import kotlinx.coroutines.TimeoutCancellationException
 import ru.maksonic.rdcompose.core.common.ResourceProvider
 import ru.maksonic.rdcompose.data.R
 import javax.inject.Inject
@@ -12,16 +14,21 @@ interface ExceptionHandler {
 
     class Base @Inject constructor(private val rp: ResourceProvider) : ExceptionHandler {
         override fun handle(e: Exception): Exception {
-            val errorMsg = e.localizedMessage?.toString()
-            return when {
-                errorMsg.toString().contains("Timed out") -> {
+            return when (e) {
+                is TimeoutCancellationException -> {
                     TimeOutException(rp.getString(R.string.error_time_out))
                 }
-                e is EmptyCloudDataException -> {
+                is EmptyDataException -> {
+                    EmptyDataException(rp.getString(R.string.error_empty_cloud_list))
+                }
+                is EmptyCloudDataException -> {
                     EmptyCloudDataException(rp.getString(R.string.error_empty_cloud_list))
                 }
-                e is EmptyCacheException -> {
+                is EmptyCacheException -> {
                     EmptyCacheException(rp.getString(R.string.error_empty_cache_list))
+                }
+                is FirebaseFirestoreException -> {
+                    EmptyCloudDataException(rp.getString(R.string.error_empty_cloud_list))
                 }
                 else -> e
             }

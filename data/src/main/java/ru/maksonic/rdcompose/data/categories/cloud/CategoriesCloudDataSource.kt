@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 class CategoriesCloudDataSource @Inject constructor(
     firebaseApi: FirebaseApi,
-    cloudMapper: FirestoreDocumentToCloudMapper,
+    cloudMapper: FirestoreCategoryToCloudMapper,
     rp: ResourceProvider,
     ex: ExceptionHandler,
     @IoDispatcher dispatcher: CoroutineDispatcher
