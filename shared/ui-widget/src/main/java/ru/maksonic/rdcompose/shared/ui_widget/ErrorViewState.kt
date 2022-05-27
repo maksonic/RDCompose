@@ -6,6 +6,9 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -23,6 +26,18 @@ fun ErrorViewState(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val errorEmojiList = listOf(
+        "\uD83D\uDE13", "\uD83D\uDE1E", "\uD83D\uDE23", "\uD83E\uDDD0",
+        "\uD83D\uDE31", "\uD83D\uDE22", "\uD83D\uDE28", "\uD83D\uDE16", "\uD83D\uDE2D",
+        "\uD83D\uDE22", "\uD83D\uDE25", "\uD83D\uDE30",
+    )
+    val errorEmoji = rememberSaveable() {
+        mutableStateOf(errorEmojiList.first())
+    }
+
+    LaunchedEffect(Unit) {
+        errorEmoji.value = errorEmojiList.random()
+    }
     Box(
         modifier
             .fillMaxSize()
@@ -31,8 +46,9 @@ fun ErrorViewState(
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
+
             Text(
-                text = "\uD83D\uDE22",
+                text = errorEmoji.value,
                 fontSize = 56.sp,
                 color = RDTheme.color.secondaryText
             )
