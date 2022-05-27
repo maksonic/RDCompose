@@ -26,9 +26,10 @@ object Lib {
         const val UI = "androidx.compose.ui:ui:$composeVersion"
         const val UI_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
     }
-    object Coil {
-        private const val version = "2.1.0"
-        const val COMPOSE = "io.coil-kt:coil-compose:$version"
+
+    object Landscapist {
+        private const val version = "1.5.2"
+        const val GLIDE = "com.github.skydoves:landscapist-glide:$version"
     }
 
     object Dagger {

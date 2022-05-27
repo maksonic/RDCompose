@@ -9,13 +9,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
+import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.feature.onboarding.model.Model
 import ru.maksonic.rdcompose.shared.theme.RDTheme
@@ -39,12 +40,18 @@ internal fun OnboardingItem(
             .fillMaxSize()
             .scrollPage(pagerState, 3)
     ) {
-        Box(Modifier.weight(1f), contentAlignment = Alignment.Center) {
-            AsyncImage(
-                model = model.onboardingList[page].image,
+        Box(
+            modifier
+                .weight(1f)
+                .padding(top = RDTheme.padding.dp24),
+            contentAlignment = Alignment.Center
+        ) {
+            GlideImage(
+                imageModel = model.onboardingList[page].image,
+                contentScale = ContentScale.Fit,
                 modifier = modifier
                     .fillMaxSize()
-                    .padding(top = RDTheme.padding.dp54, start = dp16, end = dp16),
+                    .padding(start = RDTheme.padding.dp16, end = RDTheme.padding.dp16),
                 contentDescription = ""
             )
         }
