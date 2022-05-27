@@ -8,12 +8,10 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.button.Switch
 import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable
 
@@ -60,7 +58,7 @@ internal fun ItemWithSwitch(
             isChecked = checkedState,
             checkedColor = RDTheme.color.primary,
             uncheckedColor = RDTheme.color.primary.copy(0.3f),
-            thumbColor = RDTheme.color.background,
+            thumbColor = RDTheme.color.surface,
         )
     }
 }

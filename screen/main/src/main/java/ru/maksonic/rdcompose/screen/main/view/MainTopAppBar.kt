@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import ru.maksonic.rdcompose.screen.main.model.Msg
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R.drawable
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 

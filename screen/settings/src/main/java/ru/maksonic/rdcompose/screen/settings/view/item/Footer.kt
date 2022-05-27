@@ -7,7 +7,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 
 /**
  * @Author maksonic on 25.05.2022

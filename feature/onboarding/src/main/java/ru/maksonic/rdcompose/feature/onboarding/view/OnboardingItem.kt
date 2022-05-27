@@ -19,7 +19,7 @@ import com.google.accompanist.pager.PagerState
 import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.feature.onboarding.model.Model
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 
 /**
  * @Author maksonic on 23.05.2022
@@ -63,12 +63,14 @@ internal fun OnboardingItem(
             Text(
                 text = model.onboardingList[page].title,
                 style = RDTheme.typography.display,
+                color = RDTheme.color.primaryText,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier.size(RDTheme.padding.dp16))
             Text(
                 text = model.onboardingList[page].description,
                 fontStyle = FontStyle.Normal,
+                color = RDTheme.color.primaryText,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center
             )

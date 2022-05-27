@@ -20,11 +20,10 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
-import ru.maksonic.rdcompose.feature.onboarding.R
 import ru.maksonic.rdcompose.feature.onboarding.model.Msg
 import ru.maksonic.rdcompose.feature.onboarding.update.OnboardingViewModel
 import ru.maksonic.rdcompose.feature.user_auth.auth_bottom_sheet.AuthBottomSheet
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R.*
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.PrimaryButton

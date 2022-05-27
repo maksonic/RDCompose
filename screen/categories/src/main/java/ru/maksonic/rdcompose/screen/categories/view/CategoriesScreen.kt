@@ -17,7 +17,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import ru.maksonic.rdcompose.navigation.api.R
 import ru.maksonic.rdcompose.screen.categories.model.Msg
 import ru.maksonic.rdcompose.screen.categories.update.CategoriesViewModel
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.ErrorViewState
 import ru.maksonic.rdcompose.shared.ui_widget.LoadingViewState
 import ru.maksonic.rdcompose.shared.ui_widget.ScreenTitleDisplay

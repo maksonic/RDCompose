@@ -8,14 +8,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.glide.GlideImage
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.CategoryUi
-import ru.maksonic.rdcompose.shared.ui_widget.R
 
 /**
  * @Author maksonic on 26.05.2022
@@ -62,7 +61,7 @@ fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifier: Modifi
                 Text(
                     text = category.name,
                     style = RDTheme.typography.display,
-                    color = RDTheme.color.onPrimary,
+                    color = RDTheme.color.primaryText,
                     maxLines = 1,
                     modifier = modifier.padding(
                         start = RDTheme.padding.dp8,
@@ -72,7 +71,7 @@ fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifier: Modifi
                 Text(
                     text = category.description,
                     style = RDTheme.typography.title,
-                    color = RDTheme.color.onPrimary,
+                    color = RDTheme.color.primaryText,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 2,
                     modifier = modifier.padding(RDTheme.padding.dp8)

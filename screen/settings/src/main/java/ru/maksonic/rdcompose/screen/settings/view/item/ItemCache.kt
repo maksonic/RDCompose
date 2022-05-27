@@ -1,16 +1,15 @@
 package ru.maksonic.rdcompose.screen.settings.view.item
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import ru.maksonic.rdcompose.screen.settings.R.*
+import ru.maksonic.rdcompose.screen.settings.R.string
 import ru.maksonic.rdcompose.screen.settings.widget.ItemWithClick
 import ru.maksonic.rdcompose.screen.settings.widget.SettingTitle
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R
 
 /**

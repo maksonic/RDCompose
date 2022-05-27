@@ -11,11 +11,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import ru.maksonic.rdcompose.feature.user_auth.R
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 
 /**
  * @author maksonic on 16.04.2022
@@ -31,8 +32,6 @@ internal fun AnnotatedClickableText(
     termsOfUseKey: String,
     modifier: Modifier = Modifier
 ) {
-
-
     Column(
         modifier
             .fillMaxWidth()
@@ -45,6 +44,7 @@ internal fun AnnotatedClickableText(
             withStyle(
                 style = SpanStyle(
                     color = RDTheme.color.primaryText,
+                    fontWeight = FontWeight.Bold,
                     textDecoration = TextDecoration.Underline
                 )
             ) {
@@ -56,6 +56,7 @@ internal fun AnnotatedClickableText(
             withStyle(
                 style = SpanStyle(
                     color = RDTheme.color.primaryText,
+                    fontWeight = FontWeight.Bold,
                     textDecoration = TextDecoration.Underline
                 )
             ) {
@@ -66,7 +67,7 @@ internal fun AnnotatedClickableText(
 
         ClickableText(
             text = annotatedString,
-            style = TextStyle(color = RDTheme.color.secondaryText, textAlign = TextAlign.Center),
+            style = TextStyle(color = RDTheme.color.primaryText, textAlign = TextAlign.Center),
             onClick = { offset ->
                 annotatedString.getStringAnnotations(tag = termsTag, start = offset, end = offset)
                     .firstOrNull()?.let { showTermsOfUse(termsOfUseKey) }

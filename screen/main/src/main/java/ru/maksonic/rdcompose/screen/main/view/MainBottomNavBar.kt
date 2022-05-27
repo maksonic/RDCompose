@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import ru.maksonic.rdcompose.navigation.api.destination.MainDestination
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 
 /**
  * @Author maksonic on 24.05.2022
@@ -29,21 +29,18 @@ internal fun MainBottomNavBar(navController: NavController) {
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route ?: MainDestination.Home.route
+
         for (screen in items) {
+            val iconId =
+                if (currentRoute == screen.route) screen.selectedIcon else screen.unselectedIcon
+            val tint =
+                if (currentRoute == screen.route) RDTheme.color.primary else RDTheme.color.secondary
             val label = stringResource(screen.labelId)
             BottomNavigationItem(
                 icon = {
-                    Icon(
-                        painterResource(
-                            id = if (currentRoute == screen.route) {
-                                screen.selectedIcon
-                            } else {
-                                screen.unselectedIcon
-                            }
-                        ), label
-                    )
+                    Icon(painterResource(id = iconId), tint = tint, contentDescription = label)
                 },
-                label = { Text(label) },
+                label = { Text(label, color = tint) },
                 alwaysShowLabel = true,
                 selected = currentRoute == screen.route,
                 onClick = {

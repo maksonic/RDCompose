@@ -1,9 +1,10 @@
-package ru.maksonic.rdcompose.shared.theme
+package ru.maksonic.rdcompose.shared.theme.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import ru.maksonic.rdcompose.shared.theme.*
 
 /**
  * @Author maksonic on 23.05.2022

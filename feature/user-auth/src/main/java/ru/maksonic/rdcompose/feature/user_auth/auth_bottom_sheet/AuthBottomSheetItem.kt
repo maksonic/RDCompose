@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.button.clickAction
 
 /**
@@ -21,18 +21,17 @@ internal fun AuthItem(modifier: Modifier = Modifier, icon: Int, title: String, a
             modifier
                 .fillMaxWidth()
                 .height(RDTheme.componentSize.btnPrimaryHeight)
-                .clickAction {
-                    action()
-                },
+                .clickAction { action() },
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
                 painter = painterResource(id = icon),
+                tint = RDTheme.color.controlNormal,
                 contentDescription = null,
-                modifier.padding(start = RDTheme.padding.dp16)
+                modifier = modifier.padding(start = RDTheme.padding.dp16)
             )
             Spacer(modifier.padding(start = RDTheme.padding.dp16))
-            Text(text = title, style = RDTheme.typography.body)
+            Text(text = title, style = RDTheme.typography.body, color = RDTheme.color.primaryText)
         }
 
         Divider(

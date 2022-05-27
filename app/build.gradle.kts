@@ -70,6 +70,7 @@ dependencies {
     implementation(project(Screen.USER_PROFILE))
 
     implementation(Lib.AndroidX.CORE_KTX)
+    implementation(Lib.Accompanist.SYSTEM_UI)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Compose.NAVIGATION)

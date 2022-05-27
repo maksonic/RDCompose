@@ -8,6 +8,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ru.maksonic.rdcompose.core.common.KeyStore
 import ru.maksonic.rdcompose.core.common.ResourceProvider
+import ru.maksonic.rdcompose.core.store.AppDataStore
+import ru.maksonic.rdcompose.core.store.AppThemeSetting
 import javax.inject.Singleton
 
 /**
@@ -16,6 +18,18 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object CoreModule {
+
+    @Singleton
+    @Provides
+    fun provideDataStore(): AppDataStore = AppDataStore.ThemeSetting()
+
+    @Singleton
+    @Provides
+    fun provideAppTheme(
+        @ApplicationContext context: Context,
+        dataStore: AppDataStore
+    ): AppThemeSetting =
+        AppThemeSetting.Base(context, dataStore)
 
     @Singleton
     @Provides

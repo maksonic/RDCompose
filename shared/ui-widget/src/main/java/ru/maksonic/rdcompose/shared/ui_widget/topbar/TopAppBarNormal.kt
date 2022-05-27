@@ -1,14 +1,14 @@
 package ru.maksonic.rdcompose.shared.ui_widget.topbar
 
 import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import ru.maksonic.rdcompose.shared.theme.RDTheme
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R
+import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 
 /**
  * @Author maksonic on 25.05.2022
@@ -28,7 +28,7 @@ fun TopAppBarNormal(
             )
         },
         navigationIcon = {
-            IconButton(onClick = { backPressed() }) {
+            IconActionButton(onClick = { backPressed() }) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_round_arrow_back_24),
                     tint = RDTheme.color.controlNormal,

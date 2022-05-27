@@ -47,6 +47,7 @@ dependencies {
     implementation(Lib.Accompanist.SYSTEM_UI)
     implementation(Lib.Compose.ACTIVITY)
     implementation(Lib.AndroidX.CORE_KTX)
+    implementation(Lib.AndroidX.DATASTORE)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Dagger.HILT)
