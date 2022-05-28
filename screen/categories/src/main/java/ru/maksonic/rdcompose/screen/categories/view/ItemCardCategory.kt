@@ -2,6 +2,7 @@ package ru.maksonic.rdcompose.screen.categories.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,7 +13,6 @@ import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.glide.GlideImage
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.CategoryUi
-import ru.maksonic.rdcompose.shared.ui_widget.card.CardPrimary
 
 /**
  * @Author maksonic on 26.05.2022
@@ -20,7 +20,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.card.CardPrimary
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifier: Modifier = Modifier) {
-    CardPrimary(
+    Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(
