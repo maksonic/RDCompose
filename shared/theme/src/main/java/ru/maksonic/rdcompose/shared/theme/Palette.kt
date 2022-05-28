@@ -6,8 +6,11 @@ import androidx.compose.ui.graphics.Color
  * @Author maksonic on 23.05.2022
  */
 val Black = Color(0xFF000000)
+val Blue = Color(0xFF0000EE)
 val CarmineRed = Color(0xFFB00020)
+val CodGray = Color(0xFF171717)
 val DimGray = Color(0xFFEDEDED)
+val DodgerBlue = Color(0xFF31BDFF)
 val GainsboroGray = Color(0xFFDCDCDC)
 val Nero = Color(0xFF212121)
 val MineShaft = Color(0xFF313131)
@@ -37,11 +40,13 @@ val baseLightPalette = RDColor(
     primaryText = Black,
     secondaryText = ShuttleGray,
     tertiaryText = DimGray,
+    onBackgroundText = White,
+    link = Blue,
     controlNormal = Nero
 )
 
 val baseDarkPalette = RDColor(
-    primary = GainsboroGray,
+    primary = Solitude,
     primaryVariant = Black,
     onPrimary = Nero,
     secondary = ShuttleGray,
@@ -58,6 +63,8 @@ val baseDarkPalette = RDColor(
     primaryText = White,
     secondaryText = DimGray,
     tertiaryText = DimGray,
+    onBackgroundText = Solitude,
+    link = DodgerBlue,
     controlNormal = Solitude
 )
 
@@ -69,9 +76,9 @@ val baseHighContrastPalette = RDColor(
     secondaryVariant = DimGray,
     background = Black,
     onBackground = White,
-    surface = Nero,
+    surface = CodGray,
     onSurface = Solitude,
-    divider = ShuttleGray,
+    divider = Nero,
     error = CarmineRed,
     onError = White,
     transparent = Transparent,
@@ -79,5 +86,7 @@ val baseHighContrastPalette = RDColor(
     primaryText = White,
     secondaryText = ShuttleGray,
     tertiaryText = DimGray,
+    onBackgroundText = White,
+    link = DodgerBlue,
     controlNormal = White
 )

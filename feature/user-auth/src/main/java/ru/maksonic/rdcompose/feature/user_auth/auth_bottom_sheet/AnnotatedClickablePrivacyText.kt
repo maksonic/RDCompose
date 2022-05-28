@@ -43,7 +43,7 @@ internal fun AnnotatedClickableText(
             pushStringAnnotation(tag = termsTag, annotation = termsTag)
             withStyle(
                 style = SpanStyle(
-                    color = RDTheme.color.primaryText,
+                    color = RDTheme.color.link,
                     fontWeight = FontWeight.Bold,
                     textDecoration = TextDecoration.Underline
                 )
@@ -55,7 +55,7 @@ internal fun AnnotatedClickableText(
             pushStringAnnotation(tag = privacyTag, annotation = privacyTag)
             withStyle(
                 style = SpanStyle(
-                    color = RDTheme.color.primaryText,
+                    color = RDTheme.color.link,
                     fontWeight = FontWeight.Bold,
                     textDecoration = TextDecoration.Underline
                 )
