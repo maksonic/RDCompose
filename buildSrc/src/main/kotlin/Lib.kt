@@ -54,7 +54,6 @@ object Lib {
             private const val version = "1.6.1"
             const val ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
             const val PLAY_SERVICE = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$version"
-
         }
 
         object Serialization {

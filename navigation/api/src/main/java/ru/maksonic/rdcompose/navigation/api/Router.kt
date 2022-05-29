@@ -10,6 +10,6 @@ interface Router {
         fun mainToUserProfile()
     }
     interface Main {
-        fun categoriesToCategoryPodcasts(categoryId: Long)
+        fun categoriesToCategoryPodcasts(categoryId: String)
     }
 }

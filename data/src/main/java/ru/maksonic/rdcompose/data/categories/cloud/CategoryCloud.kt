@@ -7,7 +7,8 @@ import ru.maksonic.rdcompose.core.common.Abstract
  */
 data class CategoryCloud(
     val id: Long? = null,
-    val name: String? = "",
-    val description: String? ="",
+    val categoryId: String = "",
+    val name: String = "",
+    val description: String = "",
     val image: String? = "",
 ): Abstract.CloudObject

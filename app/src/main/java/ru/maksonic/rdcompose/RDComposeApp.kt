@@ -10,7 +10,7 @@ import dagger.hilt.android.HiltAndroidApp
 @HiltAndroidApp
 class RDComposeApp: Application() {
     override fun onCreate() {
-      //  FirebaseApp.initializeApp(this)
+        FirebaseApp.initializeApp(this)
         super.onCreate()
     }
 }

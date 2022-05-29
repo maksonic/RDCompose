@@ -10,8 +10,9 @@ import ru.maksonic.rdcompose.core.common.Abstract
 @Entity(tableName = "categories")
 data class CategoryCache(
     @PrimaryKey
-    val id: Long,
-    val name: String,
-    val description: String,
-    val image: String?,
+    val id: Long? = null,
+    val categoryId: String = "",
+    val name: String = "",
+    val description: String = "",
+    val image: String? = "",
 ): Abstract.CacheObject

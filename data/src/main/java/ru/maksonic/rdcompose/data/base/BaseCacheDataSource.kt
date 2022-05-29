@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.data.base.source
+package ru.maksonic.rdcompose.data.base
 
 import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
@@ -10,7 +10,6 @@ import ru.maksonic.rdcompose.core.common.Abstract
 import ru.maksonic.rdcompose.core.common.ResourceProvider
 import ru.maksonic.rdcompose.core.di.IoDispatcher
 import ru.maksonic.rdcompose.data.R
-import ru.maksonic.rdcompose.data.base.DataList
 import ru.maksonic.rdcompose.data.base.exception.EmptyCacheException
 
 /**
@@ -29,7 +28,6 @@ interface BaseCacheDataSource<T> {
 
         override fun fetchCacheList() = flow {
             val cacheList = dao.fetchCacheList()
-            Log.e("@@@@", "${cacheList.size}")
             if (cacheList.isEmpty()) {
                 emit(
                     Result.failure(

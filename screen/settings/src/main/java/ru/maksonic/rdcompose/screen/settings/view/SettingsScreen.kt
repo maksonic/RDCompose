@@ -34,7 +34,7 @@ fun SettingsScreen() {
 }
 
 @Composable
-fun SettingsScreenUi(
+private fun SettingsScreenUi(
     viewModel: SettingsViewModel,
     model: Model,
     sendMsg: Message,

@@ -13,13 +13,16 @@ import javax.inject.Inject
 interface FirebaseApi {
     val instance: FirebaseFirestore
     val categoriesCollection: CollectionReference
+    val podcastsCollection: String
 
     class Base @Inject constructor(): FirebaseApi {
         private companion object {
             private const val CATEGORIES = "categories"
+            private const val PODCASTS = "podcast_list"
         }
 
         override val instance = Firebase.firestore
         override val categoriesCollection = instance.collection(CATEGORIES)
+        override val podcastsCollection = PODCASTS
     }
 }

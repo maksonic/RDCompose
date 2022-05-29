@@ -9,9 +9,9 @@ import javax.inject.Inject
  */
 class CategoryCacheToDataMapper @Inject constructor() : Mapper<CategoryCache, CategoryData> {
 
-    override fun mapFrom(i: CategoryCache): CategoryData =
-        CategoryData(i.id, i.name, i.description, i.image)
-
     override fun mapTo(o: CategoryData): CategoryCache =
-        CategoryCache(o.id, o.name, o.description, o.image)
+        CategoryCache(o.id, o.categoryId, o.name, o.description, o.image)
+
+    override fun mapFrom(i: CategoryCache): CategoryData =
+        CategoryData(i.id, i.categoryId, i.name, i.description, i.image)
 }

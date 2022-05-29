@@ -8,7 +8,8 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class CategoryUi(
-    val id: Long,
+    val id: Long? = null,
+    val categoryId: String = "",
     val name: String = "",
     val description: String = "",
     val image: String? = "",

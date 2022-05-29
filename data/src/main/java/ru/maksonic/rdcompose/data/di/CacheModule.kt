@@ -25,13 +25,14 @@ object CacheModule {
 
     @Singleton
     @Provides
-    fun provideDatabaseName(rp: ResourceProvider): DatabaseName = DatabaseName.Base(rp)
-
-    @Singleton
-    @Provides
     fun provideDatabase(@ApplicationContext context: Context, db: DatabaseName) = Room
         .databaseBuilder(context, AppDatabase::class.java, db.name)
         .build()
+
+    @Singleton
+    @Provides
+    fun provideDatabaseName(rp: ResourceProvider): DatabaseName = DatabaseName.Base(rp)
+
 
     @Singleton
     @Provides

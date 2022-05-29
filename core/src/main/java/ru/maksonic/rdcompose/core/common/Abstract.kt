@@ -8,4 +8,5 @@ abstract class Abstract {
     interface CloudObject
     interface DataObject
     interface DomainObject
+    interface EmptyCacheObject: CacheObject
 }

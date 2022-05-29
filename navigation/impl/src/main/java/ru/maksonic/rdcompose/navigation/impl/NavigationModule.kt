@@ -23,8 +23,7 @@ object NavigationModule {
         homeGraph: HomeGraph,
         categoriesGraph: CategoriesGraph,
         collectionsGraph: CollectionsGraph,
-        podcastGraph: PodcastGraph
-    ): GraphBuilder = GlobalGraph(homeGraph, categoriesGraph, collectionsGraph, podcastGraph)
+    ): GraphBuilder = GlobalGraph(homeGraph, categoriesGraph, collectionsGraph)
 
     @Singleton
     @Provides

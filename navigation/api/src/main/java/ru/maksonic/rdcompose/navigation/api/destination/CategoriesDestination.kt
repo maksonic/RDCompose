@@ -21,6 +21,6 @@ object CategoriesDestination : Route("categories") {
     }
 
     object PodcastList : Route("categories.podcast/{categoryId}") {
-        fun id(categoryId: Long) = "/${categoryId}"
+        fun id(categoryId: String) = "/${categoryId}"
     }
 }

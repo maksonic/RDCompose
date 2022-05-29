@@ -20,7 +20,6 @@ class GlobalGraph @Inject constructor(
     private val homeGraphBuilder: HomeGraph,
     private val categoriesGraphBuilder: CategoriesGraph,
     private val collectionsGraphBuilder: CollectionsGraph,
-    private val podcastGraphBuilder: PodcastGraph,
 ) : GraphBuilder {
 
     override fun buildNavGraph(
@@ -43,7 +42,6 @@ class GlobalGraph @Inject constructor(
                     homeGraphBuilder = homeGraphBuilder,
                     categoriesGraphBuilder = categoriesGraphBuilder,
                     collectionsGraphBuilder = collectionsGraphBuilder,
-                    podcastGraphBuilder = podcastGraphBuilder
                 )
             }
             composable(

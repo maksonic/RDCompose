@@ -10,8 +10,12 @@ import javax.inject.Inject
  */
 class MainNavigator @Inject constructor() : ElmNavigator(), Router.Main {
 
-    override fun categoriesToCategoryPodcasts(categoryId: Long) {
-        navigate(CategoriesDestination.PodcastList.route)
+    override fun categoriesToCategoryPodcasts(categoryId: String) {
+        navigate(
+            CategoriesDestination.PodcastList.route.plus(
+                CategoriesDestination.PodcastList.id(categoryId)
+            )
+        )
 
     /*navigate(
             CategoriesDestination.PodcastList.route.plus(

@@ -13,9 +13,15 @@ import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheToDataMapper
 import ru.maksonic.rdcompose.data.categories.cloud.CategoriesCloudDataSource
 import ru.maksonic.rdcompose.data.categories.cloud.CategoryCloudToDataMapper
 import ru.maksonic.rdcompose.data.onboarding.BaseOnboardingRepository
-import ru.maksonic.rdcompose.domain.base.Repository
+import ru.maksonic.rdcompose.data.podcasts.PodcastDataToDomainMapper
+import ru.maksonic.rdcompose.data.podcasts.PodcastsRepository
+import ru.maksonic.rdcompose.data.podcasts.cloud.PodcastCloudToDataMapper
+import ru.maksonic.rdcompose.data.podcasts.cloud.PodcastsCloudDataSource
+import ru.maksonic.rdcompose.domain.base.CloudRepository
+import ru.maksonic.rdcompose.domain.base.CommonRepository
 import ru.maksonic.rdcompose.domain.categories.CategoryDomain
 import ru.maksonic.rdcompose.domain.onboarding.OnboardingRepository
+import ru.maksonic.rdcompose.domain.podcasts.PodcastDomain
 import javax.inject.Singleton
 
 /**
@@ -37,11 +43,23 @@ object DataModule {
         cloudMapper: CategoryCloudToDataMapper,
         cacheMapper: CategoryCacheToDataMapper,
         dataToDomainMapper: CategoryDataToDomainMapper
-    ): Repository<CategoryDomain> = CategoriesRepository(
+    ): CommonRepository<CategoryDomain> = CategoriesRepository(
         cloudDataSource = cloudDataSource,
         cacheDataSource = cacheDataSource,
         cloudMapper = cloudMapper,
         cacheMapper = cacheMapper,
+        dataToDomainMapper = dataToDomainMapper
+    )
+
+    @Singleton
+    @Provides
+    fun providePodcastsRepository(
+        cloudDataSource: PodcastsCloudDataSource,
+        cloudMapper: PodcastCloudToDataMapper,
+        dataToDomainMapper: PodcastDataToDomainMapper
+    ): CloudRepository<PodcastDomain> = PodcastsRepository(
+        cloudDataSource = cloudDataSource,
+        cloudMapper = cloudMapper,
         dataToDomainMapper = dataToDomainMapper
     )
 

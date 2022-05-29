@@ -1,6 +1,6 @@
 package ru.maksonic.rdcompose.data.categories
 
-import ru.maksonic.rdcompose.data.base.AbstractRepository
+import ru.maksonic.rdcompose.data.base.BaseCommonRepository
 import ru.maksonic.rdcompose.data.categories.cache.CategoryCache
 import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheDataSource
 import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheToDataMapper
@@ -19,7 +19,7 @@ class CategoriesRepository @Inject constructor(
     cloudMapper: CategoryCloudToDataMapper,
     cacheMapper: CategoryCacheToDataMapper,
     dataToDomainMapper: CategoryDataToDomainMapper
-) : AbstractRepository<CategoryCloud, CategoryCache, CategoryData, CategoryDomain>(
+) : BaseCommonRepository<CategoryCloud, CategoryCache, CategoryData, CategoryDomain>(
     baseCloudDataSource = cloudDataSource,
     baseCacheDataSource = cacheDataSource,
     cloudMapper = cloudMapper,

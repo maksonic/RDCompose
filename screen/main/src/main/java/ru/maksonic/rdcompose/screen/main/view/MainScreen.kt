@@ -25,9 +25,8 @@ internal typealias Message = (Msg) -> Unit
 @Composable
 fun MainScreen(
     homeGraphBuilder: GraphBuilder,
-    categoriesGraphBuilder: GraphBuilder.Categories,
+    categoriesGraphBuilder: GraphBuilder,
     collectionsGraphBuilder: GraphBuilder,
-    podcastGraphBuilder: GraphBuilder,
 ) {
 
     val viewModel: MainViewModel = hiltViewModel()
@@ -40,7 +39,6 @@ fun MainScreen(
         homeGraphBuilder,
         categoriesGraphBuilder,
         collectionsGraphBuilder,
-        podcastGraphBuilder,
         navController,
         model.value,
         sendMsg
@@ -50,9 +48,8 @@ fun MainScreen(
 @Composable
 fun MainScreenUi(
     homeGraphBuilder: GraphBuilder,
-    categoriesGraphBuilder: GraphBuilder.Categories,
+    categoriesGraphBuilder: GraphBuilder,
     collectionsGraphBuilder: GraphBuilder,
-    podcastGraphBuilder: GraphBuilder,
     navController: NavHostController,
     model: Model,
     sendMsg: Message,
@@ -75,7 +72,6 @@ fun MainScreenUi(
             )
             categoriesGraphBuilder.buildNavGraph(
                 navGraphBuilder = this,
-                nestedGraphs = { podcastGraphBuilder.buildNavGraph(this, navController) },
                 navController,
             )
             collectionsGraphBuilder.buildNavGraph(

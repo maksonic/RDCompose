@@ -1,19 +1,14 @@
 package ru.maksonic.rdcompose.data.base
 
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import ru.maksonic.rdcompose.core.common.Abstract
 import ru.maksonic.rdcompose.core.common.Mapper
-import ru.maksonic.rdcompose.data.base.source.BaseCacheDataSource
-import ru.maksonic.rdcompose.data.base.source.BaseCloudDataSource
-import ru.maksonic.rdcompose.domain.base.Repository
+import ru.maksonic.rdcompose.domain.base.CommonRepository
 
 /**
- * @Author maksonic on 23.05.2022
+ * @Author maksonic on 29.05.2022
  */
-typealias DataList<T> = Flow<Result<List<T>>>
-
-abstract class AbstractRepository<
+abstract class BaseCommonRepository<
         A : Abstract.CloudObject,
         B : Abstract.CacheObject,
         C : Abstract.DataObject,
@@ -23,7 +18,7 @@ abstract class AbstractRepository<
     private val cloudMapper: Mapper<A, C>,
     private val cacheMapper: Mapper<B, C>,
     private val dataToDomainMapper: Mapper<C, D>
-) : Repository<D> {
+) : CommonRepository<D>() {
 
     override fun fetchDataList(): DataList<D> =
         baseCacheDataSource.fetchCacheList().transform { cacheRequest ->
@@ -44,8 +39,8 @@ abstract class AbstractRepository<
             }
         }
 
-    override fun fetchCloudDataList(): DataList<D> =
-        baseCloudDataSource.fetchCloudList().transform { cloudRequest ->
+    override fun fetchCloudDataList(categoryId: String): DataList<D> =
+        baseCloudDataSource.fetchCloudList(categoryId).transform { cloudRequest ->
             cloudRequest.onSuccess { cloudList ->
                 val dataList = cloudMapper.mapFromList(cloudList)
                 val cacheList = cacheMapper.mapToList(dataList)
@@ -57,5 +52,4 @@ abstract class AbstractRepository<
                 emit(Result.failure(throwable))
             }
         }
-
 }

@@ -25,8 +25,6 @@ import ru.maksonic.rdcompose.shared.ui_widget.ScreenTitleDisplay
 /**
  * @Author maksonic on 25.05.2022
  */
-typealias Message = (Msg) -> Unit
-
 @Composable
 fun CategoriesScreen() {
     val viewModel: CategoriesViewModel = hiltViewModel()
@@ -72,7 +70,7 @@ fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modi
                         items(items = model.value.categories) { category ->
                             ItemCardCategory(
                                 category = category,
-                                onClick = { sendMsg(Msg.Ui.OnCategoryClick(category.id)) }
+                                onClick = { sendMsg(Msg.Ui.OnCategoryClick(category.categoryId)) }
                             )
                         }
                     }

@@ -5,12 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ru.maksonic.rdcompose.data.FirebaseApi
-import ru.maksonic.rdcompose.data.categories.CategoriesRepository
-import ru.maksonic.rdcompose.data.categories.CategoryDataToDomainMapper
-import ru.maksonic.rdcompose.data.categories.cloud.CategoriesCloudDataSource
-import ru.maksonic.rdcompose.data.categories.cloud.CategoryCloudToDataMapper
-import ru.maksonic.rdcompose.domain.base.Repository
-import ru.maksonic.rdcompose.domain.categories.CategoryDomain
 import javax.inject.Singleton
 
 /**

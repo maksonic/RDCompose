@@ -17,3 +17,5 @@ interface Mapper<I, O> {
         return list.mapNotNull { mapTo(it) }
     }
 }
+
+typealias CloudMapper<T, R> = (T) -> R

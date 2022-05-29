@@ -8,7 +8,7 @@ import ru.maksonic.rdcompose.core.common.KeyStore
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.destination.CategoriesDestination
 import ru.maksonic.rdcompose.screen.categories.view.CategoriesScreen
-import ru.maksonic.rdcompose.screen.podcast_list.PodcastListScreen
+import ru.maksonic.rdcompose.screen.podcast_list.view.PodcastListScreen
 import javax.inject.Inject
 
 /**
@@ -16,11 +16,10 @@ import javax.inject.Inject
  */
 class CategoriesGraph @Inject constructor(
     private val keyStore: KeyStore.NavigationKey
-) : GraphBuilder.Categories {
+) : GraphBuilder {
 
     override fun buildNavGraph(
         navGraphBuilder: NavGraphBuilder,
-        nestedGraphs: NavGraphBuilder.() -> Unit,
         navController: NavHostController,
     ) {
         navGraphBuilder.navigation(
@@ -30,7 +29,11 @@ class CategoriesGraph @Inject constructor(
             composable(CategoriesDestination.Categories.route) {
                 CategoriesScreen()
             }
-            nestedGraphs()
+            composable(
+                CategoriesDestination.PodcastList.route.plus(args(keyStore.passedCategoryIdKey)),
+            ) {
+                PodcastListScreen()
+            }
         }
     }
 }

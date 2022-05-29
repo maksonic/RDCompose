@@ -3,7 +3,7 @@ package ru.maksonic.rdcompose.data.categories.cache
 import kotlinx.coroutines.CoroutineDispatcher
 import ru.maksonic.rdcompose.core.common.ResourceProvider
 import ru.maksonic.rdcompose.core.di.IoDispatcher
-import ru.maksonic.rdcompose.data.base.source.BaseCacheDataSource
+import ru.maksonic.rdcompose.data.base.BaseCacheDataSource
 import javax.inject.Inject
 
 /**
