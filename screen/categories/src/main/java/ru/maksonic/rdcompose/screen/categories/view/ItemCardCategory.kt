@@ -30,6 +30,7 @@ fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifier: Modifi
                 bottom = RDTheme.padding.dp16
             )
             .aspectRatio(1f),
+        backgroundColor = RDTheme.color.surface,
         onClick = { onClick() },
         shape = RDTheme.shape.cornerBig,
         elevation = RDTheme.elevation.dp8,
