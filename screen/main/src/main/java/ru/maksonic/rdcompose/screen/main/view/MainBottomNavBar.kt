@@ -1,18 +1,19 @@
 package ru.maksonic.rdcompose.screen.main.view
 
-import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
-import androidx.compose.material3.*
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
-import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
+import ru.maksonic.rdcompose.navigation.api.currentScreenAsState
 import ru.maksonic.rdcompose.navigation.api.destination.CategoriesDestination
 import ru.maksonic.rdcompose.navigation.api.destination.CollectionsDestination
 import ru.maksonic.rdcompose.navigation.api.destination.HomeDestination
@@ -31,21 +32,21 @@ internal fun MainBottomNavBar(sendMsg: Message, navController: NavController) {
         CollectionsDestination.Collections,
     )
 
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentSelectedItem by navController.currentScreenAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
     NavigationBar(
         containerColor = RDTheme.color.surface,
         contentColor = RDTheme.color.primary
     ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        val currentDestination = navBackStackEntry?.destination
+        /**Hide [MainTopAppBar] if current screen != bottom bar items**/
         mainTopBarBehavior(items, currentRoute, sendMsg)
 
-        items.forEach { screen ->
-            val selected =
-                currentDestination?.hierarchy?.any { it.route == screen.route } == true
-
-            val iconId = if (selected) screen.selectedIcon else screen.unselectedIcon
-            val tint = if (selected) RDTheme.color.primary else RDTheme.color.secondary
+        items.onEach { screen ->
+            val checked = currentSelectedItem.route == screen.route
+            val iconId = if (checked) screen.selectedIcon else screen.unselectedIcon
+            val tint = if (checked) RDTheme.color.primary else RDTheme.color.secondary
             val label = stringResource(screen.labelId)
 
             NavigationBarItem(
@@ -54,7 +55,7 @@ internal fun MainBottomNavBar(sendMsg: Message, navController: NavController) {
                 },
                 label = { Text(label, color = tint, fontWeight = FontWeight.Bold) },
                 alwaysShowLabel = true,
-                selected = selected,
+                selected = currentSelectedItem.route == screen.route,
                 colors = NavigationBarItemDefaults.colors(
                     indicatorColor = RDTheme.color.divider
                 ),
