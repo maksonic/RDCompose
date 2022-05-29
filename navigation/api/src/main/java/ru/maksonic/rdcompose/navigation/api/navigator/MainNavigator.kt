@@ -2,7 +2,7 @@ package ru.maksonic.rdcompose.navigation.api.navigator
 
 import ru.maksonic.rdcompose.core.elm.ElmNavigator
 import ru.maksonic.rdcompose.navigation.api.Router
-import ru.maksonic.rdcompose.navigation.api.destination.MainDestination
+import ru.maksonic.rdcompose.navigation.api.destination.CategoriesDestination
 import javax.inject.Inject
 
 /**
@@ -11,6 +11,14 @@ import javax.inject.Inject
 class MainNavigator @Inject constructor() : ElmNavigator(), Router.Main {
 
     override fun categoriesToCategoryPodcasts(categoryId: Long) {
-        navigate(MainDestination.PodcastList.route.plus(MainDestination.PodcastList.id(categoryId)))
+        navigate(CategoriesDestination.PodcastList.route)
+
+    /*navigate(
+            CategoriesDestination.PodcastList.route.plus(
+                CategoriesDestination.PodcastList.id(
+                    categoryId
+                )
+            )
+        )*/
     }
 }

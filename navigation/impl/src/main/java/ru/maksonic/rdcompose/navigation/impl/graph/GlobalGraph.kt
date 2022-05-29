@@ -7,7 +7,6 @@ import androidx.navigation.navigation
 import ru.maksonic.rdcompose.feature.onboarding.view.OnboardingScreen
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.destination.GlobalDestination
-import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
 import ru.maksonic.rdcompose.screen.main.view.MainScreen
 import ru.maksonic.rdcompose.screen.settings.view.SettingsScreen
 import ru.maksonic.rdcompose.screen.user_profile.UserProfileScreen
@@ -18,8 +17,10 @@ import javax.inject.Inject
  */
 
 class GlobalGraph @Inject constructor(
-    private val mainGraphBuilder: MainGraph,
-    private val mainNavigator: MainNavigator,
+    private val homeGraphBuilder: HomeGraph,
+    private val categoriesGraphBuilder: CategoriesGraph,
+    private val collectionsGraphBuilder: CollectionsGraph,
+    private val podcastGraphBuilder: PodcastGraph,
 ) : GraphBuilder {
 
     override fun buildNavGraph(
@@ -38,7 +39,12 @@ class GlobalGraph @Inject constructor(
             composable(
                 GlobalDestination.Main.route
             ) {
-                MainScreen(mainGraphBuilder, mainNavigator)
+                MainScreen(
+                    homeGraphBuilder = homeGraphBuilder,
+                    categoriesGraphBuilder = categoriesGraphBuilder,
+                    collectionsGraphBuilder = collectionsGraphBuilder,
+                    podcastGraphBuilder = podcastGraphBuilder
+                )
             }
             composable(
                 GlobalDestination.Settings.route

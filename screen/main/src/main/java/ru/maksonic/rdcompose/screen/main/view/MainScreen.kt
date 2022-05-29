@@ -11,8 +11,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
-import ru.maksonic.rdcompose.navigation.api.destination.MainDestination
-import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
+import ru.maksonic.rdcompose.navigation.api.destination.HomeDestination
+import ru.maksonic.rdcompose.screen.main.model.Model
 import ru.maksonic.rdcompose.screen.main.model.Msg
 import ru.maksonic.rdcompose.screen.main.update.MainViewModel
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
@@ -23,35 +23,62 @@ import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 internal typealias Message = (Msg) -> Unit
 
 @Composable
-fun MainScreen(mainGraphBuilder: GraphBuilder, mainNavigator: MainNavigator) {
-    mainNavigator.navController = rememberNavController()
-    val navController = mainNavigator.navController
+fun MainScreen(
+    homeGraphBuilder: GraphBuilder,
+    categoriesGraphBuilder: GraphBuilder.Categories,
+    collectionsGraphBuilder: GraphBuilder,
+    podcastGraphBuilder: GraphBuilder,
+) {
+
     val viewModel: MainViewModel = hiltViewModel()
+    viewModel.mainNavigator.navController = rememberNavController()
+    val navController = viewModel.mainNavigator.navController
     val model = viewModel.featureModel.collectAsState()
     val sendMsg = viewModel::sendMsg
 
-    MainScreenUi(mainGraphBuilder, navController, sendMsg)
+    MainScreenUi(
+        homeGraphBuilder,
+        categoriesGraphBuilder,
+        collectionsGraphBuilder,
+        podcastGraphBuilder,
+        navController,
+        model.value,
+        sendMsg
+    )
 }
 
 @Composable
 fun MainScreenUi(
-    mainGraphBuilder: GraphBuilder,
+    homeGraphBuilder: GraphBuilder,
+    categoriesGraphBuilder: GraphBuilder.Categories,
+    collectionsGraphBuilder: GraphBuilder,
+    podcastGraphBuilder: GraphBuilder,
     navController: NavHostController,
+    model: Model,
     sendMsg: Message,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
         modifier.systemBarsPadding(),
-        topBar = { MainTopAppBar(sendMsg) },
-        bottomBar = { MainBottomNavBar(navController) },
+        topBar = { MainTopAppBar(model, sendMsg) },
+        bottomBar = { MainBottomNavBar(sendMsg, navController) },
         backgroundColor = RDTheme.color.background,
     ) { padding ->
         NavHost(
             navController,
-            startDestination = MainDestination.route,
+            startDestination = HomeDestination.route,
             modifier.padding(padding)
         ) {
-            mainGraphBuilder.buildNavGraph(
+            homeGraphBuilder.buildNavGraph(
+                navGraphBuilder = this,
+                navController,
+            )
+            categoriesGraphBuilder.buildNavGraph(
+                navGraphBuilder = this,
+                nestedGraphs = { podcastGraphBuilder.buildNavGraph(this, navController) },
+                navController,
+            )
+            collectionsGraphBuilder.buildNavGraph(
                 navGraphBuilder = this,
                 navController,
             )

@@ -13,4 +13,9 @@ sealed class Msg : Message {
         object ShowSettings : Ui()
         object ShowUserProfile : Ui()
     }
+
+    sealed class Internal : Msg() {
+        object ShowTopBar : Internal()
+        object HideTopBar : Internal()
+    }
 }

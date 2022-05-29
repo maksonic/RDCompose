@@ -15,4 +15,12 @@ interface GraphBuilder {
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
     )
+
+    interface Categories {
+        fun buildNavGraph(
+            navGraphBuilder: NavGraphBuilder,
+            nestedGraphs: NavGraphBuilder.() -> Unit,
+            navController: NavHostController,
+        )
+    }
 }
