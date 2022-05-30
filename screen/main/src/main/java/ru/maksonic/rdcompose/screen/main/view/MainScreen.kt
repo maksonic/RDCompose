@@ -1,11 +1,15 @@
 package ru.maksonic.rdcompose.screen.main.view
 
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -55,7 +59,36 @@ fun MainScreenUi(
     sendMsg: Message,
     modifier: Modifier = Modifier
 ) {
-    Scaffold(
+    Column(modifier.systemBarsPadding()) {
+        Box(modifier.weight(1f),
+            contentAlignment = Alignment.TopCenter) {
+            NavHost(
+                navController,
+                startDestination = HomeDestination.route,
+            ) {
+                homeGraphBuilder.buildNavGraph(
+                    navGraphBuilder = this,
+                    navController,
+                )
+                categoriesGraphBuilder.buildNavGraph(
+                    navGraphBuilder = this,
+                    navController,
+                )
+                collectionsGraphBuilder.buildNavGraph(
+                    navGraphBuilder = this,
+                    navController,
+                )
+            }
+            MainTopAppBar(model, sendMsg)
+        }
+        MainBottomNavBar(sendMsg, navController)
+
+    }
+}
+
+/*
+*
+*  Scaffold(
         modifier.systemBarsPadding(),
         topBar = { MainTopAppBar(model, sendMsg) },
         bottomBar = { MainBottomNavBar(sendMsg, navController) },
@@ -77,7 +110,4 @@ fun MainScreenUi(
             collectionsGraphBuilder.buildNavGraph(
                 navGraphBuilder = this,
                 navController,
-            )
-        }
-    }
-}
+            )*/

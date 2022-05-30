@@ -25,6 +25,7 @@ class CategoriesViewModel @Inject constructor(
     subscriptions = listOf(categoriesProgram),
     navigator = navigator
 ) {
+
     override fun update(msg: Msg, model: Model): Update = when (msg) {
         is Msg.Ui.FetchCategories -> updateResult.fetching(model)
         is Msg.Ui.RefreshCategories -> updateResult.refreshing(model)

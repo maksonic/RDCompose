@@ -1,5 +1,6 @@
 package ru.maksonic.rdcompose.screen.collections
 
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
@@ -17,9 +18,13 @@ import ru.maksonic.rdcompose.shared.ui_widget.ScreenTitleDisplay
 fun CollectionsScreen() {
     CollectionsScreenUi()
 }
+
 @Composable
 fun CollectionsScreenUi(modifier: Modifier = Modifier) {
     Scaffold(
+        modifier = modifier
+            .padding(top = RDTheme.componentSize.topAppBarNormalHeight)
+            .navigationBarsPadding(),
         backgroundColor = RDTheme.color.background
     ) { padding ->
         LazyColumn(modifier.padding(padding)) {
