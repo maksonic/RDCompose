@@ -37,7 +37,7 @@ internal fun ItemWithClick(
         modifier
             .fillMaxWidth()
             .background(backgroundColor)
-            .rippleClickable { action() },
+            .rippleClickable(rippleColor = RDTheme.color.primary) { action() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
