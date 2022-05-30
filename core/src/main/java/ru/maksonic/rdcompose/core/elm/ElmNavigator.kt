@@ -8,7 +8,7 @@ import androidx.navigation.NavHostController
 abstract class ElmNavigator {
     lateinit var navController: NavHostController
 
-    fun backPressed() = navController.navigateUp()
+    fun backPressed() = navController.popBackStack()
 
     fun navigate(destination: String) {
         if (destination != navController.currentDestination?.route)

@@ -1,20 +1,18 @@
 package ru.maksonic.rdcompose.screen.podcast_list.view
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.maksonic.rdcompose.screen.podcast_list.model.Msg
 import ru.maksonic.rdcompose.screen.podcast_list.update.PodcastListViewModel
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_widget.ErrorViewState
+import ru.maksonic.rdcompose.shared.ui_widget.LoadingViewState
 import ru.maksonic.rdcompose.shared.ui_widget.topbar.TopAppBarNormal
 
 /**
@@ -28,11 +26,11 @@ fun PodcastListScreen() {
 @Composable
 fun PodcastListScreenUi(modifier: Modifier = Modifier) {
     val viewModel: PodcastListViewModel = hiltViewModel()
-    val state = viewModel.list.collectAsState()
+    val model = viewModel.featureModel.collectAsState()
+    val sendMsg = viewModel::sendMsg
     Scaffold(
         topBar = {
             TopAppBarNormal(
-                title = "",
                 backgroundColor = RDTheme.color.background,
                 backPressed = { viewModel.backPressed() }
             )
@@ -40,11 +38,21 @@ fun PodcastListScreenUi(modifier: Modifier = Modifier) {
         backgroundColor = RDTheme.color.background,
         modifier = modifier.systemBarsPadding()
     ) { padding ->
-        LazyColumn() {
-            items(state.value) { podcast ->
-                Column(modifier.wrapContentSize().padding(8.dp)) {
-                    Text(podcast.id.toString())
-                    Text(podcast.name) }
+        when {
+            model.value.isLoading -> LoadingViewState()
+            model.value.isError -> ErrorViewState(
+                errorMessage = model.value.errorMsg,
+                retryAction = { sendMsg(Msg.Ui.RetryFetchPodcasts) }
+            )
+            model.value.isSuccess -> {
+                LazyColumn(modifier.padding(padding)) {
+                    item {
+                        CategoryHeader(model.value)
+                    }
+                    items(model.value.podcasts) { podcast ->
+                        ItemPodcastList(podcast)
+                    }
+                }
             }
         }
     }

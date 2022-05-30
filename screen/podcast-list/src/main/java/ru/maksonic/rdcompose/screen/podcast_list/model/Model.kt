@@ -2,11 +2,17 @@ package ru.maksonic.rdcompose.screen.podcast_list.model
 
 import androidx.compose.runtime.Immutable
 import ru.maksonic.rdcompose.core.elm.StateModel
+import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
 
 /**
  * @Author maksonic on 29.05.2022
  */
 @Immutable
 data class Model(
-    val state: String
+    val isLoading: Boolean = false,
+    val isSuccess: Boolean = false,
+    val isError: Boolean = false,
+    val titleTopBar: String = "",
+    val podcasts: List<PodcastUi> = emptyList(),
+    val errorMsg: String = "",
 ) : StateModel

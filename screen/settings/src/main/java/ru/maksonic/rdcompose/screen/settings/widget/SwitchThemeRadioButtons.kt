@@ -15,7 +15,7 @@ import ru.maksonic.rdcompose.screen.settings.model.Model
 import ru.maksonic.rdcompose.screen.settings.model.Msg
 import ru.maksonic.rdcompose.screen.settings.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.button.clickAction
+import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable
 
 /**
  * @Author maksonic on 27.05.2022
@@ -27,7 +27,13 @@ internal fun SwitchThemeRadioButtons(model: Model, sendMsg: Message) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .clickAction { sendMsg(Msg.Ui.SwitchAppTheme(selectedTheme)) }
+                    .rippleClickable(rippleColor = RDTheme.color.primary) {
+                        sendMsg(
+                            Msg.Ui.SwitchAppTheme(
+                                selectedTheme
+                            )
+                        )
+                    }
             ) {
                 RadioButton(
                     selected = model.currentAppTheme.value == selectedTheme,

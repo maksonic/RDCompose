@@ -1,15 +1,12 @@
 package ru.maksonic.rdcompose.screen.main.view
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -19,7 +16,6 @@ import ru.maksonic.rdcompose.navigation.api.destination.HomeDestination
 import ru.maksonic.rdcompose.screen.main.model.Model
 import ru.maksonic.rdcompose.screen.main.model.Msg
 import ru.maksonic.rdcompose.screen.main.update.MainViewModel
-import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 
 /**
  * @Author maksonic on 23.05.2022
@@ -85,29 +81,3 @@ fun MainScreenUi(
 
     }
 }
-
-/*
-*
-*  Scaffold(
-        modifier.systemBarsPadding(),
-        topBar = { MainTopAppBar(model, sendMsg) },
-        bottomBar = { MainBottomNavBar(sendMsg, navController) },
-        backgroundColor = RDTheme.color.background,
-    ) { padding ->
-        NavHost(
-            navController,
-            startDestination = HomeDestination.route,
-            modifier.padding(padding)
-        ) {
-            homeGraphBuilder.buildNavGraph(
-                navGraphBuilder = this,
-                navController,
-            )
-            categoriesGraphBuilder.buildNavGraph(
-                navGraphBuilder = this,
-                navController,
-            )
-            collectionsGraphBuilder.buildNavGraph(
-                navGraphBuilder = this,
-                navController,
-            )*/

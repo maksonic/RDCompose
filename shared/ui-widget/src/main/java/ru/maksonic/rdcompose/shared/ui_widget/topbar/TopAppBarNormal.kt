@@ -15,7 +15,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
  */
 @Composable
 fun TopAppBarNormal(
-    title: String,
+    title: String = "",
     backgroundColor: Color = RDTheme.color.background,
     backPressed: () -> Unit
 ) {

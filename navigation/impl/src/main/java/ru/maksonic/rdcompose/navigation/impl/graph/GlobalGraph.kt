@@ -28,7 +28,7 @@ class GlobalGraph @Inject constructor(
     ) {
         navGraphBuilder.navigation(
             route = GlobalDestination.route,
-            startDestination = GlobalDestination.Onboarding.route
+            startDestination = GlobalDestination.Onboarding.route,
         ) {
             composable(
                 GlobalDestination.Onboarding.route,
@@ -36,8 +36,8 @@ class GlobalGraph @Inject constructor(
                 OnboardingScreen()
             }
             composable(
-                GlobalDestination.Main.route
-            ) {
+                GlobalDestination.Main.route,
+                ) {
                 MainScreen(
                     homeGraphBuilder = homeGraphBuilder,
                     categoriesGraphBuilder = categoriesGraphBuilder,
@@ -45,13 +45,13 @@ class GlobalGraph @Inject constructor(
                 )
             }
             composable(
-                GlobalDestination.Settings.route
+                GlobalDestination.Settings.route,
             ) {
                 SettingsScreen()
             }
 
             composable(
-                GlobalDestination.UserProfile.route
+                GlobalDestination.UserProfile.route,
             ) {
                 UserProfileScreen()
             }

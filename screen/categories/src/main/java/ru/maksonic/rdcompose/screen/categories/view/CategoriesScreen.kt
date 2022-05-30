@@ -1,8 +1,8 @@
 package ru.maksonic.rdcompose.screen.categories.view
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -39,9 +39,7 @@ fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modi
 
     Scaffold(
         backgroundColor = RDTheme.color.background,
-        modifier = modifier
-            .padding(top = RDTheme.componentSize.topAppBarNormalHeight)
-            .navigationBarsPadding()
+        modifier = modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
     ) { padding ->
 
         SwipeRefresh(
@@ -74,7 +72,16 @@ fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modi
                         items(items = model.value.categories) { category ->
                             ItemCardCategory(
                                 category = category,
-                                onClick = { sendMsg(Msg.Ui.OnCategoryClick(category.categoryId)) }
+                                onClick = {
+                                    sendMsg(
+                                        Msg.Ui.OnCategoryClick(
+                                            categoryId = category.categoryId,
+                                            categoryName = category.name,
+                                        )
+                                    )
+
+                                    Log.e("CATEFGGORY", "${category.image}")
+                                }
                             )
                         }
                     }

@@ -1,6 +1,5 @@
 package ru.maksonic.rdcompose.screen.home
 
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Scaffold
@@ -18,14 +17,11 @@ import ru.maksonic.rdcompose.shared.ui_widget.ScreenTitleDisplay
 fun HomeScreen() {
     HomeScreenUi()
 }
-
 @Composable
 fun HomeScreenUi(modifier: Modifier = Modifier) {
     Scaffold(
-        modifier = modifier
-            .padding(top = RDTheme.componentSize.topAppBarNormalHeight)
-            .navigationBarsPadding(),
-        backgroundColor = RDTheme.color.background
+        backgroundColor = RDTheme.color.background,
+        modifier = modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
     ) { padding ->
         LazyColumn(modifier.padding(padding)) {
             item { ScreenTitleDisplay(title = stringResource(id = R.string.scr_home)) }

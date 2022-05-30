@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="podcast_count_hint">
+        <item quantity="zero">Категория • %s подкастов</item>
+        <item quantity="one">Категория • %s подкаст</item>
+        <item quantity="two">Категория • %s подкаста</item>
+        <item quantity="few">Категория • %s подкаста</item>
+        <item quantity="many">Категория • %s подкастов</item>
+        <item quantity="other">Категория • %s подкастов</item>
+    </plurals>
+</resources>

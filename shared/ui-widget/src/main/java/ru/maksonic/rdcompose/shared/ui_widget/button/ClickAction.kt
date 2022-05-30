@@ -7,6 +7,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.debugInspectorInfo
 import androidx.compose.ui.semantics.Role
 import kotlinx.coroutines.delay
@@ -16,7 +17,10 @@ import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 /**
  * @Author maksonic on 24.05.2022
  */
-fun Modifier.clickAction(timeOut: Long = 300, onClick: () -> Unit) = composed(
+fun Modifier.clickAction(
+    timeOut: Long = 300,
+    onClick: () -> Unit,
+) = composed(
     inspectorInfo = debugInspectorInfo {
         name = "debouncedClick"
         properties["timeOut"] = timeOut
@@ -43,13 +47,15 @@ fun Modifier.rippleClickable(
     enabled: Boolean = true,
     onClickLabel: String? = null,
     role: Role? = null,
-    onClick: () -> Unit
+    rippleColor: Color = Color.Black,
+    onClick: () -> Unit,
 ) = composed(
     inspectorInfo = debugInspectorInfo {
         name = "clickable"
         properties["enabled"] = enabled
         properties["onClickLabel"] = onClickLabel
         properties["role"] = role
+        properties["rippleColor"] = rippleColor
         properties["onClick"] = onClick
     }
 ) {
@@ -58,7 +64,7 @@ fun Modifier.rippleClickable(
         onClickLabel = onClickLabel,
         onClick = onClick,
         role = role,
-        indication = rememberRipple(color = RDTheme.color.primary, bounded = true),
+        indication = rememberRipple(color = rippleColor, bounded = true),
         interactionSource = remember { MutableInteractionSource() }
     )
 }

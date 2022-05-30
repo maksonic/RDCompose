@@ -71,13 +71,13 @@ dependencies {
 
     implementation(Lib.AndroidX.CORE_KTX)
     implementation(Lib.Accompanist.SYSTEM_UI)
-    implementation(Lib.Compose.UI)
+    implementation(Lib.Compose.ACTIVITY)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Compose.NAVIGATION)
+    implementation(Lib.Compose.UI)
     implementation(Lib.Compose.UI_PREVIEW)
     implementation(Lib.Lifecycle.RUNTIME_KTX)
     implementation(Lib.Firebase.FIRESTORE)
-    implementation(Lib.Compose.ACTIVITY)
     implementation(Lib.Dagger.HILT)
     kapt(Lib.Dagger.COMPILER)
 

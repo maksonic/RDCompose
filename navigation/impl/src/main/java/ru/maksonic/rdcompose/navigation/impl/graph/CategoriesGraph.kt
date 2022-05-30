@@ -24,13 +24,15 @@ class CategoriesGraph @Inject constructor(
     ) {
         navGraphBuilder.navigation(
             route = CategoriesDestination.route,
-            startDestination = CategoriesDestination.Categories.route
+            startDestination = CategoriesDestination.Categories.route,
         ) {
             composable(CategoriesDestination.Categories.route) {
                 CategoriesScreen()
             }
             composable(
-                CategoriesDestination.PodcastList.route.plus(args(keyStore.passedCategoryIdKey)),
+                CategoriesDestination.PodcastList.route
+                    .plus(args(keyStore.passedCategoryIdKey))
+                    .plus(args(keyStore.passedCategoryNameKey)),
             ) {
                 PodcastListScreen()
             }

@@ -32,7 +32,7 @@ internal fun ItemWithSwitch(
     Row(
         modifier
             .fillMaxWidth()
-            .rippleClickable {
+            .rippleClickable(rippleColor = RDTheme.color.primary) {
                 action()
                 checkedState.value = !checkedState.value
             },
