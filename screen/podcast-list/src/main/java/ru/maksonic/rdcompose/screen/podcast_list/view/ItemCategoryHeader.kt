@@ -1,0 +1,138 @@
+package ru.maksonic.rdcompose.screen.podcast_list.view
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import com.skydoves.landscapist.ShimmerParams
+import com.skydoves.landscapist.glide.GlideImage
+import ru.maksonic.rdcompose.screen.podcast_list.model.Model
+import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_widget.R
+import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
+import ru.maksonic.rdcompose.shared.ui_widget.button.OutlinedSecondaryButton
+
+/**
+ * @Author maksonic on 30.05.2022
+ */
+@Composable
+fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
+    val dp16 = RDTheme.padding.dp16
+    val dp8 = RDTheme.padding.dp8
+    val resources = LocalContext.current.resources
+    val podcastsInCategoryCount = resources.getQuantityString(
+        ru.maksonic.rdcompose.screen.podcast_list.R.plurals.podcast_count_hint,
+        model.podcasts.count(), model.podcasts.count()
+    )
+    Column(
+        modifier
+            .fillMaxWidth()
+            .padding(top = dp16)
+    ) {
+        Row(
+            modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Card(
+                modifier
+                    .fillMaxSize(0.5f)
+                    .padding(start = dp16, end = dp8),
+                shape = RDTheme.shape.cornerNormal,
+                backgroundColor = RDTheme.color.surface
+            ) {
+                GlideImage(
+                    imageModel = null,
+                    shimmerParams = ShimmerParams(
+                        baseColor = RDTheme.color.divider,
+                        highlightColor = RDTheme.color.surface,
+                        durationMillis = 350,
+                        dropOff = 0.65f,
+                        tilt = 20f
+                    ),
+                    modifier = modifier
+                        .fillMaxSize()
+                        .aspectRatio(1f)
+                        .background(Color.Red)
+                )
+            }
+
+            Column(
+                modifier
+                    .fillMaxSize()
+                    .padding(start = dp8, end = dp16)
+            ) {
+                Text(
+                    text = model.titleTopBar,
+                    style = RDTheme.typography.header,
+                    color = RDTheme.color.primaryText
+                )
+
+                Text(
+                    text = podcastsInCategoryCount,
+                    style = RDTheme.typography.caption,
+                    color = RDTheme.color.secondaryText,
+                    modifier = modifier.padding(top = dp8)
+                )
+
+                Row(
+                    modifier
+                        .fillMaxWidth()
+                        .padding(start = dp16, end = dp16, top = dp8),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    IconActionButton(onClick = {}) {
+                        Icon(
+                            painterResource(id = R.drawable.ic_download),
+                            tint = RDTheme.color.controlNormal,
+                            contentDescription = ""
+                        )
+                    }
+                    IconActionButton(onClick = {}) {
+                        Icon(
+                            painterResource(id = R.drawable.ic_round_playlist_add),
+                            tint = RDTheme.color.controlNormal,
+                            contentDescription = ""
+                        )
+                    }
+                    IconActionButton(onClick = {}) {
+                        Icon(
+                            painterResource(id = R.drawable.ic_share),
+                            tint = RDTheme.color.controlNormal,
+                            contentDescription = ""
+                        )
+                    }
+                }
+            }
+        }
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(start = dp16, end = dp16, top = dp16, bottom = dp8)
+        ) {
+            OutlinedSecondaryButton(
+                onClick = {},
+                iconId = R.drawable.ic_round_shuffle,
+                title = stringResource(R.string.txt_player_shuffle),
+                modifier = modifier.weight(1f)
+            )
+            Spacer(modifier.width(dp16))
+            OutlinedSecondaryButton(
+                onClick = {},
+                backgroundColor = RDTheme.color.primary,
+                onButtonColor = RDTheme.color.onPrimary,
+                rippleColor = RDTheme.color.onPrimary,
+                iconId = R.drawable.ic_play_rounded,
+                title = stringResource(R.string.txt_player_play),
+                modifier = modifier.weight(1f)
+            )
+        }
+    }
+}

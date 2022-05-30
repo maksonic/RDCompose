@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.shared.ui_model.category
+package ru.maksonic.rdcompose.shared.ui_model.category.category
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

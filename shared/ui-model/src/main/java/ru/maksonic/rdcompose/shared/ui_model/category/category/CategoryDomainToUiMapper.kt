@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.shared.ui_model.category
+package ru.maksonic.rdcompose.shared.ui_model.category.category
 
 import ru.maksonic.rdcompose.core.common.Mapper
 import ru.maksonic.rdcompose.domain.categories.CategoryDomain

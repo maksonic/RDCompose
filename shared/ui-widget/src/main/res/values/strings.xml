@@ -5,4 +5,6 @@
     <string name="title_sign_up_widget">Войдите в профиль</string>
     <string name="body_sign_up_widget">Возможность слушать и скачивать подкасты,\n50% к физическим показателям. 😁</string>
 
+    <string name="txt_player_shuffle">Перемешать</string>
+    <string name="txt_player_play">Слушать</string>
 </resources>

@@ -1,16 +1,14 @@
 package ru.maksonic.rdcompose.screen.categories.program
 
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import ru.maksonic.rdcompose.core.elm.ElmProgram
-import ru.maksonic.rdcompose.domain.base.BaseUseCase
 import ru.maksonic.rdcompose.domain.categories.CategoryDomain
 import ru.maksonic.rdcompose.domain.categories.FetchCategoriesUseCase
 import ru.maksonic.rdcompose.domain.categories.RefreshCategoriesUseCase
 import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
 import ru.maksonic.rdcompose.screen.categories.model.Cmd
 import ru.maksonic.rdcompose.screen.categories.model.Msg
-import ru.maksonic.rdcompose.shared.ui_model.category.CategoryDomainToUiMapper
+import ru.maksonic.rdcompose.shared.ui_model.category.category.CategoryDomainToUiMapper
 import javax.inject.Inject
 
 /**
@@ -27,7 +25,7 @@ class CategoriesProgram @Inject constructor(
         when (cmd) {
             is Cmd.FetchCategories -> execution(fetchCategoriesUseCase(), consumer)
             is Cmd.RefreshCategories -> execution(refreshCategoriesUseCase(), consumer)
-            is Cmd.NavigateToPodcastList -> navigator.categoriesToCategoryPodcasts(cmd.categoryId)
+            is Cmd.NavigateToPodcastList -> navigateToPodcasts(cmd)
         }
     }
 
@@ -43,5 +41,9 @@ class CategoriesProgram @Inject constructor(
                 consumer(Msg.Internal.Error(throwable.message))
             }
         }
+    }
+
+    private fun navigateToPodcasts(cmd: Cmd.NavigateToPodcastList) {
+        navigator.categoriesToCategoryPodcasts(cmd.categoryId, cmd.categoryName)
     }
 }

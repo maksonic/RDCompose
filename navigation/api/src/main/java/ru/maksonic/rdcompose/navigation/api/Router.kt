@@ -9,7 +9,11 @@ interface Router {
         fun mainToSettings()
         fun mainToUserProfile()
     }
+
     interface Main {
-        fun categoriesToCategoryPodcasts(categoryId: String)
+        fun categoriesToCategoryPodcasts(
+            categoryId: String,
+            categoryName: String,
+        )
     }
 }
