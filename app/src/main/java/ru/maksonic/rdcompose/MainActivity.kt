@@ -43,38 +43,36 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-            MainTheme {
-                globalNavigator.navController = rememberNavController()
-                val navController = globalNavigator.navController
-                val systemTheme = isSystemInDarkTheme()
-                val appTheme = viewModel.themeState.collectAsState()
+            globalNavigator.navController = rememberNavController()
+            val navController = globalNavigator.navController
+            val systemTheme = isSystemInDarkTheme()
+            val appTheme = viewModel.themeState.collectAsState()
 
-                val rdComposeTheme: @Composable (
-                    content: @Composable () -> Unit
-                ) -> Unit = when (appTheme.value) {
-                    AppTheme.SYSTEM -> { content -> MainTheme(systemTheme, content = content) }
-                    AppTheme.DARK -> { content -> MainTheme(darkTheme = true, content) }
-                    AppTheme.LIGHT -> { content -> MainTheme(darkTheme = false, content = content) }
-                    AppTheme.HIGH_CONTRAST -> { content -> HighContrastTheme(content = content) }
-                }
-                rdComposeTheme.invoke {
-                    val backgroundColor = RDTheme.color.background
-                    SystemComponentsColor(
-                        isDarkMode = systemTheme,
-                        themeType = appTheme,
-                        actualBackgroundColor = backgroundColor
-                    )
-                    Scaffold { padding ->
-                        NavHost(
+            val rdComposeTheme: @Composable (
+                content: @Composable () -> Unit
+            ) -> Unit = when (appTheme.value) {
+                AppTheme.SYSTEM -> { content -> MainTheme(systemTheme, content = content) }
+                AppTheme.DARK -> { content -> MainTheme(darkTheme = true, content) }
+                AppTheme.LIGHT -> { content -> MainTheme(darkTheme = false, content = content) }
+                AppTheme.HIGH_CONTRAST -> { content -> HighContrastTheme(content = content) }
+            }
+            rdComposeTheme.invoke {
+                val backgroundColor = RDTheme.color.background
+                SystemComponentsColor(
+                    isDarkMode = systemTheme,
+                    themeType = appTheme,
+                    actualBackgroundColor = backgroundColor
+                )
+                Scaffold(backgroundColor = backgroundColor) { padding ->
+                    NavHost(
+                        navController,
+                        startDestination = GlobalDestination.route,
+                        modifier = Modifier.padding(padding)
+                    ) {
+                        globalGraphBuilder.buildNavGraph(
+                            navGraphBuilder = this,
                             navController,
-                            startDestination = GlobalDestination.route,
-                            modifier = Modifier.padding(padding)
-                        ) {
-                            globalGraphBuilder.buildNavGraph(
-                                navGraphBuilder = this,
-                                navController,
-                            )
-                        }
+                        )
                     }
                 }
             }

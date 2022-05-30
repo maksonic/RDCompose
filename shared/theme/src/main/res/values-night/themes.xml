@@ -2,6 +2,6 @@
 <resources>
     <style name="Theme.RDCompose" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
-        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/black</item>
     </style>
 </resources>

@@ -37,7 +37,8 @@ fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modi
     val sendMsg = viewModel::sendMsg
 
     Scaffold(
-        backgroundColor = RDTheme.color.background
+        backgroundColor = RDTheme.color.background,
+        modifier = modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
     ) { padding ->
 
         SwipeRefresh(

@@ -1,10 +1,11 @@
 package ru.maksonic.rdcompose.screen.main.view
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -15,7 +16,6 @@ import ru.maksonic.rdcompose.navigation.api.destination.HomeDestination
 import ru.maksonic.rdcompose.screen.main.model.Model
 import ru.maksonic.rdcompose.screen.main.model.Msg
 import ru.maksonic.rdcompose.screen.main.update.MainViewModel
-import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 
 /**
  * @Author maksonic on 23.05.2022
@@ -55,29 +55,29 @@ fun MainScreenUi(
     sendMsg: Message,
     modifier: Modifier = Modifier
 ) {
-    Scaffold(
-        modifier.systemBarsPadding(),
-        topBar = { MainTopAppBar(model, sendMsg) },
-        bottomBar = { MainBottomNavBar(sendMsg, navController) },
-        backgroundColor = RDTheme.color.background,
-    ) { padding ->
-        NavHost(
-            navController,
-            startDestination = HomeDestination.route,
-            modifier.padding(padding)
-        ) {
-            homeGraphBuilder.buildNavGraph(
-                navGraphBuilder = this,
+    Column(modifier.systemBarsPadding()) {
+        Box(modifier.weight(1f),
+            contentAlignment = Alignment.TopCenter) {
+            NavHost(
                 navController,
-            )
-            categoriesGraphBuilder.buildNavGraph(
-                navGraphBuilder = this,
-                navController,
-            )
-            collectionsGraphBuilder.buildNavGraph(
-                navGraphBuilder = this,
-                navController,
-            )
+                startDestination = HomeDestination.route,
+            ) {
+                homeGraphBuilder.buildNavGraph(
+                    navGraphBuilder = this,
+                    navController,
+                )
+                categoriesGraphBuilder.buildNavGraph(
+                    navGraphBuilder = this,
+                    navController,
+                )
+                collectionsGraphBuilder.buildNavGraph(
+                    navGraphBuilder = this,
+                    navController,
+                )
+            }
+            MainTopAppBar(model, sendMsg)
         }
+        MainBottomNavBar(sendMsg, navController)
+
     }
 }

@@ -16,7 +16,8 @@ data class RDComponentSize(
     val btnPrimaryHeight: Dp,
     val circularProgressIndicatorSize: Dp,
     val circularProgressIndicatorStrokeWidth: Dp,
-    val enteredMaxLength: Int
+    val enteredMaxLength: Int,
+    val smallTopBarHeight: Dp
 )
 
 val componentSize = RDComponentSize(
@@ -24,5 +25,6 @@ val componentSize = RDComponentSize(
     btnPrimaryHeight = 54.dp,
     circularProgressIndicatorSize = 100.dp,
     circularProgressIndicatorStrokeWidth = 5.dp,
-    enteredMaxLength = 50
+    enteredMaxLength = 50,
+    smallTopBarHeight = 64.dp
 )

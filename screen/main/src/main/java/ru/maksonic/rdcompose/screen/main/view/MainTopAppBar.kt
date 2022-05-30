@@ -1,12 +1,13 @@
 package ru.maksonic.rdcompose.screen.main.view
 
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material.Icon
-import androidx.compose.material.TopAppBar
+import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import ru.maksonic.rdcompose.screen.main.model.Model
 import ru.maksonic.rdcompose.screen.main.model.Msg
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
@@ -21,16 +22,15 @@ internal fun MainTopAppBar(model: Model, sendMsg: Message) {
 
     AnimatedVisibility(
         visible = model.isShowTopBar,
-        enter = slideInVertically() + expandVertically(expandFrom = Alignment.Top) + fadeIn(
-            initialAlpha = 0.3f
-        ),
-        exit = slideOutVertically() + shrinkVertically() + fadeOut()
+        enter = fadeIn(),
+        exit = fadeOut()
     ) {
 
-        TopAppBar(
+        SmallTopAppBar(
             title = {},
-            backgroundColor = RDTheme.color.background,
-            elevation = 0.dp,
+            colors = TopAppBarDefaults.smallTopAppBarColors(
+                containerColor = RDTheme.color.background
+            ),
             navigationIcon = {
                 IconActionButton(
                     onClick = {

@@ -20,7 +20,8 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenUi(modifier: Modifier = Modifier) {
     Scaffold(
-        backgroundColor = RDTheme.color.background
+        backgroundColor = RDTheme.color.background,
+        modifier = modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
     ) { padding ->
         LazyColumn(modifier.padding(padding)) {
             item { ScreenTitleDisplay(title = stringResource(id = R.string.scr_home)) }
