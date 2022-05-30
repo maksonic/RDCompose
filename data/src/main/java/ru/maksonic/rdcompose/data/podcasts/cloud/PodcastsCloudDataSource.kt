@@ -1,6 +1,7 @@
 package ru.maksonic.rdcompose.data.podcasts.cloud
 
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.Source
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.tasks.await
 import ru.maksonic.rdcompose.core.common.ResourceProvider
@@ -26,6 +27,7 @@ class PodcastsCloudDataSource @Inject constructor(
     dispatcher = dispatcher
 ) {
     override suspend fun request(categoryId: String): QuerySnapshot = with(firebaseApi) {
-        categoriesCollection.document(categoryId).collection(podcastsCollection).get().await()
+        categoriesCollection.document(categoryId).collection(podcastsCollection).get(Source.SERVER)
+            .await()
     }
 }
