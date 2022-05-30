@@ -1,6 +1,5 @@
 package ru.maksonic.rdcompose.screen.categories.view
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
@@ -79,8 +78,6 @@ fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modi
                                             categoryName = category.name,
                                         )
                                     )
-
-                                    Log.e("CATEFGGORY", "${category.image}")
                                 }
                             )
                         }
