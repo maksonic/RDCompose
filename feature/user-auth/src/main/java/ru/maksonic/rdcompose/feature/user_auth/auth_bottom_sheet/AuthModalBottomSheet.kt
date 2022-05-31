@@ -17,8 +17,6 @@ import ru.maksonic.rdcompose.shared.ui_widget.IndicatorBottomSheet
 @Composable
 fun AuthBottomSheet(
 ) {
-    val scope = rememberCoroutineScope()
-
     AuthBottomSheetUi()
 }
 

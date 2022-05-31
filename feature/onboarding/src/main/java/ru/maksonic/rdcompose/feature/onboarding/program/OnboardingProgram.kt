@@ -1,6 +1,7 @@
 package ru.maksonic.rdcompose.feature.onboarding.program
 
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetValue
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.domain.onboarding.OnboardingRepository
@@ -32,13 +33,13 @@ class OnboardingProgram @Inject constructor(
 
     @OptIn(ExperimentalMaterialApi::class)
     private fun showSheet(consumer: (Msg) -> Unit, cmd: Cmd.ShowAuthBottomSheet) {
-        cmd.scope.launch { cmd.sheet.show() }
+        cmd.scope.launch { cmd.sheet.animateTo(ModalBottomSheetValue.Expanded) }
         consumer(Msg.Internal.SheetVisibility(true))
     }
 
     @OptIn(ExperimentalMaterialApi::class)
     private fun hideSheet(consumer: (Msg) -> Unit, cmd: Cmd.HideAuthBottomSheet) {
-        cmd.scope.launch { cmd.sheet.hide() }
+        cmd.scope.launch { cmd.sheet.animateTo(ModalBottomSheetValue.Hidden) }
         consumer(Msg.Internal.SheetVisibility(false))
     }
 }

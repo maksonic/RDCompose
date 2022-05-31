@@ -49,6 +49,7 @@ dependencies {
     implementation(project(Feature.USER_AUTH))
     implementation(Lib.Accompanist.PAGER)
     implementation(Lib.Accompanist.PAGER_INDICATORS)
+    implementation(Lib.Accompanist.SYSTEM_UI)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Landscapist.GLIDE)
