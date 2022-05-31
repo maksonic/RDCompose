@@ -15,4 +15,11 @@ data class Model(
     val titleTopBar: String = "",
     val podcasts: List<PodcastUi> = emptyList(),
     val errorMsg: String = "",
+    val categoryInfo: CategoryInfo = CategoryInfo()
 ) : StateModel
+
+@Immutable
+data class CategoryInfo(
+    val name: String = "",
+    val categoryImage: String? = ""
+)

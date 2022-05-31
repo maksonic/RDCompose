@@ -4,5 +4,6 @@
     <string name="error_empty_data">Не удалось получить данные.\nПовторите попытку позже.</string>
     <string name="error_empty_cloud_list">Не удалось получить данные из сети.\nКажется что-то с интернетом.</string>
     <string name="error_empty_cache_list">Ошибка получения данных из кеш памяти.\nЗагрузите данные из сети.</string>
+    <string name="error_empty_cache_item">Не удалось найти данные объекта.</string>
     <string name="error_time_out">Превышено время ожидания.\nСлишком медленный интернет!</string>
 </resources>

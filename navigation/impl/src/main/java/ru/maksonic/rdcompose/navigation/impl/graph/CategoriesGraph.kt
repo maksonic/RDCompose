@@ -30,9 +30,7 @@ class CategoriesGraph @Inject constructor(
                 CategoriesScreen()
             }
             composable(
-                CategoriesDestination.PodcastList.route
-                    .plus(args(keyStore.passedCategoryIdKey))
-                    .plus(args(keyStore.passedCategoryNameKey)),
+                CategoriesDestination.PodcastList.route.plus(args(keyStore.passedCategoryIdKey))
             ) {
                 PodcastListScreen()
             }

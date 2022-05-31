@@ -11,9 +11,6 @@ interface Router {
     }
 
     interface Main {
-        fun categoriesToCategoryPodcasts(
-            categoryId: String,
-            categoryName: String,
-        )
+        fun categoriesToCategoryPodcasts(categoryId: String)
     }
 }
