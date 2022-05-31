@@ -56,7 +56,12 @@ private fun OnboardingScreenUi(viewModel: OnboardingViewModel, modifier: Modifie
     }
 
     ModalBottomSheetLayout(
-        sheetContent = { AuthBottomSheet() },
+        sheetContent = {
+            AuthBottomSheet(
+                showPrivacy = { sendMsg(Msg.Ui.ShowPrivacy) },
+                showTermsOfUse = { sendMsg(Msg.Ui.ShowTermsOfUse) }
+            )
+        },
         sheetState = modalBottomSheetState,
         sheetBackgroundColor = RDTheme.color.surface,
         sheetShape = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)

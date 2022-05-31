@@ -23,4 +23,7 @@ sealed class Cmd : Command {
         val sheet: ModalBottomSheetState,
         val scope: CoroutineScope
     ) : Cmd()
+
+    object NavigateToPrivacy : Cmd()
+    object NavigateToTermsOfUse : Cmd()
 }

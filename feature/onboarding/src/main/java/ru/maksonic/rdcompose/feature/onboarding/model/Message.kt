@@ -25,7 +25,8 @@ sealed class Msg : Message {
             val sheet: ModalBottomSheetState,
             val scope: CoroutineScope
         ) : Ui()
-
+        object ShowPrivacy : Ui()
+        object ShowTermsOfUse : Ui()
     }
 
     sealed class Internal : Msg() {

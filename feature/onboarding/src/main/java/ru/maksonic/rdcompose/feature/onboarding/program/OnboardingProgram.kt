@@ -3,6 +3,7 @@ package ru.maksonic.rdcompose.feature.onboarding.program
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetValue
 import kotlinx.coroutines.launch
+import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.domain.onboarding.OnboardingRepository
 import ru.maksonic.rdcompose.feature.onboarding.model.Cmd
@@ -15,6 +16,7 @@ import javax.inject.Inject
  */
 class OnboardingProgram @Inject constructor(
     private val repository: OnboardingRepository,
+    private val keyStore: KeyStore.NavigationKey,
     private val navigator: GlobalNavigator
 ) : ElmProgram<Msg, Cmd> {
     override suspend fun execute(cmd: Cmd, consumer: (Msg) -> Unit) {
@@ -23,6 +25,8 @@ class OnboardingProgram @Inject constructor(
             is Cmd.NavigateToMainScreen -> navigator.onboardingToMain()
             is Cmd.HideAuthBottomSheet -> hideSheet(consumer, cmd)
             is Cmd.ShowAuthBottomSheet -> showSheet(consumer, cmd)
+            is Cmd.NavigateToPrivacy -> navigator.showPrivacy(keyStore.privacyResult)
+            is Cmd.NavigateToTermsOfUse -> navigator.showPrivacy(keyStore.termsOfUseResult)
         }
     }
 

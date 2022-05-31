@@ -4,7 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import ru.maksonic.rdcompose.core.common.KeyStore
+import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.destination.HomeDestination
 import ru.maksonic.rdcompose.screen.home.HomeScreen

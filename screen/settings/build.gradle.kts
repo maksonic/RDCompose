@@ -46,6 +46,7 @@ dependencies {
     implementation(project(Module.Navigation.API))
     implementation(project(Module.Shared.THEME))
     implementation(project(Module.Shared.UI_WIDGET))
+    implementation(project(Feature.PRIVACY))
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Dagger.HILT)

@@ -8,6 +8,7 @@ import androidx.navigation.NavHostController
  */
 interface GraphBuilder {
     fun args(id: String) = "/{${id}}"
+    fun argsInt(id: Int) = "/{${id}}"
     fun buildNavGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,

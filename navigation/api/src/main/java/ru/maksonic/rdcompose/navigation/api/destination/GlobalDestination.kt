@@ -16,4 +16,8 @@ object GlobalDestination : Route("root") {
     object Main : Route("main")
     object Settings : Route("settings")
     object UserProfile : Route("user_profile")
+
+    object PrivacyPolicy : Route("privacy_policy/{privacyId}") {
+        fun id(privacyId: String) = "/${privacyId}"
+    }
 }

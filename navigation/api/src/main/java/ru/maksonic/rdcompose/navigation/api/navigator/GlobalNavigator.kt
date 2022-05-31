@@ -14,6 +14,16 @@ class GlobalNavigator @Inject constructor() : ElmNavigator(), Router.Global {
         navigate(GlobalDestination.Main.route)
     }
 
+    override fun showPrivacy(privacyId: String) {
+        navigate(
+            GlobalDestination.PrivacyPolicy.route.plus(
+                GlobalDestination.PrivacyPolicy.id(
+                    privacyId
+                )
+            )
+        )
+    }
+
     override fun mainToSettings() {
         navigate(GlobalDestination.Settings.route)
     }

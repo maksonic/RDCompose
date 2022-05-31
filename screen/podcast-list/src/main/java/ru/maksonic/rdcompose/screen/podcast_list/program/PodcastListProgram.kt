@@ -1,6 +1,6 @@
 package ru.maksonic.rdcompose.screen.podcast_list.program
 
-import ru.maksonic.rdcompose.core.common.KeyStore
+import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.domain.categories.FetchCategoryByIdUseCase
 import ru.maksonic.rdcompose.domain.podcasts.FetchPodcastsUseCase

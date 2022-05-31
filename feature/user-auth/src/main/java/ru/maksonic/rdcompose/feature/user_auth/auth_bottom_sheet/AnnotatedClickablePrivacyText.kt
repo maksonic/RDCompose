@@ -1,5 +1,6 @@
 package ru.maksonic.rdcompose.feature.user_auth.auth_bottom_sheet
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -7,6 +8,7 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -26,10 +28,8 @@ private const val termsTag = "terms_clickable_text"
 
 @Composable
 internal fun AnnotatedClickableText(
-    showPrivacy: (String) -> Unit,
-    showTermsOfUse: (String) -> Unit,
-    privacyKey: String,
-    termsOfUseKey: String,
+    showPrivacy: () -> Unit,
+    showTermsOfUse: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -70,10 +70,10 @@ internal fun AnnotatedClickableText(
             style = TextStyle(color = RDTheme.color.primaryText, textAlign = TextAlign.Center),
             onClick = { offset ->
                 annotatedString.getStringAnnotations(tag = termsTag, start = offset, end = offset)
-                    .firstOrNull()?.let { showTermsOfUse(termsOfUseKey) }
+                    .firstOrNull()?.let { showTermsOfUse() }
 
                 annotatedString.getStringAnnotations(tag = privacyTag, start = offset, end = offset)
-                    .firstOrNull()?.let { showPrivacy(privacyKey) }
+                    .firstOrNull()?.let { showPrivacy() }
             }
         )
     }

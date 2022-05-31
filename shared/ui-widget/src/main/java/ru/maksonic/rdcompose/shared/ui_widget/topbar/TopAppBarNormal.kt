@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R
@@ -26,7 +27,7 @@ fun TopAppBarNormal(
     title: String = "",
     backgroundColor: Color = RDTheme.color.background,
     elevation: Dp = RDTheme.elevation.elevationDisable,
-    titleVisibilityState: Boolean = false,
+    titleVisibilityState: Boolean = true,
     bgAlpha: Float = 1f,
     backPressed: () -> Unit
 ) {
@@ -40,6 +41,8 @@ fun TopAppBarNormal(
             ) {
                 Text(
                     text = title,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
                     style = RDTheme.typography.toolbarTitle,
                     color = RDTheme.color.primaryText
                 )
