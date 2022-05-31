@@ -30,7 +30,7 @@ interface UpdateResult {
             ) to setOf(Cmd.RefreshCategories)
 
         override fun onCategoryClicked(model: Model, msg: Msg.Ui.OnCategoryClick): Update =
-            model to setOf(Cmd.NavigateToPodcastList(msg.categoryId, msg.categoryName))
+            model to setOf(Cmd.NavigateToPodcastList(msg.categoryId))
 
         override fun success(model: Model, msg: Msg.Internal.Success): Update =
             model.copy(

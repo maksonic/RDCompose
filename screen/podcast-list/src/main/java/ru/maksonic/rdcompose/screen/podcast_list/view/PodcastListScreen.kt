@@ -3,6 +3,7 @@ package ru.maksonic.rdcompose.screen.podcast_list.view
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -45,7 +46,11 @@ fun PodcastListScreenUi(modifier: Modifier = Modifier) {
                 retryAction = { sendMsg(Msg.Ui.RetryFetchPodcasts) }
             )
             model.value.isSuccess -> {
-                LazyColumn(modifier.padding(padding)) {
+                val state = rememberLazyListState()
+                LazyColumn(
+                    modifier.padding(padding),
+                    state = state
+                ) {
                     item {
                         CategoryHeader(model.value)
                     }

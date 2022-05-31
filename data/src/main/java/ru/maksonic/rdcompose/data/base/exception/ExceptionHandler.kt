@@ -15,20 +15,27 @@ interface ExceptionHandler {
     class Base @Inject constructor(private val rp: ResourceProvider) : ExceptionHandler {
         override fun handle(e: Exception): Exception {
             return when (e) {
-                is TimeoutCancellationException -> {
-                    TimeOutException(rp.getString(R.string.error_time_out))
-                }
+
                 is EmptyDataException -> {
                     EmptyDataException(rp.getString(R.string.error_empty_cloud_list))
-                }
-                is EmptyCloudDataException -> {
-                    EmptyCloudDataException(rp.getString(R.string.error_empty_cloud_list))
                 }
                 is EmptyCacheException -> {
                     EmptyCacheException(rp.getString(R.string.error_empty_cache_list))
                 }
+
+                is CachedItemNotFound -> {
+                    CachedItemNotFound(rp.getString(R.string.error_empty_cache_item))
+                }
+
+                is EmptyCloudDataException -> {
+                    EmptyCloudDataException(rp.getString(R.string.error_empty_cloud_list))
+                }
                 is FirebaseFirestoreException -> {
                     EmptyCloudDataException(rp.getString(R.string.error_empty_cloud_list))
+                }
+
+                is TimeoutCancellationException -> {
+                    TimeOutException(rp.getString(R.string.error_time_out))
                 }
                 else -> e
             }
