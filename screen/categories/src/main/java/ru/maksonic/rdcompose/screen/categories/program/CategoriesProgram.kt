@@ -44,6 +44,6 @@ class CategoriesProgram @Inject constructor(
     }
 
     private fun navigateToPodcasts(cmd: Cmd.NavigateToPodcastList) {
-        navigator.categoriesToCategoryPodcasts(cmd.categoryId)
+        navigator.categoriesToCategoryPodcasts(cmd.categoryId, cmd.categoryName)
     }
 }

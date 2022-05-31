@@ -13,7 +13,6 @@ interface UpdateResult {
     fun onPodcastClicked(model: Model, msg: Msg.Ui.OnPodcastClicked): Update
     fun success(model: Model, msg: Msg.Internal.Success): Update
     fun error(model: Model, msg: Msg.Internal.Error): Update
-    fun fetchCategoryInfo(model: Model, msg: Msg.Internal.FetchedCategoryInfo): Update
 
     class Base @Inject constructor() : UpdateResult {
 
@@ -39,9 +38,6 @@ interface UpdateResult {
                 errorMsg = msg.errorMsg.toString()
             ) to emptySet()
 
-        override fun fetchCategoryInfo(
-            model: Model, msg: Msg.Internal.FetchedCategoryInfo
-        ): Update =
-            model.copy(categoryInfo = msg.categoryInfo) to emptySet()
+
     }
 }

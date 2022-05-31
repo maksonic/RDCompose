@@ -8,6 +8,6 @@ import ru.maksonic.rdcompose.core.elm.Command
 sealed class Cmd: Command {
     object FetchCategories: Cmd()
     object RefreshCategories: Cmd()
-    data class NavigateToPodcastList(val categoryId: String) : Cmd()
+    data class NavigateToPodcastList(val categoryId: String, val categoryName: String) : Cmd()
 
 }

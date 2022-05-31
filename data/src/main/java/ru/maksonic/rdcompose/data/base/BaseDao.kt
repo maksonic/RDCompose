@@ -22,8 +22,6 @@ interface BaseDao<T : Abstract.CacheObject> {
 
     fun fetchCacheItemById(itemId: Long): Flow<T>
 
-    fun fetchCacheItemByStringId(itemId: String): Flow<T>
-
     @Delete
     suspend fun deleteAllCachedList(data: List<T>)
 

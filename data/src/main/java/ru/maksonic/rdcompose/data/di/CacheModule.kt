@@ -12,7 +12,6 @@ import ru.maksonic.rdcompose.core.common.ResourceProvider
 import ru.maksonic.rdcompose.core.di.IoDispatcher
 import ru.maksonic.rdcompose.data.AppDatabase
 import ru.maksonic.rdcompose.data.DatabaseName
-import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
 import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheDataSource
 import ru.maksonic.rdcompose.data.categories.cache.CategoryDao
 import javax.inject.Singleton
@@ -44,7 +43,6 @@ object CacheModule {
     fun provideCacheCityDataSource(
         dao: CategoryDao,
         rp: ResourceProvider,
-        ex: ExceptionHandler,
         @IoDispatcher dispatcher: CoroutineDispatcher
-    ): CategoryCacheDataSource = CategoryCacheDataSource(dao, rp, ex, dispatcher)
+    ): CategoryCacheDataSource = CategoryCacheDataSource(dao, rp, dispatcher)
 }

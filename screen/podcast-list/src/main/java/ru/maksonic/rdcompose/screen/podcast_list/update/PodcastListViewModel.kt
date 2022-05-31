@@ -21,7 +21,7 @@ class PodcastListViewModel @Inject constructor(
     navigator: MainNavigator
 ) : ElmRuntime<Model, Msg, Cmd>(
     initialModel = Model(isLoading = true),
-    initialCmd = setOf(Cmd.FetchPodcastList, Cmd.InitToolbarTitle, Cmd.FetchCategoryInfo),
+    initialCmd = setOf(Cmd.FetchPodcastList, Cmd.InitToolbarTitle),
     subscriptions = listOf(podcastListProgram),
     navigator = navigator
 ) {
@@ -32,6 +32,5 @@ class PodcastListViewModel @Inject constructor(
             is Msg.Ui.OnPodcastClicked -> updateResult.onPodcastClicked(model, msg)
             is Msg.Internal.Success -> updateResult.success(model, msg)
             is Msg.Internal.Error -> updateResult.error(model, msg)
-            is Msg.Internal.FetchedCategoryInfo -> updateResult.fetchCategoryInfo(model, msg)
         }
 }

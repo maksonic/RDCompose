@@ -18,6 +18,5 @@ sealed class Msg : Message {
         data class Success(val podcasts: List<PodcastUi>) : Internal()
         data class Error(val errorMsg: String? = "") : Internal()
         data class FetchTopBarTitle(val title: String) : Internal()
-        data class FetchedCategoryInfo(val categoryInfo: CategoryInfo): Internal()
     }
 }

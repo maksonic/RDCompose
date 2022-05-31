@@ -8,5 +8,4 @@ import ru.maksonic.rdcompose.core.elm.Command
 sealed class Cmd : Command {
     object InitToolbarTitle: Cmd()
     object FetchPodcastList : Cmd()
-    object FetchCategoryInfo : Cmd()
 }

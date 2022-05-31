@@ -1,6 +1,5 @@
 package ru.maksonic.rdcompose.data.base
 
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import ru.maksonic.rdcompose.core.common.Abstract
 import ru.maksonic.rdcompose.core.common.Mapper
@@ -50,18 +49,6 @@ abstract class BaseCommonRepository<
                 emit(Result.success(domainList))
             }
             cloudRequest.onFailure { throwable ->
-                emit(Result.failure(throwable))
-            }
-        }
-
-    override fun fetchItemById(id: String): Flow<Result<D>> =
-        baseCacheDataSource.fetchCacheItemById(id).transform { tryFindCacheItem ->
-            tryFindCacheItem.onSuccess { cacheItem ->
-                val dataItem = cacheMapper.mapFrom(cacheItem)
-                val domainItem = dataToDomainMapper.mapFrom(dataItem)
-                emit(Result.success(domainItem))
-            }
-            tryFindCacheItem.onFailure { throwable ->
                 emit(Result.failure(throwable))
             }
         }

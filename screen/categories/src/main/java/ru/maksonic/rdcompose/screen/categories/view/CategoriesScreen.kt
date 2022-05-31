@@ -73,7 +73,10 @@ fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modi
                                 category = category,
                                 onClick = {
                                     sendMsg(
-                                        Msg.Ui.OnCategoryClick(categoryId = category.categoryId)
+                                        Msg.Ui.OnCategoryClick(
+                                            categoryId = category.categoryId,
+                                            categoryName = category.name,
+                                        )
                                     )
                                 }
                             )

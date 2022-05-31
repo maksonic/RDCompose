@@ -1,5 +1,6 @@
 package ru.maksonic.rdcompose.screen.podcast_list.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -7,12 +8,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import com.skydoves.landscapist.ShimmerParams
+import com.skydoves.landscapist.glide.GlideImage
 import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.OutlinedSecondaryButton
@@ -45,7 +48,20 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                 shape = RDTheme.shape.cornerNormal,
                 backgroundColor = RDTheme.color.surface
             ) {
-               ImageWithShimmer(model.categoryInfo.categoryImage)
+                GlideImage(
+                    imageModel = null,
+                    shimmerParams = ShimmerParams(
+                        baseColor = RDTheme.color.divider,
+                        highlightColor = RDTheme.color.surface,
+                        durationMillis = 350,
+                        dropOff = 0.65f,
+                        tilt = 20f
+                    ),
+                    modifier = modifier
+                        .fillMaxSize()
+                        .aspectRatio(1f)
+                        .background(Color.Red)
+                )
             }
 
             Column(
@@ -54,7 +70,7 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                     .padding(start = dp8, end = dp16)
             ) {
                 Text(
-                    text = model.categoryInfo.name,
+                    text = model.titleTopBar,
                     style = RDTheme.typography.header,
                     color = RDTheme.color.primaryText
                 )
