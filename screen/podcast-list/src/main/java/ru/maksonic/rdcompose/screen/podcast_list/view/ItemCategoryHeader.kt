@@ -21,7 +21,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.button.OutlinedSecondaryButton
  * @Author maksonic on 30.05.2022
  */
 @Composable
-fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
+internal fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
     val dp16 = RDTheme.padding.dp16
     val dp8 = RDTheme.padding.dp8
     val resources = LocalContext.current.resources
@@ -29,27 +29,28 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
         ru.maksonic.rdcompose.screen.podcast_list.R.plurals.podcast_count_hint,
         model.podcasts.count(), model.podcasts.count()
     )
+    val innerModifier = Modifier
     Column(
         modifier
             .fillMaxWidth()
             .padding(top = dp16)
     ) {
         Row(
-            modifier.fillMaxWidth(),
+            innerModifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
-                modifier
+                innerModifier
                     .fillMaxSize(0.5f)
                     .padding(start = dp16, end = dp8),
                 shape = RDTheme.shape.cornerNormal,
                 backgroundColor = RDTheme.color.surface
             ) {
-               ImageWithShimmer(model.categoryInfo.categoryImage)
+                ImageWithShimmer(model.categoryInfo.categoryImage)
             }
 
             Column(
-                modifier
+                innerModifier
                     .fillMaxSize()
                     .padding(start = dp8, end = dp16)
             ) {
@@ -63,11 +64,11 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                     text = podcastsInCategoryCount,
                     style = RDTheme.typography.caption,
                     color = RDTheme.color.secondaryText,
-                    modifier = modifier.padding(top = dp8)
+                    modifier = innerModifier.padding(top = dp8)
                 )
 
                 Row(
-                    modifier
+                    innerModifier
                         .fillMaxWidth()
                         .padding(start = dp16, end = dp16, top = dp8),
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -97,7 +98,7 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
             }
         }
         Row(
-            Modifier
+            innerModifier
                 .fillMaxWidth()
                 .padding(start = dp16, end = dp16, top = dp16, bottom = dp8)
         ) {
@@ -105,9 +106,9 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                 onClick = {},
                 iconId = R.drawable.ic_round_shuffle,
                 title = stringResource(R.string.txt_player_shuffle),
-                modifier = modifier.weight(1f)
+                modifier = innerModifier.weight(1f)
             )
-            Spacer(modifier.width(dp16))
+            Spacer(innerModifier.width(dp16))
             OutlinedSecondaryButton(
                 onClick = {},
                 backgroundColor = RDTheme.color.primary,
@@ -115,7 +116,7 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                 rippleColor = RDTheme.color.onPrimary,
                 iconId = R.drawable.ic_play_rounded,
                 title = stringResource(R.string.txt_player_play),
-                modifier = modifier.weight(1f)
+                modifier = innerModifier.weight(1f)
             )
         }
     }

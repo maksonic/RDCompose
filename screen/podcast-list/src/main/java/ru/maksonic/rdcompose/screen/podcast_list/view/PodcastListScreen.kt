@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.screen.podcast_list.model.Msg
 import ru.maksonic.rdcompose.screen.podcast_list.update.PodcastListViewModel
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
@@ -25,17 +26,12 @@ fun PodcastListScreen() {
 }
 
 @Composable
-fun PodcastListScreenUi(modifier: Modifier = Modifier) {
+private fun PodcastListScreenUi(modifier: Modifier = Modifier) {
     val viewModel: PodcastListViewModel = hiltViewModel()
     val model = viewModel.featureModel.collectAsState()
     val sendMsg = viewModel::sendMsg
+
     Scaffold(
-        topBar = {
-            TopAppBarNormal(
-                backgroundColor = RDTheme.color.background,
-                backPressed = { viewModel.backPressed() }
-            )
-        },
         backgroundColor = RDTheme.color.background,
         modifier = modifier.systemBarsPadding()
     ) { padding ->
@@ -45,20 +41,44 @@ fun PodcastListScreenUi(modifier: Modifier = Modifier) {
                 errorMessage = model.value.errorMsg,
                 retryAction = { sendMsg(Msg.Ui.RetryFetchPodcasts) }
             )
-            model.value.isSuccess -> {
-                val state = rememberLazyListState()
-                LazyColumn(
-                    modifier.padding(padding),
-                    state = state
-                ) {
-                    item {
-                        CategoryHeader(model.value)
-                    }
-                    items(model.value.podcasts) { podcast ->
-                        ItemPodcastList(podcast)
-                    }
-                }
+            model.value.isSuccess -> SuccessPodcasts(
+                model = model.value,
+                backPressed = { viewModel.backPressed() },
+                modifier = modifier.padding(padding)
+            )
+        }
+    }
+}
+
+@Composable
+private fun SuccessPodcasts(model: Model, backPressed: () -> Unit, modifier: Modifier) {
+    val lazyListState = rememberLazyListState()
+    val titleVisibility = lazyListState.firstVisibleItemIndex > 0
+    val alphaBg = if (lazyListState.firstVisibleItemIndex > 0) 1f else 0.7f
+
+    Box(modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier
+                .fillMaxWidth(),
+            state = lazyListState
+        ) {
+            item {
+                CategoryHeader(
+                    model,
+                    modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
+                )
+            }
+
+            items(model.podcasts) { podcast ->
+                ItemPodcastList(podcast)
             }
         }
+
+        TopAppBarNormal(
+            title = model.categoryInfo.name,
+            titleVisibilityState = titleVisibility,
+            bgAlpha = alphaBg,
+            backPressed = backPressed
+        )
     }
 }
