@@ -16,6 +16,12 @@ abstract class ElmNavigator {
         else return
     }
 
-    fun getArgument(key: String): String =
+    fun getStringArgument(key: String): String =
         navController.currentBackStackEntry?.arguments?.getString(key) ?: ""
+
+    fun getIntArgument(key: String): Int =
+        navController.currentBackStackEntry?.arguments?.getInt(key) ?: 4
+
+    fun getLongArgument(key: String): Long? =
+        navController.currentBackStackEntry?.arguments?.getLong(key)
 }

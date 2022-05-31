@@ -31,11 +31,11 @@ val typography = RDTypography(
         fontWeight = FontWeight.Medium
     ),
     header = TextStyle(
-        fontSize = 24.sp,
+        fontSize = 28.sp,
         fontWeight = FontWeight.Bold
     ),
     toolbarTitle = TextStyle(
-        fontSize = 20.sp,
+        fontSize = 24.sp,
         fontWeight = FontWeight.Medium
     ),
     display = TextStyle(

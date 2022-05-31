@@ -1,6 +1,5 @@
 package ru.maksonic.rdcompose.screen.podcast_list.view
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -8,14 +7,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.skydoves.landscapist.ShimmerParams
-import com.skydoves.landscapist.glide.GlideImage
 import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.OutlinedSecondaryButton
@@ -24,7 +21,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.button.OutlinedSecondaryButton
  * @Author maksonic on 30.05.2022
  */
 @Composable
-fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
+internal fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
     val dp16 = RDTheme.padding.dp16
     val dp8 = RDTheme.padding.dp8
     val resources = LocalContext.current.resources
@@ -32,45 +29,33 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
         ru.maksonic.rdcompose.screen.podcast_list.R.plurals.podcast_count_hint,
         model.podcasts.count(), model.podcasts.count()
     )
+    val innerModifier = Modifier
     Column(
         modifier
             .fillMaxWidth()
             .padding(top = dp16)
     ) {
         Row(
-            modifier.fillMaxWidth(),
+            innerModifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Card(
-                modifier
+                innerModifier
                     .fillMaxSize(0.5f)
                     .padding(start = dp16, end = dp8),
                 shape = RDTheme.shape.cornerNormal,
                 backgroundColor = RDTheme.color.surface
             ) {
-                GlideImage(
-                    imageModel = null,
-                    shimmerParams = ShimmerParams(
-                        baseColor = RDTheme.color.divider,
-                        highlightColor = RDTheme.color.surface,
-                        durationMillis = 350,
-                        dropOff = 0.65f,
-                        tilt = 20f
-                    ),
-                    modifier = modifier
-                        .fillMaxSize()
-                        .aspectRatio(1f)
-                        .background(Color.Red)
-                )
+                ImageWithShimmer(model.categoryInfo.categoryImage)
             }
 
             Column(
-                modifier
+                innerModifier
                     .fillMaxSize()
                     .padding(start = dp8, end = dp16)
             ) {
                 Text(
-                    text = model.titleTopBar,
+                    text = model.categoryInfo.name,
                     style = RDTheme.typography.header,
                     color = RDTheme.color.primaryText
                 )
@@ -79,11 +64,11 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                     text = podcastsInCategoryCount,
                     style = RDTheme.typography.caption,
                     color = RDTheme.color.secondaryText,
-                    modifier = modifier.padding(top = dp8)
+                    modifier = innerModifier.padding(top = dp8)
                 )
 
                 Row(
-                    modifier
+                    innerModifier
                         .fillMaxWidth()
                         .padding(start = dp16, end = dp16, top = dp8),
                     horizontalArrangement = Arrangement.SpaceBetween
@@ -113,7 +98,7 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
             }
         }
         Row(
-            Modifier
+            innerModifier
                 .fillMaxWidth()
                 .padding(start = dp16, end = dp16, top = dp16, bottom = dp8)
         ) {
@@ -121,9 +106,9 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                 onClick = {},
                 iconId = R.drawable.ic_round_shuffle,
                 title = stringResource(R.string.txt_player_shuffle),
-                modifier = modifier.weight(1f)
+                modifier = innerModifier.weight(1f)
             )
-            Spacer(modifier.width(dp16))
+            Spacer(innerModifier.width(dp16))
             OutlinedSecondaryButton(
                 onClick = {},
                 backgroundColor = RDTheme.color.primary,
@@ -131,7 +116,7 @@ fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                 rippleColor = RDTheme.color.onPrimary,
                 iconId = R.drawable.ic_play_rounded,
                 title = stringResource(R.string.txt_player_play),
-                modifier = modifier.weight(1f)
+                modifier = innerModifier.weight(1f)
             )
         }
     }

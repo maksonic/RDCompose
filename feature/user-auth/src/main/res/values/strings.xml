@@ -3,8 +3,8 @@
     <!-- PRIVACY POLICY BOTTOM SHEET-->
     <string name="scr_title_privacy_policy">Политика конфиденциальности</string>
     <string name="content_privacy_policy">Политика конфиденциальности контент</string>
-    <string name="scr_title_teams_of_use">Пользовательское соглашение</string>
-    <string name="content_teams_of_use">Пользовательское соглашение контент</string>
+    <string name="scr_title_terms_of_use">Пользовательское соглашение</string>
+    <string name="content_terms_of_use">Пользовательское соглашение контент</string>
 
     <!-- AUTH MODAL BOTTOM SHEET-->
     <string name="btn_title_auth_google">Войти через Google аккаунт</string>

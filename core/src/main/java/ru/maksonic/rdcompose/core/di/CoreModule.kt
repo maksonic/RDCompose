@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import ru.maksonic.rdcompose.core.common.KeyStore
+import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.core.common.ResourceProvider
 import ru.maksonic.rdcompose.core.store.AppDataStore
 import ru.maksonic.rdcompose.core.store.AppThemeSetting

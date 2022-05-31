@@ -21,7 +21,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable
  * @Author maksonic on 30.05.2022
  */
 @Composable
-fun ItemPodcastList(podcast: PodcastUi, modifier: Modifier = Modifier) {
+internal fun ItemPodcastList(podcast: PodcastUi, modifier: Modifier = Modifier) {
     Row(
         modifier
             .fillMaxWidth()

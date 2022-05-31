@@ -41,5 +41,7 @@ class OnboardingViewModel @Inject constructor(
             is Msg.Internal.SheetVisibility -> {
                 model.copy(isShowAuthSheet = msg.isVisible) to emptySet()
             }
+            is Msg.Ui.ShowPrivacy -> model to setOf(Cmd.NavigateToPrivacy)
+            is Msg.Ui.ShowTermsOfUse -> model to setOf(Cmd.NavigateToTermsOfUse)
         }
 }

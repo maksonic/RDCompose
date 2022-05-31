@@ -42,10 +42,10 @@ private fun setSystemComponentColor(
     isDarkMode: Boolean,
     themeType: State<AppTheme>
 ): Color = when (themeType.value) {
-    AppTheme.LIGHT -> baseLightPalette.background
-    AppTheme.DARK -> baseDarkPalette.background
-    AppTheme.HIGH_CONTRAST -> baseHighContrastPalette.background
+    AppTheme.LIGHT -> Color.Transparent
+    AppTheme.DARK -> Color.Transparent
+    AppTheme.HIGH_CONTRAST -> Color.Transparent
     AppTheme.SYSTEM -> {
-        if (isDarkMode) baseDarkPalette.background else baseLightPalette.background
+        if (isDarkMode) Color.Transparent else Color.Transparent
     }
 }

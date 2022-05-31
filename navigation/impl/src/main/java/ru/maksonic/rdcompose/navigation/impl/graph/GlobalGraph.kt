@@ -4,7 +4,9 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.feature.onboarding.view.OnboardingScreen
+import ru.maksonic.rdcompose.feature.privacy.PrivacyScreen
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.destination.GlobalDestination
 import ru.maksonic.rdcompose.screen.main.view.MainScreen
@@ -20,6 +22,7 @@ class GlobalGraph @Inject constructor(
     private val homeGraphBuilder: HomeGraph,
     private val categoriesGraphBuilder: CategoriesGraph,
     private val collectionsGraphBuilder: CollectionsGraph,
+    private val keyStore: KeyStore.NavigationKey
 ) : GraphBuilder {
 
     override fun buildNavGraph(
@@ -34,6 +37,11 @@ class GlobalGraph @Inject constructor(
                 GlobalDestination.Onboarding.route,
             ) {
                 OnboardingScreen()
+            }
+            composable(
+                GlobalDestination.PrivacyPolicy.route.plus(args(keyStore.passedPrivacyKey)),
+            ) {
+                PrivacyScreen()
             }
             composable(
                 GlobalDestination.Main.route,

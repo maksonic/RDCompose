@@ -60,6 +60,7 @@ dependencies {
 
     implementation(project(Feature.ONBOARDING))
     implementation(project(Feature.USER_AUTH))
+    implementation(project(Feature.PRIVACY))
 
     implementation(project(Screen.MAIN))
     implementation(project(Screen.HOME))

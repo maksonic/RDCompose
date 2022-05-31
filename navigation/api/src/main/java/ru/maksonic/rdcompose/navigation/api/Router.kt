@@ -8,6 +8,7 @@ interface Router {
         fun onboardingToMain()
         fun mainToSettings()
         fun mainToUserProfile()
+        fun showPrivacy(privacyId: String)
     }
 
     interface Main {

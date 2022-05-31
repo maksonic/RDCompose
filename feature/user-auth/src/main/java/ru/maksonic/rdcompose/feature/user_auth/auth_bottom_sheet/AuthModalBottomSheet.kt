@@ -16,14 +16,18 @@ import ru.maksonic.rdcompose.shared.ui_widget.IndicatorBottomSheet
  */
 @Composable
 fun AuthBottomSheet(
+    showPrivacy: () -> Unit,
+    showTermsOfUse: () -> Unit
 ) {
-    val scope = rememberCoroutineScope()
-
-    AuthBottomSheetUi()
+    AuthBottomSheetUi(showPrivacy, showTermsOfUse)
 }
 
 @Composable
-private fun AuthBottomSheetUi(modifier: Modifier = Modifier) {
+private fun AuthBottomSheetUi(
+    showPrivacy: () -> Unit,
+    showTermsOfUse: () -> Unit,
+    modifier: Modifier = Modifier
+) {
 
     Box(
         modifier
@@ -62,13 +66,9 @@ private fun AuthBottomSheetUi(modifier: Modifier = Modifier) {
             )
             Spacer(modifier = Modifier.height(RDTheme.padding.dp16))
 
-            val privacyKey = "privacy_policy_scr_data_key"
-            val termsOfUseKey = "terms_of_use_scr_data_key"
             AnnotatedClickableText(
-                showPrivacy = {},
-                showTermsOfUse = { },
-                termsOfUseKey = termsOfUseKey,
-                privacyKey = privacyKey
+                showPrivacy = { showPrivacy() },
+                showTermsOfUse = { showTermsOfUse() }
             )
 
             Spacer(modifier.height(RDTheme.padding.dp32))
