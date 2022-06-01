@@ -27,7 +27,7 @@ class PodcastListProgram @Inject constructor(
     }
 
     private suspend fun fetchPodcasts(consumer: (Msg) -> Unit) {
-        val categoryId = navigator.getArgument(keyStore.passedCategoryIdKey)
+        val categoryId = navigator.getStringArgument(keyStore.passedCategoryIdKey)
 
         fetchPodcastsUseCase(categoryId).collect { categoriesRequest ->
             categoriesRequest.onSuccess { categoriesList ->
@@ -41,7 +41,7 @@ class PodcastListProgram @Inject constructor(
     }
 
     private fun initTitle(consumer: (Msg) -> Unit) {
-        val title = navigator.getArgument(keyStore.passedCategoryNameKey)
+        val title = navigator.getStringArgument(keyStore.passedCategoryNameKey)
         consumer(Msg.Internal.FetchTopBarTitle(title))
     }
 }
