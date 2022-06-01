@@ -78,6 +78,5 @@ fun MainScreenUi(
             MainTopAppBar(model, sendMsg)
         }
         MainBottomNavBar(sendMsg, navController)
-
     }
 }
