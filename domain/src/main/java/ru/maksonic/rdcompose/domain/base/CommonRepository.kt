@@ -8,4 +8,5 @@ import ru.maksonic.rdcompose.core.common.Abstract
  */
 abstract class CommonRepository<T: Abstract.DomainObject> : AbstractRepository<T>() {
     abstract fun fetchDataList(): Flow<Result<List<T>>>
+    abstract fun fetchItemById(id: String): Flow<Result<T>>
 }

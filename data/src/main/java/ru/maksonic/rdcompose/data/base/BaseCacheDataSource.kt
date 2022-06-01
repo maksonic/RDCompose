@@ -9,41 +9,41 @@ import kotlinx.coroutines.flow.flowOn
 import ru.maksonic.rdcompose.core.common.Abstract
 import ru.maksonic.rdcompose.core.common.ResourceProvider
 import ru.maksonic.rdcompose.core.di.IoDispatcher
-import ru.maksonic.rdcompose.data.R
+import ru.maksonic.rdcompose.data.base.exception.CachedItemNotFound
 import ru.maksonic.rdcompose.data.base.exception.EmptyCacheException
+import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
 
 /**
  * @Author maksonic on 23.05.2022
  */
 interface BaseCacheDataSource<T> {
     fun fetchCacheList(): DataList<T>
-    fun fetchCacheItemById(itemId: Long): Flow<Result<T>>
+    fun fetchCacheItemById(itemId: String): Flow<Result<T>>
     suspend fun insertCacheList(list: List<T>)
 
     abstract class Base<T : Abstract.CacheObject>(
         private val dao: BaseDao<T>,
         private val rp: ResourceProvider,
+        private val ex: ExceptionHandler,
         @IoDispatcher private val dispatcher: CoroutineDispatcher
     ) : BaseCacheDataSource<T> {
 
         override fun fetchCacheList() = flow {
             val cacheList = dao.fetchCacheList()
             if (cacheList.isEmpty()) {
-                emit(
-                    Result.failure(
-                        EmptyCacheException(
-                            rp.getString(R.string.error_empty_cache_list)
-                        )
-                    )
-                )
+                emit(Result.failure(ex.handle(EmptyCacheException())))
             } else {
                 emit(Result.success(cacheList))
             }
         }.flowOn(dispatcher)
 
-        override fun fetchCacheItemById(itemId: Long): Flow<Result<T>> = flow {
+        override fun fetchCacheItemById(itemId: String): Flow<Result<T>> = flow {
             try {
-                emit(Result.success(dao.fetchCacheItemById(itemId).first()))
+                if (itemId.isNotEmpty()) {
+                    emit(Result.success(dao.fetchCacheItemByStringId(itemId).first()))
+                } else {
+                    emit(Result.failure(ex.handle(CachedItemNotFound())))
+                }
             } catch (e: Exception) {
                 emit(Result.failure(e))
             }
