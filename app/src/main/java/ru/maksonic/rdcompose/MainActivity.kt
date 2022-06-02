@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -35,9 +35,9 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var globalGraphBuilder: GlobalGraph
-
     private val viewModel: MainActivityViewModel by viewModels()
 
+    @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
@@ -47,6 +47,9 @@ class MainActivity : ComponentActivity() {
             val navController = globalNavigator.navController
             val systemTheme = isSystemInDarkTheme()
             val appTheme = viewModel.themeState.collectAsState()
+            val playerBottomSheetState = rememberBottomSheetScaffoldState(
+                bottomSheetState = rememberBottomSheetState(BottomSheetValue.Collapsed)
+            )
 
             val rdComposeTheme: @Composable (
                 content: @Composable () -> Unit
@@ -70,8 +73,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(padding)
                     ) {
                         globalGraphBuilder.buildNavGraph(
-                            navGraphBuilder = this,
-                            navController,
+                            navGraphBuilder = this, navController, playerBottomSheetState
                         )
                     }
                 }

@@ -68,3 +68,27 @@ fun Modifier.rippleClickable(
         interactionSource = remember { MutableInteractionSource() }
     )
 }
+
+fun Modifier.noRippleClickable(
+    enabled: Boolean = true,
+    onClickLabel: String? = null,
+    role: Role? = null,
+    onClick: () -> Unit,
+) = composed(
+    inspectorInfo = debugInspectorInfo {
+        name = "clickable"
+        properties["enabled"] = enabled
+        properties["onClickLabel"] = onClickLabel
+        properties["role"] = role
+        properties["onClick"] = onClick
+    }
+) {
+    Modifier.clickable(
+        enabled = enabled,
+        onClickLabel = onClickLabel,
+        onClick = onClick,
+        role = role,
+        indication = null,
+        interactionSource = remember { MutableInteractionSource() }
+    )
+}

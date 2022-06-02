@@ -43,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(Module.CORE))
+    implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Compose.NAVIGATION)
     implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)

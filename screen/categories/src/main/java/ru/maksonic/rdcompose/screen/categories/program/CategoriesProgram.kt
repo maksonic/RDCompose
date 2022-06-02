@@ -18,7 +18,7 @@ class CategoriesProgram @Inject constructor(
     private val fetchCategoriesUseCase: FetchCategoriesUseCase,
     private val refreshCategoriesUseCase: RefreshCategoriesUseCase,
     private val mapper: CategoryDomainToUiMapper,
-    private val navigator: MainNavigator
+    private val navigator: MainNavigator,
 ) : ElmProgram<Msg, Cmd> {
 
     override suspend fun execute(cmd: Cmd, consumer: (Msg) -> Unit) {
