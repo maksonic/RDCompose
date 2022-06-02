@@ -4,7 +4,7 @@ import org.gradle.api.JavaVersion
  * @Author maksonic on 23.05.2022
  */
 object Config {
-    const val composeVersion = "1.2.0-beta01"
+    const val composeVersion = "1.2.0-beta03"
     const val hiltPluginVersion = "2.42"
     const val kotlinVersion = "1.6.21"
     const val kspVersion = "1.6.20-1.0.5"

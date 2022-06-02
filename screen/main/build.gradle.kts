@@ -46,6 +46,7 @@ dependencies {
     implementation(project(Module.Navigation.API))
     implementation(project(Module.Shared.THEME))
     implementation(project(Module.Shared.UI_WIDGET))
+    implementation(project(Feature.PLAYER))
     implementation(Lib.Compose.MATERIAL3)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)

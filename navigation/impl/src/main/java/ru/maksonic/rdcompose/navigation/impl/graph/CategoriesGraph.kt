@@ -1,5 +1,7 @@
 package ru.maksonic.rdcompose.navigation.impl.graph
 
+import androidx.compose.material.BottomSheetScaffoldState
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -18,21 +20,23 @@ class CategoriesGraph @Inject constructor(
     private val keyStore: KeyStore.NavigationKey
 ) : GraphBuilder {
 
+    @OptIn(ExperimentalMaterialApi::class)
     override fun buildNavGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
+        playerBottomSheetState: BottomSheetScaffoldState,
     ) {
         navGraphBuilder.navigation(
             route = CategoriesDestination.route,
             startDestination = CategoriesDestination.Categories.route,
         ) {
             composable(CategoriesDestination.Categories.route) {
-                CategoriesScreen()
+                CategoriesScreen(playerBottomSheetState)
             }
             composable(
                 CategoriesDestination.PodcastList.route.plus(args(keyStore.passedCategoryIdKey))
             ) {
-                PodcastListScreen()
+                PodcastListScreen(playerBottomSheetState)
             }
         }
     }

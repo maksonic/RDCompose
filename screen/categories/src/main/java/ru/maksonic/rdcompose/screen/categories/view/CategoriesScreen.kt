@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.BottomSheetScaffoldState
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -14,6 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import ru.maksonic.rdcompose.core.utils.PlayerBackPressed
 import ru.maksonic.rdcompose.navigation.api.R
 import ru.maksonic.rdcompose.screen.categories.model.Msg
 import ru.maksonic.rdcompose.screen.categories.update.CategoriesViewModel
@@ -25,14 +28,22 @@ import ru.maksonic.rdcompose.shared.ui_widget.ScreenTitleDisplay
 /**
  * @Author maksonic on 25.05.2022
  */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CategoriesScreen() {
+fun CategoriesScreen(playerBottomSheetState: BottomSheetScaffoldState) {
     val viewModel: CategoriesViewModel = hiltViewModel()
-    CategoriesScreenUi(viewModel)
+    CategoriesScreenUi(viewModel, playerBottomSheetState)
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CategoriesScreenUi(viewModel: CategoriesViewModel, modifier: Modifier = Modifier) {
+fun CategoriesScreenUi(
+    viewModel: CategoriesViewModel,
+    playerBottomSheetState: BottomSheetScaffoldState,
+    modifier: Modifier = Modifier
+) {
+    PlayerBackPressed(playerBottomSheetState)
+
     val model = viewModel.featureModel.collectAsState()
     val sendMsg = viewModel::sendMsg
 

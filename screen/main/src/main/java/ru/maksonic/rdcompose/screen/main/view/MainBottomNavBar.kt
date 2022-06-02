@@ -7,6 +7,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -25,7 +26,11 @@ import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
  * @Author maksonic on 24.05.2022
  */
 @Composable
-internal fun MainBottomNavBar(sendMsg: Message, navController: NavController) {
+internal fun MainBottomNavBar(
+    sendMsg: Message,
+    navController: NavController,
+    modifier: Modifier = Modifier
+) {
     val items = listOf(
         HomeDestination.Home,
         CategoriesDestination.Categories,
@@ -38,7 +43,8 @@ internal fun MainBottomNavBar(sendMsg: Message, navController: NavController) {
 
     NavigationBar(
         containerColor = RDTheme.color.surface,
-        contentColor = RDTheme.color.primary
+        contentColor = RDTheme.color.primary,
+        modifier = modifier
     ) {
         /**Hide [MainTopAppBar] if current screen != bottom bar items**/
         mainTopBarBehavior(items, currentRoute, sendMsg)

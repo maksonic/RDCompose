@@ -19,6 +19,9 @@ data class RDComponentSize(
     val enteredMaxLength: Int,
     val itemNormalListHeight: Dp,
     val smallTopBarHeight: Dp,
+    val playerCollapsedHeight: Dp,
+    val playerSheetPeekHeight: Dp,
+    val playerPlayIconSize: Dp
 )
 
 val componentSize = RDComponentSize(
@@ -28,5 +31,8 @@ val componentSize = RDComponentSize(
     circularProgressIndicatorStrokeWidth = 5.dp,
     enteredMaxLength = 50,
     itemNormalListHeight = 64.dp,
-    smallTopBarHeight = 64.dp
+    smallTopBarHeight = 64.dp,
+    playerCollapsedHeight = 64.dp,
+    playerSheetPeekHeight = 144.dp,
+    playerPlayIconSize = 64.dp
 )

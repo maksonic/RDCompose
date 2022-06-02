@@ -1,5 +1,7 @@
 package ru.maksonic.rdcompose.navigation.impl.graph
 
+import androidx.compose.material.BottomSheetScaffoldState
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -25,9 +27,11 @@ class GlobalGraph @Inject constructor(
     private val keyStore: KeyStore.NavigationKey
 ) : GraphBuilder {
 
+    @OptIn(ExperimentalMaterialApi::class)
     override fun buildNavGraph(
         navGraphBuilder: NavGraphBuilder,
         navController: NavHostController,
+        playerBottomSheetState: BottomSheetScaffoldState
     ) {
         navGraphBuilder.navigation(
             route = GlobalDestination.route,
@@ -45,11 +49,12 @@ class GlobalGraph @Inject constructor(
             }
             composable(
                 GlobalDestination.Main.route,
-                ) {
+            ) {
                 MainScreen(
                     homeGraphBuilder = homeGraphBuilder,
                     categoriesGraphBuilder = categoriesGraphBuilder,
                     collectionsGraphBuilder = collectionsGraphBuilder,
+                    playerBottomSheetState = playerBottomSheetState,
                 )
             }
             composable(
