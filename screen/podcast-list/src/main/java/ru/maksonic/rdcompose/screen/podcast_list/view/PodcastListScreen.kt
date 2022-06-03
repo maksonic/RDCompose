@@ -25,6 +25,8 @@ import ru.maksonic.rdcompose.shared.ui_widget.topbar.TopAppBarNormal
 /**
  * @Author maksonic on 26.05.2022
  */
+typealias Message = (Msg) -> Unit
+
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PodcastListScreen(playerBottomSheetState: BottomSheetScaffoldState) {
@@ -54,6 +56,8 @@ private fun PodcastListScreenUi(
             )
             model.value.isSuccess -> SuccessPodcasts(
                 model = model.value,
+                sendMsg = sendMsg,
+                playerSheet = playerBottomSheetState,
                 backPressed = { viewModel.backPressed() },
                 modifier = modifier.padding(padding)
             )
@@ -61,35 +65,43 @@ private fun PodcastListScreenUi(
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun SuccessPodcasts(model: Model, backPressed: () -> Unit, modifier: Modifier) {
+private fun SuccessPodcasts(
+    model: Model,
+    sendMsg: Message,
+    playerSheet: BottomSheetScaffoldState,
+    backPressed: () -> Unit,
+    modifier: Modifier
+) {
     val lazyListState = rememberLazyListState()
     val titleVisibility = remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } }
     val alphaBg = remember {
-        derivedStateOf { if (lazyListState.firstVisibleItemIndex > 0) 1f else 0.7f } }
+        derivedStateOf { if (lazyListState.firstVisibleItemIndex > 0) 1f else 0.7f }
+    }
 
-        Box(modifier.fillMaxSize()) {
-            LazyColumn(
-                modifier.fillMaxWidth(),
-                state = lazyListState
-            ) {
-                item {
-                    CategoryHeader(
-                        model,
-                        modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
-                    )
-                }
-
-                items(model.podcasts) { podcast ->
-                    ItemPodcastList(podcast)
-                }
+    Box(modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier.fillMaxWidth(),
+            state = lazyListState
+        ) {
+            item {
+                CategoryHeader(
+                    model,
+                    modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
+                )
             }
 
-            TopAppBarNormal(
-                title = model.categoryInfo.name,
-                titleVisibilityState = titleVisibility.value,
-                bgAlpha = alphaBg.value,
-                backPressed = backPressed
-            )
+            items(model.podcasts) { podcast ->
+                ItemPodcastList(sendMsg, podcast, playerSheet)
+            }
         }
+
+        TopAppBarNormal(
+            title = model.categoryInfo.name,
+            titleVisibilityState = titleVisibility.value,
+            bgAlpha = alphaBg.value,
+            backPressed = backPressed
+        )
     }
+}

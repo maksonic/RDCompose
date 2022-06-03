@@ -1,5 +1,8 @@
 package ru.maksonic.rdcompose.screen.podcast_list.program
 
+import androidx.compose.material.BottomSheetValue
+import androidx.compose.material.ExperimentalMaterialApi
+import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.domain.categories.FetchCategoryByIdUseCase
@@ -29,6 +32,7 @@ class PodcastListProgram @Inject constructor(
             is Cmd.FetchPodcastList -> fetchPodcasts(consumer)
             is Cmd.InitToolbarTitle -> initTitle(consumer)
             is Cmd.FetchCategoryInfo -> fetchCategoryInfo(consumer)
+            is Cmd.PlayPodcast -> playPodcast(cmd)
         }
     }
 
@@ -71,5 +75,8 @@ class PodcastListProgram @Inject constructor(
         }
     }
 
-
+    @OptIn(ExperimentalMaterialApi::class)
+    private suspend fun playPodcast(cmd: Cmd.PlayPodcast) {
+        cmd.scope.launch { cmd.playerSheet.bottomSheetState.animateTo(BottomSheetValue.Expanded) }
+    }
 }

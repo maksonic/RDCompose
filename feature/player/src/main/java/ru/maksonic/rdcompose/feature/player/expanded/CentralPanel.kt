@@ -29,7 +29,7 @@ fun CentralPlayer(modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         IconActionButton(onClick = { }) {
-            IconDefault(icId = drawable.ic_btn_back_30_seconds, modifier.size(36.dp))
+            IconDefault(icId = drawable.ic_replay_10_sec, modifier.size(36.dp))
         }
 
         Box(
@@ -47,7 +47,7 @@ fun CentralPlayer(modifier: Modifier = Modifier) {
         }
 
         IconActionButton(onClick = { }) {
-            IconDefault(icId = drawable.ic_btn_next_30_seconds, modifier.size(36.dp))
+            IconDefault(icId = drawable.ic_forward_30_sec, modifier.size(36.dp))
         }
     }
 }
