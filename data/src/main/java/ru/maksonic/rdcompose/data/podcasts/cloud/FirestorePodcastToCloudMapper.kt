@@ -7,9 +7,15 @@ import javax.inject.Inject
 /**
  * @Author maksonic on 29.05.2022
  */
-class FirestorePodcastToCloudMapper @Inject constructor(
-) : CloudMapper<DocumentSnapshot, PodcastCloud> {
+class FirestorePodcastToCloudMapper @Inject constructor() :
+    CloudMapper<DocumentSnapshot, PodcastCloud> {
+    override fun invoke(documentSnapshot: DocumentSnapshot): PodcastCloud {
+        val doc = documentSnapshot.data
+        val id = doc?.get("id").toString().toLong()
+        val name = doc?.get("name").toString()
+        val image = doc?.get("image").toString()
+        val soundFile = doc?.get("soundfile").toString()
 
-    override fun invoke(documentSnapshot: DocumentSnapshot): PodcastCloud =
-        documentSnapshot.toObject(PodcastCloud::class.java) ?: PodcastCloud()
+        return PodcastCloud(id, name, image, soundFile)
+    }
 }

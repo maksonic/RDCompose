@@ -12,12 +12,12 @@ class BaseOnboardingRepository @Inject constructor() : OnboardingRepository {
     override fun fetchOnboardingList(): List<Onboarding> = listOf(
         Onboarding(
             "Добро пожаловать!",
-            "Заряжайся, совершенствуйся и вдохновляйся.\nСотни аудиоподкастов от Игоря Войтенко",
+            "Заряжайся, совершенствуйся и вдохновляйся.\nБолее 100 аудиоподкастов от Игоря Войтенко.",
             R.drawable.slide_first
         ),
         Onboarding(
             "Слушай в любое время",
-            "Полный доступ к аудиоподкастам\nбез интернета 24/7",
+            "Полный доступ к аудиоподкастам\nбез интернета 24/7.",
             R.drawable.slide_second
         ),
         Onboarding(

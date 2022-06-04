@@ -1,5 +1,6 @@
 package ru.maksonic.rdcompose.screen.podcast_list.update
 
+import androidx.compose.material.ExperimentalMaterialApi
 import ru.maksonic.rdcompose.screen.podcast_list.model.Cmd
 import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.screen.podcast_list.model.Msg
@@ -20,8 +21,9 @@ interface UpdateResult {
         override fun retryFetching(model: Model): Update =
             model.copy(isLoading = true, isError = false) to setOf(Cmd.FetchPodcastList)
 
+        @OptIn(ExperimentalMaterialApi::class)
         override fun onPodcastClicked(model: Model, msg: Msg.Ui.OnPodcastClicked): Update =
-            model to emptySet()
+            model to setOf(Cmd.PlayPodcast(msg.scope, msg.playerSheet))
 
         override fun success(model: Model, msg: Msg.Internal.Success): Update =
             model.copy(

@@ -9,9 +9,9 @@ import javax.inject.Inject
  */
 class PodcastDomainToUiMapper @Inject constructor(): Mapper<PodcastDomain, PodcastUi> {
     override fun mapTo(o: PodcastUi) =
-        PodcastDomain(o.id, o.categoryId, o.name, o.image, o.soundFile)
+        PodcastDomain(o.id, o.name, o.image, o.soundFile)
 
     override fun mapFrom(i: PodcastDomain) =
-        PodcastUi(i.id, i.categoryId, i.name, i.image, i.soundFile)
+        PodcastUi(i.id, i.name, i.image, i.soundFile)
 
 }
