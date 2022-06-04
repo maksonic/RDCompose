@@ -1,5 +1,6 @@
 package ru.maksonic.rdcompose.data.base
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 import ru.maksonic.rdcompose.core.common.Abstract

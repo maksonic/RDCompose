@@ -31,16 +31,20 @@ object Lib {
         const val UI_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
     }
 
-    object Landscapist {
-        private const val version = "1.5.2"
-        const val GLIDE = "com.github.skydoves:landscapist-glide:$version"
-    }
 
     object Dagger {
         private const val version = "2.42"
         const val HILT = "com.google.dagger:hilt-android:$version"
         const val COMPILER = "com.google.dagger:hilt-compiler:$version"
         const val VIEWMODEL = "androidx.hilt:hilt-navigation-compose:1.0.0"
+    }
+
+    object ExoPlayer {
+        private const val version = "1.0.0-alpha03"
+        const val EXOPLAYER = "androidx.media3:media3-exoplayer:$version"
+        const val SESSION = "androidx.media3:media3-session:$version"
+
+
     }
 
     object Firebase {
@@ -64,6 +68,11 @@ object Lib {
             private const val version = "1.3.2"
             const val JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
         }
+    }
+
+    object Landscapist {
+        private const val version = "1.5.2"
+        const val GLIDE = "com.github.skydoves:landscapist-glide:$version"
     }
 
     object Lifecycle {

@@ -80,6 +80,7 @@ private fun SuccessPodcasts(
         derivedStateOf { if (lazyListState.firstVisibleItemIndex > 0) 1f else 0.7f }
     }
 
+
     Box(modifier.fillMaxSize()) {
         LazyColumn(
             modifier.fillMaxWidth(),
@@ -93,7 +94,7 @@ private fun SuccessPodcasts(
             }
 
             items(model.podcasts) { podcast ->
-                ItemPodcastList(sendMsg, podcast, playerSheet)
+                   ItemPodcastList(podcast)
             }
         }
 
