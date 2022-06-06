@@ -49,12 +49,12 @@ private fun PodcastListScreenUi(
         modifier = modifier.systemBarsPadding()
     ) { padding ->
         when {
-            model.value.isLoading -> LoadingViewState()
-            model.value.isError -> ErrorViewState(
-                errorMessage = model.value.errorMsg,
+            model.value.baseModel.isLoading -> LoadingViewState()
+            model.value.baseModel.isError -> ErrorViewState(
+                errorMessage = model.value.baseModel.errorMsg,
                 retryAction = { sendMsg(Msg.Ui.RetryFetchPodcasts) }
             )
-            model.value.isSuccess -> SuccessPodcasts(
+            model.value.baseModel.isSuccess -> SuccessPodcasts(
                 model = model.value,
                 sendMsg = sendMsg,
                 playerSheet = playerBottomSheetState,

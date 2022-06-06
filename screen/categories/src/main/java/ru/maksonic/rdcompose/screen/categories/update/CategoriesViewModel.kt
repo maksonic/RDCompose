@@ -1,6 +1,7 @@
 package ru.maksonic.rdcompose.screen.categories.update
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import ru.maksonic.rdcompose.core.elm.BaseModel
 import ru.maksonic.rdcompose.core.elm.ElmRuntime
 import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
 import ru.maksonic.rdcompose.screen.categories.model.Cmd
@@ -20,7 +21,7 @@ class CategoriesViewModel @Inject constructor(
     categoriesProgram: CategoriesProgram,
     navigator: MainNavigator
 ) : ElmRuntime<Model, Msg, Cmd>(
-    initialModel = Model(isLoading = true),
+    initialModel = Model(baseModel = BaseModel(isLoading = true)),
     initialCmd = setOf(Cmd.FetchCategories),
     subscriptions = listOf(categoriesProgram),
     navigator = navigator

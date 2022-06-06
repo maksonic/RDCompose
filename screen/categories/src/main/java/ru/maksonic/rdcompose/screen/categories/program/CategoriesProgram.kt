@@ -38,7 +38,7 @@ class CategoriesProgram @Inject constructor(
                 consumer(Msg.Internal.Success(categories))
             }
             categoriesRequest.onFailure { throwable ->
-                consumer(Msg.Internal.Error(throwable.message))
+                consumer(Msg.Internal.Error(throwable.message.toString()))
             }
         }
     }

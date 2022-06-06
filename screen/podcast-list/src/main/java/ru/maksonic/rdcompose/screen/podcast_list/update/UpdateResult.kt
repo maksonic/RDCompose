@@ -19,7 +19,12 @@ interface UpdateResult {
     class Base @Inject constructor() : UpdateResult {
 
         override fun retryFetching(model: Model): Update =
-            model.copy(isLoading = true, isError = false) to setOf(Cmd.FetchPodcastList)
+            model.copy(
+                baseModel = model.baseModel.copy(
+                    isLoading = true,
+                    isError = false
+                )
+            ) to setOf(Cmd.FetchPodcastList)
 
         @OptIn(ExperimentalMaterialApi::class)
         override fun onPodcastClicked(model: Model, msg: Msg.Ui.OnPodcastClicked): Update =
@@ -27,18 +32,22 @@ interface UpdateResult {
 
         override fun success(model: Model, msg: Msg.Internal.Success): Update =
             model.copy(
-                isLoading = false,
-                isSuccess = true,
-                isError = false,
+                baseModel = model.baseModel.copy(
+                    isLoading = false,
+                    isSuccess = true,
+                    isError = false
+                ),
                 podcasts = msg.podcasts
             ) to emptySet()
 
         override fun error(model: Model, msg: Msg.Internal.Error): Update =
             model.copy(
-                isLoading = false,
-                isSuccess = false,
-                isError = true,
-                errorMsg = msg.errorMsg.toString()
+                baseModel = model.baseModel.copy(
+                    isLoading = false,
+                    isSuccess = false,
+                    isError = true,
+                    errorMsg = msg.errorMsg.toString()
+                )
             ) to emptySet()
 
         override fun fetchCategoryInfo(

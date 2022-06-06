@@ -22,7 +22,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.R.string
  */
 @Composable
 fun ErrorViewState(
-    errorMessage: String,
+    errorMessage: String = "",
     retryAction: () -> Unit,
     modifier: Modifier = Modifier
 ) {
