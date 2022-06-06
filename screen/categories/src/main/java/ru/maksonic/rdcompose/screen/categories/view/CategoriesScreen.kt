@@ -53,7 +53,7 @@ fun CategoriesScreenUi(
     ) { padding ->
 
         SwipeRefresh(
-            state = rememberSwipeRefreshState(isRefreshing = model.value.isRefreshing),
+            state = rememberSwipeRefreshState(isRefreshing = model.value.baseModel.isRefreshing),
             onRefresh = { sendMsg(Msg.Ui.RefreshCategories) },
             indicator = { state, trigger ->
                 SwipeRefreshIndicator(
@@ -73,12 +73,12 @@ fun CategoriesScreenUi(
                 item { ScreenTitleDisplay(title = stringResource(id = R.string.scr_categories)) }
 
                 when {
-                    model.value.isLoading -> item {
+                    model.value.baseModel.isLoading -> item {
                         Box(modifier.fillParentMaxHeight(1f)) {
                             LoadingViewState()
                         }
                     }
-                    model.value.isSuccess -> {
+                    model.value.baseModel.isSuccess -> {
                         items(items = model.value.categories) { category ->
                             ItemCardCategory(
                                 category = category,
@@ -93,11 +93,11 @@ fun CategoriesScreenUi(
                             )
                         }
                     }
-                    model.value.isError -> {
+                    model.value.baseModel.isError -> {
                         item {
                             Box(modifier.fillParentMaxHeight(1f)) {
                                 ErrorViewState(
-                                    errorMessage = model.value.errorMsg.toString(),
+                                    errorMessage = model.value.baseModel.errorMsg.toString(),
                                     retryAction = { sendMsg(Msg.Ui.FetchCategories) }
                                 )
                             }

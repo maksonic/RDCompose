@@ -18,15 +18,18 @@ interface UpdateResult {
     class Base @Inject constructor() : UpdateResult {
         override fun fetching(model: Model): Update =
             model.copy(
-                isLoading = true,
-                isSuccess = false,
-                isRefreshing = false,
-                isError = false
-            ) to setOf(Cmd.FetchCategories)
+                baseModel = model.baseModel.copy(
+                    isLoading = true,
+                    isSuccess = false,
+                    isRefreshing = false,
+                    isError = false
+                ),
+
+                ) to setOf(Cmd.FetchCategories)
 
         override fun refreshing(model: Model): Update =
             model.copy(
-                isRefreshing = true,
+                baseModel = model.baseModel.copy(isRefreshing = true),
             ) to setOf(Cmd.RefreshCategories)
 
         override fun onCategoryClicked(model: Model, msg: Msg.Ui.OnCategoryClick): Update =
@@ -34,20 +37,24 @@ interface UpdateResult {
 
         override fun success(model: Model, msg: Msg.Internal.Success): Update =
             model.copy(
-                isLoading = false,
-                isSuccess = true,
-                isRefreshing = false,
-                isError = false,
+                baseModel = model.baseModel.copy(
+                    isLoading = false,
+                    isSuccess = true,
+                    isRefreshing = false,
+                    isError = false
+                ),
                 categories = msg.categories
             ) to emptySet()
 
         override fun error(model: Model, msg: Msg.Internal.Error): Update =
             model.copy(
-                isLoading = false,
-                isSuccess = false,
-                isRefreshing = false,
-                isError = true,
-                errorMsg = msg.errorMessage,
+                baseModel = model.baseModel.copy(
+                    isLoading = false,
+                    isSuccess = false,
+                    isRefreshing = false,
+                    isError = true,
+                    errorMsg = msg.errorMessage
+                ),
                 categories = emptyList()
             ) to emptySet()
     }

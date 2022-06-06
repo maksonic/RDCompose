@@ -17,6 +17,6 @@ sealed class Msg : Message {
 
     sealed class Internal : Msg() {
         class Success(val categories: List<CategoryUi>) : Internal()
-        class Error(val errorMessage: String? = "") : Internal()
+        class Error(val errorMessage: String = "") : Internal()
     }
 }
