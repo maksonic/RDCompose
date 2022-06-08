@@ -29,5 +29,7 @@ data class RDColor(
     val tertiaryText: Color,
     val onBackgroundText: Color,
     val link: Color,
-    val controlNormal: Color
+    val controlNormal: Color,
+    val storyBorder: Color,
+    val isFavorite: Color
 )

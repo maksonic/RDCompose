@@ -29,7 +29,7 @@ fun CentralPlayer(modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         IconActionButton(onClick = { }) {
-            IconDefault(icId = drawable.ic_replay_10_sec, modifier.size(36.dp))
+            IconDefault(modifier.size(36.dp), icId = drawable.ic_replay_10_sec)
         }
 
         Box(
@@ -41,13 +41,13 @@ fun CentralPlayer(modifier: Modifier = Modifier) {
             contentAlignment = Alignment.Center
         ) {
             IconDefault(
-                icId = R.drawable.ic_play_rounded,
-                modifier.size(RDTheme.componentSize.playerPlayIconSize)
+                modifier.size(RDTheme.componentSize.playerPlayIconSize),
+                icId = R.drawable.ic_play_rounded
             )
         }
 
         IconActionButton(onClick = { }) {
-            IconDefault(icId = drawable.ic_forward_30_sec, modifier.size(36.dp))
+            IconDefault(modifier.size(36.dp), icId = drawable.ic_forward_30_sec)
         }
     }
 }

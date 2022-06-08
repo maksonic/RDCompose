@@ -6,7 +6,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.glide.GlideImage
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
@@ -20,6 +24,13 @@ fun ImageWithShimmer(source: Any?, modifier: Modifier = Modifier) {
     Box(modifier.wrapContentSize()) {
         GlideImage(
             imageModel = source,
+            requestOptions = {
+                RequestOptions()
+                    .placeholder(R.drawable.podcast_image)
+                    .error(R.drawable.podcast_image)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .centerCrop()
+            },
             shimmerParams = ShimmerParams(
                 baseColor = RDTheme.color.divider,
                 highlightColor = RDTheme.color.surface,
@@ -27,8 +38,6 @@ fun ImageWithShimmer(source: Any?, modifier: Modifier = Modifier) {
                 dropOff = 0.65f,
                 tilt = 20f
             ),
-            previewPlaceholder = R.drawable.podcast_image,
-            error = painterResource(id = R.drawable.podcast_image),
             modifier = innerModifier
                 .fillMaxSize()
                 .aspectRatio(1f)

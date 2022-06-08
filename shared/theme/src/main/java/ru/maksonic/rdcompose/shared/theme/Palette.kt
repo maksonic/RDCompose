@@ -12,9 +12,11 @@ val CodGray = Color(0xFF171717)
 val DimGray = Color(0xFFEDEDED)
 val DodgerBlue = Color(0xFF31BDFF)
 val GainsboroGray = Color(0xFFDCDCDC)
+val Green = Color(0xFF43A047)
 val Nero = Color(0xFF212121)
 val MineShaft = Color(0xFF313131)
 val Ripple = Color(0x0AFFFFFF)
+val RedOrange = Color(0xFFFB3939)
 val ShadowLight = Color(0x43FFFFFF)
 val ShadowDark = Color(0x52000000)
 val Solitude = Color(0xFFF7F7F7)
@@ -42,7 +44,9 @@ val baseLightPalette = RDColor(
     tertiaryText = DimGray,
     onBackgroundText = White,
     link = Blue,
-    controlNormal = Nero
+    controlNormal = Nero,
+    storyBorder = Green,
+    isFavorite = RedOrange,
 )
 
 val baseDarkPalette = RDColor(
@@ -65,7 +69,9 @@ val baseDarkPalette = RDColor(
     tertiaryText = DimGray,
     onBackgroundText = Solitude,
     link = DodgerBlue,
-    controlNormal = Solitude
+    controlNormal = Solitude,
+    storyBorder = Green,
+    isFavorite = RedOrange,
 )
 
 val baseHighContrastPalette = RDColor(
@@ -88,5 +94,7 @@ val baseHighContrastPalette = RDColor(
     tertiaryText = DimGray,
     onBackgroundText = White,
     link = DodgerBlue,
-    controlNormal = White
+    controlNormal = White,
+    storyBorder = Green,
+    isFavorite = RedOrange,
 )

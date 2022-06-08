@@ -25,7 +25,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.topbar.TopAppBarNormal
 /**
  * @Author maksonic on 26.05.2022
  */
-typealias Message = (Msg) -> Unit
+internal typealias Message = (Msg) -> Unit
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
