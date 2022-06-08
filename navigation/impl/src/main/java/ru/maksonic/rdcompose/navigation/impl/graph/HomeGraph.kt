@@ -9,7 +9,7 @@ import androidx.navigation.navigation
 import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.destination.HomeDestination
-import ru.maksonic.rdcompose.screen.home.HomeScreen
+import ru.maksonic.rdcompose.screen.home.view.HomeScreen
 import javax.inject.Inject
 
 /**

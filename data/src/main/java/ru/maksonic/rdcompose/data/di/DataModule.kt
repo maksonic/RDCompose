@@ -17,11 +17,13 @@ import ru.maksonic.rdcompose.data.podcasts.PodcastDataToDomainMapper
 import ru.maksonic.rdcompose.data.podcasts.PodcastsRepository
 import ru.maksonic.rdcompose.data.podcasts.cloud.PodcastCloudToDataMapper
 import ru.maksonic.rdcompose.data.podcasts.cloud.PodcastsCloudDataSource
+import ru.maksonic.rdcompose.data.stories.StoriesRepository
 import ru.maksonic.rdcompose.domain.base.CloudRepository
 import ru.maksonic.rdcompose.domain.base.CommonRepository
 import ru.maksonic.rdcompose.domain.categories.CategoryDomain
 import ru.maksonic.rdcompose.domain.onboarding.OnboardingRepository
 import ru.maksonic.rdcompose.domain.podcasts.PodcastDomain
+import ru.maksonic.rdcompose.domain.stories.StoriesRepo
 import javax.inject.Singleton
 
 /**
@@ -62,6 +64,10 @@ object DataModule {
         cloudMapper = cloudMapper,
         dataToDomainMapper = dataToDomainMapper
     )
+
+    @Singleton
+    @Provides
+    fun provideStoriesRepository(): StoriesRepo = StoriesRepository()
 
     @Singleton
     @Provides

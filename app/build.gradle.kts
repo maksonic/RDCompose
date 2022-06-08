@@ -58,6 +58,7 @@ dependencies {
     implementation(project(Module.Navigation.API))
     implementation(project(Module.Navigation.IMPL))
 
+    implementation(project(Feature.AUDIO_STORY))
     implementation(project(Feature.ONBOARDING))
     implementation(project(Feature.USER_AUTH))
     implementation(project(Feature.PLAYER))

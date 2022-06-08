@@ -51,7 +51,9 @@ fun PlayerCollapsed(modifier: Modifier = Modifier, scaffoldState: BottomSheetSca
                 shape = RDTheme.shape.cornerSmall,
                 elevation = RDTheme.elevation.elevationDisable
             ) {
-                ImageWithShimmer("", modifier.aspectRatio(1f))
+                ImageWithShimmer(drawable.podcast_image,
+                    modifier.aspectRatio(1f)
+                )
             }
 
             Text(

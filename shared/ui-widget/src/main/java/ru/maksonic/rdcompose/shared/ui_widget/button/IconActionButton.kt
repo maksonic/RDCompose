@@ -90,8 +90,10 @@ fun IconActionButton(
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable () -> Unit
 ) {
+    val innerModifier = Modifier
+
     Box(
-        modifier = modifier
+        modifier = innerModifier
             .minimumTouchTargetSize()
             .clickable(
                 onClick = onClick,

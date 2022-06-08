@@ -6,4 +6,5 @@ object Feature {
     const val USER_AUTH = ":feature:user-auth"
     const val PRIVACY = ":feature:privacy"
     const val PLAYER = ":feature:player"
+    const val AUDIO_STORY = ":feature:audio-story"
 }
