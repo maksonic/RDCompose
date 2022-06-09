@@ -12,7 +12,7 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val themeSetting: AppThemeSetting
+    private val themeSetting: AppThemeSetting,
 ) : ViewModel() {
 
     init {

@@ -11,16 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.skydoves.landscapist.glide.GlideImage
-import ru.maksonic.rdcompose.feature.audio_story.AudioStoryUi
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
 import ru.maksonic.rdcompose.screen.home.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
 import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
-import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable
 
 /**
@@ -31,10 +28,11 @@ fun AudioStoryItem(
     model: Model,
     sendMsg: Message,
     story: AudioStoryUi,
+    storyIndex: Int,
     modifier: Modifier = Modifier
 ) {
     val borderColor =
-        if (model.isViewedStory) RDTheme.color.secondary else RDTheme.color.storyBorder
+        if (model.story.isViewedStory) RDTheme.color.secondary else RDTheme.color.storyBorder
 
     Box(
         modifier
@@ -44,9 +42,8 @@ fun AudioStoryItem(
             .border(2.dp, borderColor, CircleShape)
             .clip(CircleShape)
             .background(RDTheme.color.background)
-            .rippleClickable { sendMsg(Msg.Ui.ShowStory) },
+            .rippleClickable { sendMsg(Msg.Ui.ShowStory(storyIndex)) },
         contentAlignment = Alignment.Center
-
     ) {
         Box(
             modifier

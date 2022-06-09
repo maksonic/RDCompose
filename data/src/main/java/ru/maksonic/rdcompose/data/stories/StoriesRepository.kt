@@ -8,14 +8,11 @@ import ru.maksonic.rdcompose.domain.stories.StoriesRepo
  * @Author maksonic on 08.06.2022
  */
 class StoriesRepository : StoriesRepo {
-    override fun fetchStories(): List<AudioStoryDomain> {
-        val stories = listOf(
-            AudioStoryDomain(0, R.drawable.item_story_sample_0),
-            AudioStoryDomain(1, R.drawable.item_story_sample_1),
-            AudioStoryDomain(2, R.drawable.item_story_sample_2),
-            AudioStoryDomain(3, R.drawable.item_story_sample_3),
-            AudioStoryDomain(4, R.drawable.item_story_sample_4),
-        )
-        return stories.plus(stories).plus(stories).shuffled()
-    }
+    override fun fetchStories(): List<AudioStoryDomain> = listOf(
+        AudioStoryDomain(0, R.drawable.item_story_sample_0),
+        AudioStoryDomain(1, R.drawable.item_story_sample_1),
+        AudioStoryDomain(2, R.drawable.item_story_sample_2),
+        AudioStoryDomain(3, R.drawable.item_story_sample_3),
+        AudioStoryDomain(4, R.drawable.item_story_sample_4),
+    )
 }

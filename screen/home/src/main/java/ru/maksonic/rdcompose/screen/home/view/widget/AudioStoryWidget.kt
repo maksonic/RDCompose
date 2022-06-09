@@ -23,8 +23,9 @@ fun AudioStoryWidget(model: Model, sendMsg: Message, modifier: Modifier = Modifi
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
-            items(model.stories) { story ->
-                AudioStoryItem(model, sendMsg, story)
+            items(model.story.stories) { story ->
+                val index = model.story.stories.indexOf(story)
+                AudioStoryItem(model, sendMsg, story, index)
             }
         }
     }

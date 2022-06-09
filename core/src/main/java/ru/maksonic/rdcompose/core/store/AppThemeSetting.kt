@@ -24,18 +24,16 @@ interface AppThemeSetting {
 
     class Base @Inject constructor(
         private val context: Context,
-        private val dataStore: AppDataStore
+        private val dataStore: AppDataStore,
+        private val keyStore: KeyStore
     ) : AppThemeSetting {
-        companion object {
-            private val KEY_STORE_THEME = stringPreferencesKey("prefs_setting_theme")
-        }
 
         override var currentTheme: MutableStateFlow<AppTheme> = MutableStateFlow(AppTheme.SYSTEM)
 
         override suspend fun setTheme(theme: AppTheme) {
             dataStore.apply {
                 context.datastore.edit { preferences ->
-                    preferences[KEY_STORE_THEME] = theme.name
+                    preferences[keyStore.appThemeKey] = theme.name
                 }
             }
         }
@@ -43,7 +41,7 @@ interface AppThemeSetting {
         override suspend fun readTheme(): MutableStateFlow<AppTheme> {
             dataStore.apply {
                 context.datastore.data.map { preferences ->
-                    preferences[KEY_STORE_THEME] ?: AppTheme.SYSTEM.name
+                    preferences[keyStore.appThemeKey] ?: AppTheme.SYSTEM.name
                 }.collect {
                     currentTheme.value = AppTheme.valueOf(it)
                 }
