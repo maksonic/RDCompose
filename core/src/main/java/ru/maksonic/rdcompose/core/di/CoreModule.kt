@@ -27,9 +27,14 @@ object CoreModule {
     @Provides
     fun provideAppTheme(
         @ApplicationContext context: Context,
-        dataStore: AppDataStore
+        dataStore: AppDataStore,
+        keyStore: KeyStore
     ): AppThemeSetting =
-        AppThemeSetting.Base(context, dataStore)
+        AppThemeSetting.Base(context, dataStore, keyStore)
+
+    @Singleton
+    @Provides
+    fun provideKeyStore(): KeyStore = KeyStore.Base()
 
     @Singleton
     @Provides

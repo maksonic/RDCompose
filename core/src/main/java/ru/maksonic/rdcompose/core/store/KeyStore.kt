@@ -1,11 +1,16 @@
 package ru.maksonic.rdcompose.core.store
 
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.stringPreferencesKey
 import javax.inject.Inject
 
 /**
  * @Author maksonic on 26.05.2022
  */
 interface KeyStore {
+
+    val appThemeKey:  Preferences.Key<String>
+
     interface NavigationKey {
         val passedCategoryIdKey: String
         val passedCategoryNameKey: String
@@ -15,6 +20,9 @@ interface KeyStore {
         val termsOfUseResult: String
     }
 
+    class Base @Inject constructor(): KeyStore {
+        override val appThemeKey = stringPreferencesKey("prefs_setting_theme")
+    }
     class NavigationPassedKey @Inject constructor() : NavigationKey {
         override val passedCategoryIdKey: String
             get() = "categoryId"
