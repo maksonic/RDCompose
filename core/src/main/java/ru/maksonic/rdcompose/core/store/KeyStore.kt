@@ -1,6 +1,7 @@
 package ru.maksonic.rdcompose.core.store
 
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import javax.inject.Inject
 
@@ -10,6 +11,7 @@ import javax.inject.Inject
 interface KeyStore {
 
     val appThemeKey:  Preferences.Key<String>
+    val currentStoryKey:  Preferences.Key<Int>
 
     interface NavigationKey {
         val passedCategoryIdKey: String
@@ -22,6 +24,7 @@ interface KeyStore {
 
     class Base @Inject constructor(): KeyStore {
         override val appThemeKey = stringPreferencesKey("prefs_setting_theme")
+        override val currentStoryKey = intPreferencesKey("prefs_current_story")
     }
     class NavigationPassedKey @Inject constructor() : NavigationKey {
         override val passedCategoryIdKey: String

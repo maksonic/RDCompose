@@ -1,13 +1,12 @@
-package ru.maksonic.rdcompose.feature.audio_story.program
+package ru.maksonic.rdcompose.screen.home.program
 
 import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.domain.stories.FetchStoriesUseCase
-import ru.maksonic.rdcompose.feature.audio_story.AudioStoryUi
-import ru.maksonic.rdcompose.feature.audio_story.R
-import ru.maksonic.rdcompose.feature.audio_story.model.Cmd
-import ru.maksonic.rdcompose.feature.audio_story.model.Msg
+import ru.maksonic.rdcompose.screen.home.model.Cmd
+import ru.maksonic.rdcompose.screen.home.model.Msg
+import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoriesDomainToUiMapper
 import javax.inject.Inject
 import kotlin.math.max
 import kotlin.math.min
@@ -24,24 +23,35 @@ class AudioStoriesProgram @Inject constructor(
             is Cmd.FetchStories -> fetchStories(consumer)
             is Cmd.NextStories -> scrollNextStory(cmd)
             is Cmd.PreviousStories -> scrollPreviousStory(cmd)
+            else -> {}
         }
     }
 
     private fun fetchStories(consumer: (Msg) -> Unit) {
         val storiesUi = mapper.mapFromList(fetchStoriesUseCase())
-        consumer(Msg.Internal.Success(storiesUi))
+        if (storiesUi.isEmpty()) {
+            consumer(Msg.Internal.StoriesError("Stories not found!"))
+        } else {
+            consumer(Msg.Internal.StoriesSuccess(storiesUi))
+        }
     }
 
     @OptIn(ExperimentalPagerApi::class)
     private fun scrollNextStory(cmd: Cmd.NextStories) {
         cmd.scope.launch {
-            cmd.pagerState.scrollToPage(max(0, cmd.pagerState.currentPage - 1))
+            cmd.pagerState.animateScrollToPage(
+                min(
+                    cmd.pagerState.pageCount - 1,
+                    cmd.pagerState.currentPage + 1
+                )
+            )
         }
     }
+
     @OptIn(ExperimentalPagerApi::class)
     private fun scrollPreviousStory(cmd: Cmd.PreviousStories) {
         cmd.scope.launch {
-            cmd.pagerState.scrollToPage(min(cmd.pagerState.pageCount - 1, cmd.pagerState.currentPage + 1))
+            cmd.pagerState.animateScrollToPage(max(0, cmd.pagerState.currentPage - 1))
         }
     }
 }

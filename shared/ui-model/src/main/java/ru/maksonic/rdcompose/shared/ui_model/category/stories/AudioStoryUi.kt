@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.feature.audio_story
+package ru.maksonic.rdcompose.shared.ui_model.category.stories
 
 /**
  * @Author maksonic on 07.06.2022

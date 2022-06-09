@@ -47,7 +47,7 @@ dependencies {
     implementation(project(Module.Shared.THEME))
     implementation(project(Module.Shared.UI_MODEL))
     implementation(project(Module.Shared.UI_WIDGET))
-    implementation(project(Feature.AUDIO_STORY))
+    implementation(Lib.Accompanist.PAGER)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)

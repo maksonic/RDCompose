@@ -1,8 +1,7 @@
-package ru.maksonic.rdcompose.feature.audio_story.program
+package ru.maksonic.rdcompose.shared.ui_model.category.stories
 
 import ru.maksonic.rdcompose.core.common.Mapper
 import ru.maksonic.rdcompose.domain.stories.AudioStoryDomain
-import ru.maksonic.rdcompose.feature.audio_story.AudioStoryUi
 import javax.inject.Inject
 
 /**

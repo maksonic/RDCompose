@@ -10,8 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.maksonic.rdcompose.core.utils.PlayerBackPressed
-import ru.maksonic.rdcompose.feature.audio_story.model.StoryState
-import ru.maksonic.rdcompose.feature.audio_story.view.StoryDialog
+import ru.maksonic.rdcompose.screen.home.view.story.StoryDialog
 import ru.maksonic.rdcompose.navigation.api.R
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
@@ -49,9 +48,7 @@ fun HomeScreenUi(
         backgroundColor = RDTheme.color.background,
         modifier = modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
     ) { padding ->
-            StoryDialog(
-                isShowedDialog = model.isShowedStoryDialog,
-                closeStoryDialog = { sendMsg(Msg.Ui.CloseStory) })
+        StoryDialog(model, sendMsg)
 
         LazyColumn(modifier.padding(padding)) {
             item { ScreenTitleDisplay(title = stringResource(id = R.string.scr_home)) }
