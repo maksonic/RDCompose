@@ -27,7 +27,7 @@ class PodcastsCloudDataSource @Inject constructor(
     dispatcher = dispatcher
 ) {
     override suspend fun request(categoryId: String): QuerySnapshot = with(firebaseApi) {
-        categoriesCollection.document(categoryId).collection(podcastsCollection).get(Source.SERVER)
+        categoriesCollection.document(categoryId).collection(podcastsCollection).get(Source.DEFAULT)
             .await()
     }
 }

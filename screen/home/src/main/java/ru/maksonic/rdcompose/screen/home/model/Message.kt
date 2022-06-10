@@ -5,6 +5,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
 import ru.maksonic.rdcompose.core.elm.Message
+import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
 import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
 
 /**
@@ -33,7 +34,8 @@ sealed class Msg : Message {
 
     sealed class Internal : Msg() {
         data class StoriesSuccess(val stories: List<AudioStoryUi>) : Internal()
-        data class StoriesError(val errorMsg: String) : Internal()
         data class ViewedCurrentStory(val storyIndex: Boolean): Internal()
+        data class NewPodcastsSuccess(val podcasts: List<PodcastUi>): Internal()
+        data class Error(val errorMsg: String) : Internal()
     }
 }

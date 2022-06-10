@@ -11,5 +11,5 @@ import javax.inject.Inject
 class RefreshCategoriesUseCase @Inject constructor(
     private val repository: CommonRepository<CategoryDomain>
 ) : BaseUseCase<Categories, Nothing> {
-    override fun invoke(args: Nothing?) = repository.fetchCloudDataList()
+    override suspend fun invoke(args: Nothing?) = repository.fetchCloudDataList()
 }

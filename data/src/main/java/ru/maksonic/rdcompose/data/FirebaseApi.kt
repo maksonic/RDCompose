@@ -13,6 +13,7 @@ import javax.inject.Inject
 interface FirebaseApi {
     val instance: FirebaseFirestore
     val categoriesCollection: CollectionReference
+    val podcastsCollections: CollectionReference
     val podcastsCollection: String
 
     class Base @Inject constructor(): FirebaseApi {
@@ -24,5 +25,6 @@ interface FirebaseApi {
         override val instance = Firebase.firestore
         override val categoriesCollection = instance.collection(CATEGORIES)
         override val podcastsCollection = PODCASTS
+         override val podcastsCollections = instance.collection(PODCASTS)
     }
 }

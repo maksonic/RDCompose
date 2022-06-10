@@ -9,5 +9,5 @@ import javax.inject.Inject
 class FetchCategoriesUseCase @Inject constructor(
     private val repository: CommonRepository<CategoryDomain>
 ) : BaseUseCase<Categories, Nothing> {
-    override fun invoke(args: Nothing?) = repository.fetchDataList()
+    override suspend fun invoke(args: Nothing?) = repository.fetchDataList()
 }

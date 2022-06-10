@@ -9,5 +9,5 @@ import javax.inject.Inject
 class FetchStoriesUseCase @Inject constructor(
     private val repo: StoriesRepo
     ): BaseUseCase<Stories, Nothing> {
-    override fun invoke(args: Nothing?): Stories = repo.fetchStories()
+    override suspend fun invoke(args: Nothing?): Stories = repo.fetchStories()
 }

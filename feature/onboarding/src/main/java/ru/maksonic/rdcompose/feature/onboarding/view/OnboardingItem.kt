@@ -20,6 +20,7 @@ import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.feature.onboarding.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_widget.system.scrollPage
 
 /**
  * @Author maksonic on 23.05.2022
@@ -38,7 +39,7 @@ internal fun OnboardingItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
             .fillMaxSize()
-            .scrollPage(pagerState, 3)
+            .scrollPage(pagerState)
     ) {
         Box(
             modifier
@@ -75,34 +76,6 @@ internal fun OnboardingItem(
                 textAlign = TextAlign.Center
             )
             Spacer(modifier.size(dp16))
-        }
-    }
-}
-
-@OptIn(ExperimentalPagerApi::class)
-private fun Modifier.scrollPage(pagerState: PagerState, maxPageSize: Int): Modifier = composed {
-    val scope = rememberCoroutineScope()
-
-    this.pointerInput(Unit) {
-        detectDragGestures { _, dragAmount ->
-            when {
-                dragAmount.x > 0 && dragAmount.x.dp > 10.dp -> {
-                    scope.launch {
-                        if (pagerState.currentPage > 0) {
-                            pagerState.animateScrollToPage(
-                                pagerState.currentPage.minus(1),
-                            )
-                        }
-                    }
-                }
-                dragAmount.x < 0 && dragAmount.x.dp < 10.dp -> {
-                    scope.launch {
-                        if (pagerState.currentPage != maxPageSize) {
-                            pagerState.animateScrollToPage(pagerState.currentPage.plus(1))
-                        }
-                    }
-                }
-            }
         }
     }
 }

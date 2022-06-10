@@ -7,6 +7,7 @@ import ru.maksonic.rdcompose.screen.home.model.Cmd
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
 import ru.maksonic.rdcompose.screen.home.program.AudioStoriesProgram
+import ru.maksonic.rdcompose.screen.home.program.FetchContentProgram
 import javax.inject.Inject
 
 /**
@@ -18,11 +19,12 @@ internal typealias Update = Pair<Model, Set<Cmd>>
 class HomeViewModel @Inject constructor(
     private val updateResult: UpdateResult,
     audioStoriesProgram: AudioStoriesProgram,
+    fetchContentProgram: FetchContentProgram,
     navigator: MainNavigator
 ) : ElmRuntime<Model, Msg, Cmd>(
-    initialCmd = setOf(Cmd.FetchStories),
+    initialCmd = setOf(Cmd.FetchStories, Cmd.FetchNewPodcasts),
     initialModel = Model(),
-    subscriptions = listOf(audioStoriesProgram),
+    subscriptions = listOf(audioStoriesProgram, fetchContentProgram),
     navigator = navigator
 ) {
     override fun update(msg: Msg, model: Model): Update =
@@ -31,9 +33,10 @@ class HomeViewModel @Inject constructor(
             is Msg.Ui.ShowStory -> updateResult.showStory(model, msg)
             is Msg.Ui.CloseStory -> updateResult.closeStory(model, msg)
             is Msg.Internal.StoriesSuccess -> updateResult.storiesSuccess(model, msg)
-            is Msg.Internal.StoriesError -> updateResult.storiesError(model, msg)
+            is Msg.Internal.Error -> updateResult.storiesError(model, msg)
             is Msg.Ui.OnNextStoryClicked -> updateResult.onNextStory(model, msg)
             is Msg.Ui.OnPreviousStoryClicked -> updateResult.onPreviousStory(model, msg)
             is Msg.Internal.ViewedCurrentStory -> model.copy(story = model.story.copy(isViewedStory = true)) to emptySet()
+            is Msg.Internal.NewPodcastsSuccess -> model.copy(newPodcasts = msg.podcasts) to emptySet()
         }
 }

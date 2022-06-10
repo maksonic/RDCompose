@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.screen.home.view.story
+package ru.maksonic.rdcompose.screen.home.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,9 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
-import ru.maksonic.rdcompose.screen.home.view.Message
+import ru.maksonic.rdcompose.screen.home.view.widget.stories.ItemStoryPager
+import ru.maksonic.rdcompose.screen.home.view.widget.stories.StoryBottomBar
+import ru.maksonic.rdcompose.screen.home.view.widget.stories.StoryTopBar
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.system.OverscrollEffect
 

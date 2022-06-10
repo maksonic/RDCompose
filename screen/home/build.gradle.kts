@@ -48,6 +48,7 @@ dependencies {
     implementation(project(Module.Shared.UI_MODEL))
     implementation(project(Module.Shared.UI_WIDGET))
     implementation(Lib.Accompanist.PAGER)
+    implementation(Lib.Accompanist.PAGER_INDICATORS)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)
