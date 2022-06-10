@@ -13,7 +13,7 @@ import javax.inject.Inject
 /**
  * @Author maksonic on 26.05.2022
  */
-typealias Update = Pair<Model, Set<Cmd>>
+internal typealias Update = Pair<Model, Set<Cmd>>
 
 @HiltViewModel
 class CategoriesViewModel @Inject constructor(

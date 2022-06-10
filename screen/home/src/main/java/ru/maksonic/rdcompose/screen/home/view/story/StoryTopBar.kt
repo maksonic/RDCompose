@@ -1,6 +1,7 @@
 package ru.maksonic.rdcompose.screen.home.view.story
 
 import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.AnimationVector1D
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -22,6 +23,7 @@ import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
+import ru.maksonic.rdcompose.screen.home.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconCircleAction
@@ -39,6 +41,8 @@ internal fun StoryTopBar(
     isPaused: MutableState<Boolean>,
     modifier: Modifier = Modifier
 ) {
+    val currentStep = model.story.currentStory
+    val progress = remember(currentStep) { Animatable(0f) }
 
     Row(
         modifier
@@ -47,17 +51,19 @@ internal fun StoryTopBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         StoriesProgressIndicator(
+            modifier = Modifier
+                .weight(1f)
+                .padding(5.dp),
             scope,
             pagerState,
             model,
             sendMsg,
-            modifier = Modifier
-                .weight(1f)
-                .padding(5.dp),
+            progress = progress,
             stepDuration = 3000,
-            currentStep = pagerState.currentPage,
+            currentStep = currentStep,
             isPaused = isPaused.value,
-        )
+
+            )
         IconCircleAction(
             icId = R.drawable.ic_cancel_rounded,
             action = { sendMsg(Msg.Ui.CloseStory) },
@@ -69,36 +75,22 @@ internal fun StoryTopBar(
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun StoriesProgressIndicator(
+    modifier: Modifier = Modifier,
     scope: CoroutineScope,
     pagerState: PagerState,
     model: Model,
     sendMsg: Message,
-    modifier: Modifier = Modifier,
+    progress: Animatable<Float, AnimationVector1D>,
     stepDuration: Int,
     currentStep: Int,
     isPaused: Boolean = false,
 ) {
-    val progress = remember(currentStep) { Animatable(0f) }
     val stepProgress = when {
         pagerState.currentPage == pagerState.currentPage -> progress.value
         pagerState.currentPage > model.story.currentStory -> 0f
         else -> 1f
-    }
-    Row(
-        modifier = modifier
-    ) {
-        LinearProgressIndicator(
-            color = RDTheme.color.onBackground,
-            backgroundColor = RDTheme.color.divider,
-            progress = stepProgress,
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = RDTheme.padding.dp16, end = RDTheme.padding.dp16)
-                .height(6.dp)
-                .clip(CircleShape)
-        )
-    }
 
+    }
     LaunchedEffect(
         isPaused, currentStep
     ) {
@@ -112,13 +104,32 @@ fun StoriesProgressIndicator(
                     easing = LinearEasing
                 )
             )
-            if (pagerState.currentPage + 1 <= pagerState.pageCount - 1) {
+            if (progress.value > 0.9f) {
+                sendMsg(Msg.Internal.ViewedCurrentStory(model.story.stories[pagerState.currentPage].isViewed))
+            }
+
+            if (pagerState.currentPage.plus(1) <= pagerState.pageCount.minus(1)) {
                 progress.snapTo(0f)
                 sendMsg(Msg.Ui.OnNextStoryClicked(scope, pagerState))
             } else {
                 sendMsg(Msg.Ui.CloseStory)
             }
         }
+    }
+
+    Row(
+        modifier = modifier
+    ) {
+        LinearProgressIndicator(
+            color = RDTheme.color.onBackground,
+            backgroundColor = RDTheme.color.divider,
+            progress = stepProgress,
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = RDTheme.padding.dp16, end = RDTheme.padding.dp16)
+                .height(6.dp)
+                .clip(CircleShape)
+        )
     }
 }
 

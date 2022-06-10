@@ -97,7 +97,7 @@ fun CategoriesScreenUi(
                         item {
                             Box(modifier.fillParentMaxHeight(1f)) {
                                 ErrorViewState(
-                                    errorMessage = model.value.baseModel.errorMsg.toString(),
+                                    errorMessage = model.value.baseModel.errorMsg,
                                     retryAction = { sendMsg(Msg.Ui.FetchCategories) }
                                 )
                             }

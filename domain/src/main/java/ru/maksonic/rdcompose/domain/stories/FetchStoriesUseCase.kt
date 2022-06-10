@@ -8,6 +8,6 @@ import javax.inject.Inject
  */
 class FetchStoriesUseCase @Inject constructor(
     private val repo: StoriesRepo
-    ): BaseUseCase<List<AudioStoryDomain>, Nothing> {
-    override fun invoke(args: Nothing?): List<AudioStoryDomain> = repo.fetchStories()
+    ): BaseUseCase<Stories, Nothing> {
+    override fun invoke(args: Nothing?): Stories = repo.fetchStories()
 }
