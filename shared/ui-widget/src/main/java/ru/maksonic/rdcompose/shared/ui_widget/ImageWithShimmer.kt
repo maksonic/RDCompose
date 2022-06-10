@@ -40,7 +40,6 @@ fun ImageWithShimmer(source: Any?, modifier: Modifier = Modifier) {
             ),
             modifier = innerModifier
                 .fillMaxSize()
-                .aspectRatio(1f)
         )
     }
 

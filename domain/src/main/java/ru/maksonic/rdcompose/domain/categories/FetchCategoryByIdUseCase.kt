@@ -12,5 +12,5 @@ class FetchCategoryByIdUseCase @Inject constructor(
     private val repository: CommonRepository<CategoryDomain>
 ) : BaseUseCase<Flow<Result<CategoryDomain>>, String> {
 
-    override fun invoke(args: String?) = repository.fetchItemById(args ?: "")
+    override suspend fun invoke(args: String?) = repository.fetchItemById(args ?: "")
 }

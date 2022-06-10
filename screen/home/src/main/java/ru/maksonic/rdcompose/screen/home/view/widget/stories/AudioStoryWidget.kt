@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.screen.home.view.widget
+package ru.maksonic.rdcompose.screen.home.view.widget.stories
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.view.Message
+import ru.maksonic.rdcompose.screen.home.view.widget.stories.AudioStoryItem
 import ru.maksonic.rdcompose.shared.ui_widget.system.OverscrollEffect
 
 /**

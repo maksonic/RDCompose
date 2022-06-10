@@ -10,7 +10,11 @@ import ru.maksonic.rdcompose.core.elm.Command
  */
 sealed class Cmd : Command {
     object FetchStories : Cmd()
+
     @OptIn(ExperimentalPagerApi::class)
     data class NextStories(val scope: CoroutineScope, val pagerState: PagerState) : Cmd()
+
     @OptIn(ExperimentalPagerApi::class)
-    data class PreviousStories(val scope: CoroutineScope, val pagerState: PagerState) : Cmd()}
+    data class PreviousStories(val scope: CoroutineScope, val pagerState: PagerState) : Cmd()
+    object FetchNewPodcasts : Cmd()
+}

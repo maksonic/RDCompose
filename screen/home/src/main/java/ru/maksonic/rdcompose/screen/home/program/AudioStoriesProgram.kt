@@ -47,7 +47,7 @@ class AudioStoriesProgram @Inject constructor(
                 consumer(Msg.Internal.StoriesSuccess(storiesUi))
             }
             storiesRequest.onFailure { throwable ->
-                consumer(Msg.Internal.StoriesError(throwable.message.toString()))
+                consumer(Msg.Internal.Error(throwable.message.toString()))
             }
         }
     }

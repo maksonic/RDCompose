@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.screen.home.view.story
+package ru.maksonic.rdcompose.screen.home.view.widget.stories
 
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.AnimationVector1D
@@ -41,7 +41,7 @@ internal fun StoryTopBar(
     isPaused: MutableState<Boolean>,
     modifier: Modifier = Modifier
 ) {
-    val currentStep = model.story.currentStory
+    val currentStep = pagerState.currentPage
     val progress = remember(currentStep) { Animatable(0f) }
 
     Row(

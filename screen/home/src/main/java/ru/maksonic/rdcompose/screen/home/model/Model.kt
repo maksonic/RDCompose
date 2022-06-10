@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import ru.maksonic.rdcompose.core.elm.BaseModel
 import ru.maksonic.rdcompose.core.elm.StateModel
+import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
 import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
 
 /**
@@ -13,7 +14,8 @@ import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
 @Immutable
 data class Model(
     val baseModel: BaseModel = BaseModel(),
-    val story: Story = Story()
+    val story: Story = Story(),
+    val newPodcasts: List<PodcastUi> = emptyList()
 ) : StateModel
 
 @Stable

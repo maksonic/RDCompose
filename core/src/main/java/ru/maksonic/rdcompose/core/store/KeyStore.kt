@@ -12,6 +12,7 @@ interface KeyStore {
 
     val appThemeKey:  Preferences.Key<String>
     val currentStoryKey:  Preferences.Key<Int>
+    val fetchDataCategoryId: String
 
     interface NavigationKey {
         val passedCategoryIdKey: String
@@ -25,6 +26,7 @@ interface KeyStore {
     class Base @Inject constructor(): KeyStore {
         override val appThemeKey = stringPreferencesKey("prefs_setting_theme")
         override val currentStoryKey = intPreferencesKey("prefs_current_story")
+        override val fetchDataCategoryId = "id"
     }
     class NavigationPassedKey @Inject constructor() : NavigationKey {
         override val passedCategoryIdKey: String

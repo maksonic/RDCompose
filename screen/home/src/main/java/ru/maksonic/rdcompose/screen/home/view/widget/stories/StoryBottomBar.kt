@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.screen.home.view.story
+package ru.maksonic.rdcompose.screen.home.view.widget.stories
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

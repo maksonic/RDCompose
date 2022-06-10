@@ -42,7 +42,8 @@ internal fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
             Card(
                 innerModifier
                     .fillMaxSize(0.5f)
-                    .padding(start = dp16, end = dp8),
+                    .padding(start = dp16, end = dp8)
+                    .aspectRatio(1f),
                 shape = RDTheme.shape.cornerNormal,
                 backgroundColor = RDTheme.color.surface
             ) {

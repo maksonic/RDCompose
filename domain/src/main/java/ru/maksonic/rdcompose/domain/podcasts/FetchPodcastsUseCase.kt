@@ -12,5 +12,5 @@ class FetchPodcastsUseCase @Inject constructor(
     private val repository: CloudRepository<PodcastDomain>
 ) : BaseUseCase<Podcasts, String?> {
 
-    override fun invoke(args: String?) = repository.fetchCloudDataList(args.toString())
+    override suspend fun invoke(args: String?) = repository.fetchCloudDataList(args.toString())
 }

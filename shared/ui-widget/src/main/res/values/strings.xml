@@ -7,4 +7,6 @@
 
     <string name="txt_player_shuffle">Перемешать</string>
     <string name="txt_player_play">Слушать</string>
+    <string name="txt_header_new_podcasts">Новые подкасты</string>
+    <string name="txt_header_recommend_podcasts">Рекомендуем послушать</string>
 </resources>

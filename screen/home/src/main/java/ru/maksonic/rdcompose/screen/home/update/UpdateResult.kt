@@ -14,7 +14,7 @@ interface UpdateResult {
     fun showStory(model: Model, msg: Msg.Ui.ShowStory): Update
     fun closeStory(model: Model, msg: Msg.Ui.CloseStory): Update
     fun storiesSuccess(model: Model, msg: Msg.Internal.StoriesSuccess): Update
-    fun storiesError(model: Model, msg: Msg.Internal.StoriesError): Update
+    fun storiesError(model: Model, msg: Msg.Internal.Error): Update
     fun onNextStory(model: Model, msg: Msg.Ui.OnNextStoryClicked): Update
     fun onPreviousStory(model: Model, msg: Msg.Ui.OnPreviousStoryClicked): Update
 
@@ -40,7 +40,7 @@ interface UpdateResult {
                 )
             ) to emptySet()
 
-        override fun storiesError(model: Model, msg: Msg.Internal.StoriesError): Update =
+        override fun storiesError(model: Model, msg: Msg.Internal.Error): Update =
             model.copy(
                 story = model.story.copy(
                     isLoading = false,

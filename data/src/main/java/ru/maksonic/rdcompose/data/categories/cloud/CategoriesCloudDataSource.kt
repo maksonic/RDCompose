@@ -6,6 +6,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.tasks.await
 import ru.maksonic.rdcompose.core.common.ResourceProvider
 import ru.maksonic.rdcompose.core.di.IoDispatcher
+import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.data.FirebaseApi
 import ru.maksonic.rdcompose.data.base.BaseCloudDataSource
 import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
@@ -16,6 +17,7 @@ import javax.inject.Inject
  */
 class CategoriesCloudDataSource @Inject constructor(
     private val firebaseApi: FirebaseApi,
+    private val keyStore: KeyStore,
     cloudMapper: FirestoreCategoryToCloudMapper,
     rp: ResourceProvider,
     ex: ExceptionHandler,
@@ -26,10 +28,7 @@ class CategoriesCloudDataSource @Inject constructor(
     ex = ex,
     dispatcher = dispatcher
 ) {
-    private companion object {
-        private const val ID = "id"
-    }
-
     override suspend fun request(categoryId: String): QuerySnapshot =
-        firebaseApi.categoriesCollection.orderBy(ID).get(Source.SERVER).await()
+        firebaseApi.categoriesCollection.orderBy(keyStore.fetchDataCategoryId).get(Source.DEFAULT)
+            .await()
 }
