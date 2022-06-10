@@ -14,9 +14,9 @@ import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
 sealed class Msg : Message {
 
     sealed class Ui : Msg() {
-        object Initial : Ui()
         data class ShowStory(val storyIndex: Int) : Ui()
         object CloseStory : Ui()
+        object RetryFetchingStories : Ui()
 
         @OptIn(ExperimentalPagerApi::class)
         data class OnNextStoryClicked(
@@ -34,6 +34,6 @@ sealed class Msg : Message {
     sealed class Internal : Msg() {
         data class StoriesSuccess(val stories: List<AudioStoryUi>) : Internal()
         data class StoriesError(val errorMsg: String) : Internal()
-        object SetCurrentStory : Internal()
+        data class ViewedCurrentStory(val storyIndex: Boolean): Internal()
     }
 }

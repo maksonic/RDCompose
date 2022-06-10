@@ -4,7 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import ru.maksonic.rdcompose.core.common.ResourceProvider
+import ru.maksonic.rdcompose.core.di.IoDispatcher
 import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
 import ru.maksonic.rdcompose.data.categories.CategoriesRepository
 import ru.maksonic.rdcompose.data.categories.CategoryDataToDomainMapper
@@ -67,7 +69,8 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideStoriesRepository(): StoriesRepo = StoriesRepository()
+    fun provideStoriesRepository(@IoDispatcher dp: CoroutineDispatcher): StoriesRepo =
+        StoriesRepository(dp)
 
     @Singleton
     @Provides

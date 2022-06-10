@@ -16,14 +16,13 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
+import ru.maksonic.rdcompose.screen.home.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.system.OverscrollEffect
 
 /**
  * @Author maksonic on 07.06.2022
  */
-internal typealias Message = (Msg) -> Unit
-
 @Composable
 fun StoryDialog(model: Model, sendMsg: Message) {
 
@@ -41,7 +40,7 @@ private fun StoryDialogUi(
     if (model.story.isShowedStoryDialog) {
         val pagerState = rememberPagerState(initialPage = model.story.currentStory)
         val scope = rememberCoroutineScope()
-        val isPaused = remember { mutableStateOf(false) }
+        val isPressed = remember { mutableStateOf(false) }
 
         Dialog(
             onDismissRequest = { sendMsg(Msg.Ui.CloseStory) },
@@ -59,13 +58,14 @@ private fun StoryDialogUi(
                     HorizontalPager(
                         count = model.story.stories.size,
                         state = pagerState,
+                        userScrollEnabled = false,
                         modifier = modifier.fillMaxSize()
                     ) { page ->
-                        ItemStoryPager(model, sendMsg, scope, page, pagerState, isPaused)
+                        ItemStoryPager(model, sendMsg, scope, page, pagerState, isPressed)
                     }
                 }
                 Column(modifier.fillMaxSize()) {
-                    StoryTopBar(model, sendMsg, scope, pagerState, isPaused)
+                    StoryTopBar(model, sendMsg, scope, pagerState, isPressed)
                     Spacer(modifier.weight(1f))
                     StoryBottomBar()
                 }

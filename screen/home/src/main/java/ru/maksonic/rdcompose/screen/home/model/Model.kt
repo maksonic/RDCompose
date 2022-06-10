@@ -19,6 +19,9 @@ data class Model(
 @Stable
 @Immutable
 data class Story(
+    val isFetched: Boolean = false,
+    val isLoading: Boolean = false,
+    val isError: Boolean = false,
     val isViewedStory: Boolean = false,
     val isShowedStoryDialog: Boolean = false,
     val currentStory: Int = 0,

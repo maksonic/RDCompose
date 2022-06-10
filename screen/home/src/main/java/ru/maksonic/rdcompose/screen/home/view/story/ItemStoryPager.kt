@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
@@ -21,6 +20,7 @@ import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.CoroutineScope
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
+import ru.maksonic.rdcompose.screen.home.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 
 /**
@@ -37,38 +37,37 @@ fun ItemStoryPager(
     isPaused: MutableState<Boolean>,
     modifier: Modifier = Modifier
 ) {
-    val screenWidth = LocalConfiguration.current.screenWidthDp.toFloat()
-
     Box(
         modifier
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
 
-        val imageModifier = Modifier
+        val interactiveModifier = Modifier
             .fillMaxSize()
             .padding(
                 top = RDTheme.componentSize.smallTopBarHeight,
                 bottom = RDTheme.componentSize.bottomBarStoryHeight
             )
             .pointerInput(Unit) {
+                val screenWidth = this.size.width
                 detectTapGestures(
-                    onTap = { offset ->
-                        if (offset.x < screenWidth / 2) {
-                            sendMsg(Msg.Ui.OnPreviousStoryClicked(scope, pager))
-                        } else {
-                            sendMsg(Msg.Ui.OnNextStoryClicked(scope, pager))
+                    onPress = { offset ->
+                        val pressStartTime = System.currentTimeMillis()
+                        isPaused.value = true
+                        this.tryAwaitRelease()
+                        val pressEndTime = System.currentTimeMillis()
+                        val totalPressTime = pressEndTime - pressStartTime
+                        if (totalPressTime < 200) {
+                            val onTapLeftScreenSide = (offset.x < (screenWidth / 2))
+                            if (onTapLeftScreenSide) {
+                                sendMsg(Msg.Ui.OnPreviousStoryClicked(scope, pager))
+                            } else {
+                                sendMsg(Msg.Ui.OnNextStoryClicked(scope, pager))
+                            }
                         }
                         isPaused.value = false
                     },
-                    onPress = {
-                        try {
-                            isPaused.value = true
-                            awaitRelease()
-                        } finally {
-                            isPaused.value = false
-                        }
-                    }
                 )
             }
 
@@ -97,7 +96,7 @@ fun ItemStoryPager(
         GlideImage(
             imageModel = model.story.stories[page].storyBackground,
             contentScale = ContentScale.Crop,
-            modifier = imageModifier
+            modifier = interactiveModifier
         )
     }
 }

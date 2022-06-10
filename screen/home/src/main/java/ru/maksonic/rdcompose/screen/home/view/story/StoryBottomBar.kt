@@ -29,10 +29,8 @@ fun StoryBottomBar(modifier: Modifier = Modifier) {
             .background(RDTheme.color.background.copy(alpha = 0.3f)),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Spacer(
-            modifier
-                .weight(1f)
-        )
+        Spacer(modifier.weight(1f))
+
         IconCircleAction(
             icId = R.drawable.ic_share,
             action = {},

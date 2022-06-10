@@ -24,6 +24,8 @@ data class RDComponentSize(
     val playerSheetPeekHeight: Dp,
     val playerPlayIconSize: Dp,
     val bottomBarStoryHeight: Dp,
+    val storyCirclePreview: Dp,
+    val storyCircleImagePreview: Dp
 )
 
 val componentSize = RDComponentSize(
@@ -38,5 +40,7 @@ val componentSize = RDComponentSize(
     playerCollapsedHeight = 64.dp,
     playerSheetPeekHeight = 144.dp,
     playerPlayIconSize = 64.dp,
-    bottomBarStoryHeight = 96.dp
+    bottomBarStoryHeight = 96.dp,
+    storyCirclePreview = 70.dp,
+    storyCircleImagePreview = 63.dp
 )
