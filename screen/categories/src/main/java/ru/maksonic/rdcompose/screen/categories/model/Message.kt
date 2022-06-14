@@ -12,7 +12,7 @@ sealed class Msg : Message {
     sealed class Ui : Msg() {
         object FetchCategories : Ui()
         object RefreshCategories : Ui()
-        data class OnCategoryClick(val categoryId: String) : Ui()
+        data class OnCategoryClick(val categoryId: Long) : Ui()
     }
 
     sealed class Internal : Msg() {

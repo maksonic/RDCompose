@@ -1,23 +1,22 @@
 package ru.maksonic.rdcompose.screen.home.view
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.material.BottomSheetScaffoldState
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.maksonic.rdcompose.core.utils.PlayerBackPressed
-import ru.maksonic.rdcompose.navigation.api.R
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
 import ru.maksonic.rdcompose.screen.home.update.HomeViewModel
-import ru.maksonic.rdcompose.screen.home.view.widget.ItemHeader
-import ru.maksonic.rdcompose.screen.home.view.widget.news_podcast.NewsPodcastsViewPager
-import ru.maksonic.rdcompose.screen.home.view.widget.stories.AudioStoryWidget
+import ru.maksonic.rdcompose.screen.home.view.widget.SuccessHomeViewState
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.R.*
-import ru.maksonic.rdcompose.shared.ui_widget.ScreenTitleDisplay
+import ru.maksonic.rdcompose.shared.ui_widget.viewstate.ErrorViewState
+import ru.maksonic.rdcompose.shared.ui_widget.viewstate.LoadingViewState
 
 /**
  * @Author maksonic on 25.05.2022
@@ -36,7 +35,7 @@ fun HomeScreen(playerBottomSheetState: BottomSheetScaffoldState) {
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun HomeScreenUi(
+private fun HomeScreenUi(
     playerBottomSheetState: BottomSheetScaffoldState,
     model: Model,
     sendMsg: Message,
@@ -44,19 +43,30 @@ fun HomeScreenUi(
 ) {
     PlayerBackPressed(playerBottomSheetState)
 
+
     Scaffold(
         backgroundColor = RDTheme.color.background,
-        modifier = modifier.padding(top = RDTheme.componentSize.smallTopBarHeight)
+        modifier = modifier
+            .systemBarsPadding()
+            .padding(
+                top = RDTheme.componentSize.smallTopBarHeight,
+                bottom = RDTheme.componentSize.playerCollapsedHeight
+            )
     ) { padding ->
         StoryDialog(model, sendMsg)
 
-        LazyColumn(modifier.padding(padding)) {
-            item { ScreenTitleDisplay(title = stringResource(id = R.string.scr_home)) }
-            item { AudioStoryWidget(model, sendMsg) }
-            item { ItemHeader(stringResource(string.txt_header_new_podcasts)) }
-            item { NewsPodcastsViewPager(model) }
-            item { ItemHeader(stringResource(string.txt_header_recommend_podcasts)) }
-
+        when {
+            model.baseModel.isLoading -> {
+                LoadingViewState(modifier.padding(top = RDTheme.componentSize.smallTopBarHeight))
+            }
+            model.baseModel.isError -> {
+                ErrorViewState(
+                    modifier.padding(top = RDTheme.componentSize.smallTopBarHeight),
+                    retryAction = { sendMsg(Msg.Ui.FetchAllData) },
+                    errorMessage = model.baseModel.errorMsg
+                )
+            }
+            model.baseModel.isSuccess -> SuccessHomeViewState(model, sendMsg)
         }
     }
 }

@@ -1,33 +1,82 @@
 package ru.maksonic.rdcompose.data.podcasts.cloud
 
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.Source
+import android.util.Log
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.tasks.await
-import ru.maksonic.rdcompose.core.common.ResourceProvider
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.transform
+import kotlinx.coroutines.withTimeout
 import ru.maksonic.rdcompose.core.di.IoDispatcher
 import ru.maksonic.rdcompose.data.FirebaseApi
-import ru.maksonic.rdcompose.data.base.BaseCloudDataSource
+import ru.maksonic.rdcompose.data.base.exception.EmptyCloudDataException
 import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
+import ru.maksonic.rdcompose.data.categories.cloud.CategoriesCloudDataSource
 import javax.inject.Inject
 
 /**
- * @Author maksonic on 29.05.2022
+ * @Author maksonic on 13.06.2022
  */
-class PodcastsCloudDataSource @Inject constructor(
-    private val firebaseApi: FirebaseApi,
-    cloudMapper: FirestorePodcastToCloudMapper,
-    rp: ResourceProvider,
-    ex: ExceptionHandler,
-    @IoDispatcher dispatcher: CoroutineDispatcher
-) : BaseCloudDataSource.Base<PodcastCloud>(
-    baseCloudMapper = cloudMapper,
-    rp = rp,
-    ex = ex,
-    dispatcher = dispatcher
-) {
-    override suspend fun request(categoryId: String): QuerySnapshot = with(firebaseApi) {
-        categoriesCollection.document(categoryId).collection(podcastsCollection).get(Source.DEFAULT)
-            .await()
+typealias PodcastsCloud = Flow<Result<List<PodcastCloud>>>
+
+interface PodcastsCloudDataSource {
+    fun fetchAllPodcasts(): PodcastsCloud
+    fun fetchPodcastsByCategoryId(categoryId: String): PodcastsCloud
+
+    class Base @Inject constructor(
+        private val firebaseApi: FirebaseApi,
+        private val cloudDataSource: CategoriesCloudDataSource,
+        private val firestoreMapper: FirestorePodcastToCloudMapper,
+        private val exceptionHandler: ExceptionHandler,
+        @IoDispatcher private val dispatcher: CoroutineDispatcher
+    ) : PodcastsCloudDataSource {
+        private companion object {
+            private const val TIME_OUT = 15000L
+        }
+
+        override fun fetchAllPodcasts(): PodcastsCloud =
+            cloudDataSource.fetchCloudCategories().transform { categoriesResponse ->
+                categoriesResponse.onSuccess { categories ->
+                    try {
+                        val podcasts = mutableListOf<PodcastCloud>()
+                        for (category in categories) {
+                            val snapshot =
+                                firebaseApi.getFirestorePodcastsByCategory(category.categoryId)
+                            if (!snapshot.isEmpty) {
+                                val podcastsByCategory = snapshot.map(firestoreMapper)
+                                podcasts.addAll(podcastsByCategory)
+                            } else {
+                                emit(
+                                    Result.failure(
+                                        exceptionHandler.handle(EmptyCloudDataException())
+                                    )
+                                )
+                            }
+                            Log.e("ALL PODCASTS", "${podcasts.count()}")
+                            emit(Result.success(podcasts))
+                        }
+                    } catch (e: Exception) {
+                        emit(Result.failure(exceptionHandler.handle(e)))
+                    }
+                }
+                categoriesResponse.onFailure { error -> emit(Result.failure(error)) }
+            }
+
+        override fun fetchPodcastsByCategoryId(categoryId: String): PodcastsCloud = flow {
+            try {
+                withTimeout(TIME_OUT) {
+                    val snapshot = firebaseApi.getFirestorePodcastsByCategory(categoryId)
+                    if (!snapshot.isEmpty) {
+                        val podcasts = snapshot.map(firestoreMapper)
+                        emit(Result.success(podcasts))
+                    } else {
+                        emit(Result.failure(exceptionHandler.handle(EmptyCloudDataException())))
+                    }
+                }
+            } catch (e: Exception) {
+                emit(Result.failure(exceptionHandler.handle(e)))
+            }
+        }.flowOn(dispatcher)
     }
+
 }

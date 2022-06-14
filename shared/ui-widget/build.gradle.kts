@@ -36,6 +36,7 @@ android {
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = Config.composeVersion
     }
@@ -45,6 +46,7 @@ dependencies {
     implementation(project(Module.Shared.THEME))
     implementation (Lib.Landscapist.GLIDE)
     implementation(Lib.Accompanist.PAGER)
+    implementation(Lib.Accompanist.SWIPE_REFRESH)
     implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Dagger.HILT)

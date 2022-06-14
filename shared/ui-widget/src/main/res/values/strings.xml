@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="txt_def_error_msg">Что-то сломалось. Мы уже решаем проблему.</string>
     <string name="btn_title_create_account">Создать аккаунт или войти</string>
     <string name="hint_retry_loading">Повторить</string>
     <string name="title_sign_up_widget">Войдите в профиль</string>
@@ -8,5 +9,8 @@
     <string name="txt_player_shuffle">Перемешать</string>
     <string name="txt_player_play">Слушать</string>
     <string name="txt_header_new_podcasts">Новые подкасты</string>
-    <string name="txt_header_recommend_podcasts">Рекомендуем послушать</string>
+    <string name="txt_header_recommend_podcasts">Рекомендуем</string>
+    <string name="txt_header_top_podcasts">Топ</string>
+    <string name="txt_header_random_podcasts">Случайное</string>
+    <string name="btn_title_more_podcasts">ЕЩЁ</string>
 </resources>

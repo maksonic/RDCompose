@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.screen.podcast_list.view
+package ru.maksonic.rdcompose.screen.podcast_list.view.widget
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
@@ -12,7 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
+import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.OutlinedSecondaryButton

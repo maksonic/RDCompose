@@ -14,14 +14,14 @@ import ru.maksonic.rdcompose.screen.home.model.Msg
 import ru.maksonic.rdcompose.screen.home.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
-import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
+import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable
 
 /**
  * @Author maksonic on 06.06.2022
  */
 @Composable
-fun AudioStoryItem(
+internal fun AudioStoryItem(
     model: Model,
     sendMsg: Message,
     story: AudioStoryUi,
@@ -33,10 +33,9 @@ fun AudioStoryItem(
 
     Box(
         modifier
-        //    .fillMaxSize(0.1f)
-            .padding(RDTheme.padding.dp8)
-            .size(RDTheme.componentSize.storyCirclePreview)
+            .wrapContentSize()
             .aspectRatio(1f)
+            .padding(RDTheme.padding.dp8)
             .border(2.dp, borderColor, CircleShape)
             .clip(CircleShape)
             .background(RDTheme.color.background)
@@ -45,8 +44,9 @@ fun AudioStoryItem(
     ) {
         Box(
             modifier
-                .size(63.dp)
+                .wrapContentHeight()
                 .aspectRatio(1f)
+                .padding(RDTheme.padding.dp4)
                 .clip(CircleShape),
             contentAlignment = Alignment.Center
         ) {

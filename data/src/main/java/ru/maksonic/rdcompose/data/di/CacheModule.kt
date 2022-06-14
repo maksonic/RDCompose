@@ -13,8 +13,12 @@ import ru.maksonic.rdcompose.core.di.IoDispatcher
 import ru.maksonic.rdcompose.data.AppDatabase
 import ru.maksonic.rdcompose.data.DatabaseName
 import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
-import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheDataSource
+import ru.maksonic.rdcompose.data.categories.cache.CategoriesCacheDataSource
+import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheToDataMapper
 import ru.maksonic.rdcompose.data.categories.cache.CategoryDao
+import ru.maksonic.rdcompose.data.podcasts.cache.PodcastCacheToDataMapper
+import ru.maksonic.rdcompose.data.podcasts.cache.PodcastDao
+import ru.maksonic.rdcompose.data.podcasts.cache.PodcastsCacheDataSource
 import javax.inject.Singleton
 
 /**
@@ -34,17 +38,31 @@ object CacheModule {
     @Provides
     fun provideDatabaseName(rp: ResourceProvider): DatabaseName = DatabaseName.Base(rp)
 
-
     @Singleton
     @Provides
     fun provideCategoryDao(db: AppDatabase): CategoryDao = db.categoryDao()
 
     @Singleton
     @Provides
-    fun provideCacheCityDataSource(
+    fun providePodcastDao(db: AppDatabase): PodcastDao = db.podcastDao()
+
+    @Singleton
+    @Provides
+    fun provideCategoriesCacheDataSource(
         dao: CategoryDao,
-        rp: ResourceProvider,
-        ex: ExceptionHandler,
+        cacheMapper: CategoryCacheToDataMapper,
+        exceptionHandler: ExceptionHandler,
         @IoDispatcher dispatcher: CoroutineDispatcher
-    ): CategoryCacheDataSource = CategoryCacheDataSource(dao, rp, ex, dispatcher)
+    ): CategoriesCacheDataSource =
+        CategoriesCacheDataSource.Base(dao, cacheMapper, exceptionHandler, dispatcher)
+
+    @Singleton
+    @Provides
+    fun providePodcastsCacheDataSource(
+        dao: PodcastDao,
+        cacheMapper: PodcastCacheToDataMapper,
+        exceptionHandler: ExceptionHandler,
+        @IoDispatcher dispatcher: CoroutineDispatcher
+    ): PodcastsCacheDataSource =
+        PodcastsCacheDataSource.Base(dao, cacheMapper, exceptionHandler, dispatcher)
 }

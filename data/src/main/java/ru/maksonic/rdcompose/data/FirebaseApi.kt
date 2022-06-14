@@ -1,30 +1,43 @@
 package ru.maksonic.rdcompose.data
 
-import android.content.Context
-import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.Source
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.tasks.await
+import ru.maksonic.rdcompose.core.store.KeyStore
 import javax.inject.Inject
 
 /**
  * @Author maksonic on 26.05.2022
  */
 interface FirebaseApi {
-    val instance: FirebaseFirestore
-    val categoriesCollection: CollectionReference
-    val podcastsCollections: CollectionReference
-    val podcastsCollection: String
+    suspend fun getAllFirestoreCategories(): QuerySnapshot
+    suspend fun getFirestorePodcastsByCategory(categoryId: String): QuerySnapshot
+    suspend fun getFirestoreRecommendPodcasts(): QuerySnapshot
 
-    class Base @Inject constructor(): FirebaseApi {
+    class Base @Inject constructor(
+        private val keyStore: KeyStore.DataKey
+    ) : FirebaseApi {
         private companion object {
             private const val CATEGORIES = "categories"
             private const val PODCASTS = "podcast_list"
         }
 
-        override val instance = Firebase.firestore
-        override val categoriesCollection = instance.collection(CATEGORIES)
-        override val podcastsCollection = PODCASTS
-         override val podcastsCollections = instance.collection(PODCASTS)
+        private val instance = Firebase.firestore
+        private val categoriesCollection = instance.collection(CATEGORIES)
+
+        override suspend fun getAllFirestoreCategories(): QuerySnapshot =
+            categoriesCollection.orderBy(keyStore.fetchDataCategoryId)
+                .get(Source.SERVER)
+                .await()
+
+        override suspend fun getFirestorePodcastsByCategory(categoryId: String): QuerySnapshot =
+            categoriesCollection.document(categoryId).collection(PODCASTS).get(Source.SERVER)
+                .await()
+
+        override suspend fun getFirestoreRecommendPodcasts(): QuerySnapshot =
+            categoriesCollection.document().collection(PODCASTS).document().collection("podcast_list").orderBy("isRecommend").get(Source.SERVER).await()
+
     }
 }

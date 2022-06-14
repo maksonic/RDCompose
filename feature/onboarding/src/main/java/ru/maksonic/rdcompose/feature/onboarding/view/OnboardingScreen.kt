@@ -26,7 +26,9 @@ import ru.maksonic.rdcompose.feature.user_auth.auth_bottom_sheet.AuthBottomSheet
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_widget.R.*
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
+import ru.maksonic.rdcompose.shared.ui_widget.button.IconDefault
 import ru.maksonic.rdcompose.shared.ui_widget.button.PrimaryButton
+import ru.maksonic.rdcompose.shared.ui_widget.component.HorizontalPagerLightScroll
 
 /**
  * @Author maksonic on 23.05.2022
@@ -75,11 +77,7 @@ private fun OnboardingScreenUi(viewModel: OnboardingViewModel, modifier: Modifie
                     elevation = RDTheme.elevation.elevationDisable,
                     actions = {
                         IconActionButton(onClick = { sendMsg(Msg.Ui.OnSkipOnboarding) }) {
-                            Icon(
-                                painter = painterResource(id = drawable.ic_round_close_24),
-                                tint = RDTheme.color.controlNormal,
-                                contentDescription = ""
-                            )
+                            IconDefault(icId = drawable.ic_round_close_24)
                         }
                     }
                 )
@@ -93,18 +91,16 @@ private fun OnboardingScreenUi(viewModel: OnboardingViewModel, modifier: Modifie
                 modifier.padding(it),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                CompositionLocalProvider(LocalOverScrollConfiguration provides null) {
 
-                    HorizontalPager(
-                        count = model.value.onboardingList.size,
-                        state = pagerState,
-                        userScrollEnabled = false,
-                        modifier = modifier
-                            .weight(1.0f)
-                    ) { page ->
-                        OnboardingItem(page, model.value, pagerState)
-                    }
+                HorizontalPagerLightScroll(
+                    pagesCount = model.value.onboardingList.size,
+                    pagerState = pagerState,
+                    modifier = modifier
+                        .weight(1.0f)
+                ) { page ->
+                    OnboardingItem(page, model.value)
                 }
+
                 Spacer(modifier.size(RDTheme.padding.dp16))
 
                 HorizontalPagerIndicator(
@@ -117,9 +113,7 @@ private fun OnboardingScreenUi(viewModel: OnboardingViewModel, modifier: Modifie
                 Spacer(modifier.size(RDTheme.padding.dp16))
 
                 PrimaryButton(
-                    action = {
-                        sendMsg(Msg.Ui.OnShowAuthSheet(modalBottomSheetState, scope))
-                    },
+                    action = { sendMsg(Msg.Ui.OnShowAuthSheet(modalBottomSheetState, scope)) },
                     title = stringResource(string.btn_title_create_account)
                 )
 

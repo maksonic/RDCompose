@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.shared.ui_widget
+package ru.maksonic.rdcompose.shared.ui_widget.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text

@@ -9,7 +9,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PodcastUi(
     val id: Long = 0,
+    val categoryId: String = "",
     val name: String = "",
     val image: String = "",
-    val soundFile: String = ""
+    val soundFile: String = "",
+    val isNew: Boolean = false,
+    val isRecommend: Boolean = false,
+    val isTop: Boolean = false,
 ) : Parcelable

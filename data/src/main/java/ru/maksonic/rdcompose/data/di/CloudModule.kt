@@ -4,7 +4,15 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import ru.maksonic.rdcompose.core.di.IoDispatcher
+import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.data.FirebaseApi
+import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
+import ru.maksonic.rdcompose.data.categories.cloud.CategoriesCloudDataSource
+import ru.maksonic.rdcompose.data.categories.cloud.FirestoreCategoryToCloudMapper
+import ru.maksonic.rdcompose.data.podcasts.cloud.FirestorePodcastToCloudMapper
+import ru.maksonic.rdcompose.data.podcasts.cloud.PodcastsCloudDataSource
 import javax.inject.Singleton
 
 /**
@@ -16,5 +24,37 @@ object CloudModule {
 
     @Singleton
     @Provides
-    fun provideFirebaseApi(): FirebaseApi = FirebaseApi.Base()
+    fun provideFirebaseApi(keyStore: KeyStore.DataKey): FirebaseApi = FirebaseApi.Base(keyStore)
+
+    @Singleton
+    @Provides
+    fun provideCategoriesCloudDataSource(
+        firebaseApi: FirebaseApi,
+        firestoreMapper: FirestoreCategoryToCloudMapper,
+        exceptionHandler: ExceptionHandler,
+        @IoDispatcher dispatcher: CoroutineDispatcher
+    ): CategoriesCloudDataSource =
+        CategoriesCloudDataSource.Base(
+            firebaseApi = firebaseApi,
+            firestoreMapper = firestoreMapper,
+            exceptionHandler = exceptionHandler,
+            dispatcher = dispatcher
+        )
+
+    @Singleton
+    @Provides
+    fun providePodcastsCloudDataSource(
+        firebaseApi: FirebaseApi,
+        cloudDataSource: CategoriesCloudDataSource,
+        firestoreMapper: FirestorePodcastToCloudMapper,
+        exceptionHandler: ExceptionHandler,
+        @IoDispatcher dispatcher: CoroutineDispatcher
+    ): PodcastsCloudDataSource =
+        PodcastsCloudDataSource.Base(
+            firebaseApi = firebaseApi,
+            cloudDataSource = cloudDataSource,
+            firestoreMapper = firestoreMapper,
+            exceptionHandler = exceptionHandler,
+            dispatcher = dispatcher
+        )
 }

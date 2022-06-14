@@ -20,7 +20,7 @@ object CategoriesDestination : Route("categories") {
         override val labelId: Int = R.string.scr_categories
     }
 
-    object PodcastList : Route("categories.podcast/{categoryId}") {
-        fun id(categoryId: String) = "/${categoryId}"
+    object PodcastList : Route("categories.podcast") {
+        fun id(categoryId: Long) = "/${categoryId}"
     }
 }

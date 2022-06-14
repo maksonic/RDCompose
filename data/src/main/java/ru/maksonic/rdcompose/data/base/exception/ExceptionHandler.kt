@@ -19,8 +19,8 @@ interface ExceptionHandler {
                 is EmptyDataException -> {
                     EmptyDataException(rp.getString(R.string.error_empty_cloud_list))
                 }
-                is EmptyCacheException -> {
-                    EmptyCacheException(rp.getString(R.string.error_empty_cache_list))
+                is EmptyCacheDataException -> {
+                    EmptyCacheDataException(rp.getString(R.string.error_empty_cache_list))
                 }
 
                 is CachedItemNotFound -> {

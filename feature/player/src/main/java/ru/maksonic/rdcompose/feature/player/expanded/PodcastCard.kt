@@ -8,10 +8,8 @@ import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import ru.maksonic.rdcompose.feature.player.R
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
+import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.R.*
 
 /**

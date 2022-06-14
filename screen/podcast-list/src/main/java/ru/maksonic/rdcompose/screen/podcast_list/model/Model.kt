@@ -13,7 +13,6 @@ import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
 @Immutable
 data class Model(
     val baseModel: BaseModel,
-    val titleTopBar: String = "",
     val podcasts: List<PodcastUi> = emptyList(),
     val categoryInfo: CategoryInfo = CategoryInfo()
 ) : StateModel

@@ -28,7 +28,7 @@ import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
  */
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun ItemStoryPager(
+internal fun ItemStoryPager(
     model: Model,
     sendMsg: Message,
     scope: CoroutineScope,

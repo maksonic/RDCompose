@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.screen.categories.view
+package ru.maksonic.rdcompose.screen.categories.view.widget
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,14 +11,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.category.CategoryUi
-import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
+import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 
 /**
  * @Author maksonic on 26.05.2022
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifier: Modifier = Modifier) {
+internal fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .fillMaxWidth()

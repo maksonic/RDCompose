@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.feature.player.utils.currentFraction
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
-import ru.maksonic.rdcompose.shared.ui_widget.IndicatorBottomSheet
+import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
+import ru.maksonic.rdcompose.shared.ui_widget.system.IndicatorBottomSheet
 import ru.maksonic.rdcompose.shared.ui_widget.R.drawable
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.noRippleClickable
