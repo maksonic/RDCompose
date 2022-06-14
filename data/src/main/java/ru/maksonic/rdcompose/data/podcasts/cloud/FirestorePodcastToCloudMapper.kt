@@ -13,9 +13,13 @@ class FirestorePodcastToCloudMapper @Inject constructor() :
         val doc = documentSnapshot.data
         val id = doc?.get("id").toString().toLong()
         val name = doc?.get("name").toString()
+        val categoryId = doc?.get("categoryId").toString()
         val image = doc?.get("image").toString()
         val soundFile = doc?.get("soundfile").toString()
+        val isNew = doc?.get("isNew").toString().toBoolean()
+        val isRecommend = doc?.get("isRecommend").toString().toBoolean()
+        val isTop = doc?.get("isTop").toString().toBoolean()
 
-        return PodcastCloud(id, name, image, soundFile)
+        return PodcastCloud(id, categoryId, name, image, soundFile, isNew, isRecommend, isTop)
     }
 }

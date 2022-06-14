@@ -14,6 +14,7 @@ import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
 sealed class Msg : Message {
     sealed class Ui : Msg() {
         object RetryFetchPodcasts : Ui()
+        object SwipeRefreshPodcasts : Ui()
 
         @OptIn(ExperimentalMaterialApi::class)
         data class OnPodcastClicked(
@@ -23,9 +24,13 @@ sealed class Msg : Message {
     }
 
     sealed class Internal : Msg() {
-        data class Success(val podcasts: List<PodcastUi>) : Internal()
+        data class Success(
+            val podcasts: List<PodcastUi>,
+            val categoryInfo: CategoryInfo
+        ) : Internal()
+
+        data class RefreshedPodcasts(val podcasts: List<PodcastUi>) : Internal()
+
         data class Error(val errorMsg: String? = "") : Internal()
-        data class FetchTopBarTitle(val title: String) : Internal()
-        data class FetchedCategoryInfo(val categoryInfo: CategoryInfo) : Internal()
     }
 }

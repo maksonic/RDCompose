@@ -37,10 +37,12 @@ class AudioStoriesProgram @Inject constructor(
                     max(0, cmd.pagerState.currentPage.minus(1))
                 )
             }
+            else -> {}
         }
     }
 
     private suspend fun fetchStories(consumer: (Msg) -> Unit) {
+        delay(300)
         fetchStoriesUseCase().collect { storiesRequest ->
             storiesRequest.onSuccess { storiesDomain ->
                 val storiesUi = mapper.mapFromList(storiesDomain)

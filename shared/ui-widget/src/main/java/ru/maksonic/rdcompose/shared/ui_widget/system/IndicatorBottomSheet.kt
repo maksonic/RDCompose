@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.shared.ui_widget
+package ru.maksonic.rdcompose.shared.ui_widget.system
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

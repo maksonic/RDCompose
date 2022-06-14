@@ -1,34 +1,48 @@
 package ru.maksonic.rdcompose.data.categories.cloud
 
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.Source
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.tasks.await
-import ru.maksonic.rdcompose.core.common.ResourceProvider
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.withTimeout
 import ru.maksonic.rdcompose.core.di.IoDispatcher
-import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.data.FirebaseApi
-import ru.maksonic.rdcompose.data.base.BaseCloudDataSource
+import ru.maksonic.rdcompose.data.base.exception.EmptyCloudDataException
 import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
 import javax.inject.Inject
 
 /**
- * @Author maksonic on 26.05.2022
+ * @Author maksonic on 13.06.2022
  */
-class CategoriesCloudDataSource @Inject constructor(
-    private val firebaseApi: FirebaseApi,
-    private val keyStore: KeyStore,
-    cloudMapper: FirestoreCategoryToCloudMapper,
-    rp: ResourceProvider,
-    ex: ExceptionHandler,
-    @IoDispatcher dispatcher: CoroutineDispatcher
-) : BaseCloudDataSource.Base<CategoryCloud>(
-    baseCloudMapper = cloudMapper,
-    rp = rp,
-    ex = ex,
-    dispatcher = dispatcher
-) {
-    override suspend fun request(categoryId: String): QuerySnapshot =
-        firebaseApi.categoriesCollection.orderBy(keyStore.fetchDataCategoryId).get(Source.DEFAULT)
-            .await()
+typealias CategoriesCloud = Flow<Result<List<CategoryCloud>>>
+
+interface CategoriesCloudDataSource {
+    fun fetchCloudCategories(): CategoriesCloud
+
+    class Base @Inject constructor(
+        private val firebaseApi: FirebaseApi,
+        private val firestoreMapper: FirestoreCategoryToCloudMapper,
+        private val exceptionHandler: ExceptionHandler,
+        @IoDispatcher private val dispatcher: CoroutineDispatcher
+    ) : CategoriesCloudDataSource {
+        private companion object {
+            private const val TIME_OUT = 15000L
+        }
+
+        override fun fetchCloudCategories(): CategoriesCloud = flow {
+            try {
+                withTimeout(TIME_OUT) {
+                    val snapshot = firebaseApi.getAllFirestoreCategories()
+                    if (!snapshot.isEmpty) {
+                        val categories = snapshot.map(firestoreMapper)
+                        emit(Result.success(categories))
+                    } else {
+                        throw EmptyCloudDataException()
+                    }
+                }
+            } catch (e: Exception) {
+                emit(Result.failure(exceptionHandler.handle(e)))
+            }
+        }.flowOn(dispatcher)
+    }
 }

@@ -20,7 +20,7 @@ abstract class ElmNavigator {
         navController.currentBackStackEntry?.arguments?.getString(key) ?: ""
 
     fun getIntArgument(key: String): Int =
-        navController.currentBackStackEntry?.arguments?.getInt(key) ?: 4
+        navController.currentBackStackEntry?.arguments?.getInt(key) ?: 0
 
     fun getLongArgument(key: String): Long? =
         navController.currentBackStackEntry?.arguments?.getLong(key)

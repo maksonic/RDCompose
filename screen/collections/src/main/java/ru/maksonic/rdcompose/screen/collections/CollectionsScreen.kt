@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import ru.maksonic.rdcompose.core.utils.PlayerBackPressed
 import ru.maksonic.rdcompose.navigation.api.R
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.ScreenTitleDisplay
+import ru.maksonic.rdcompose.shared.ui_widget.component.ScreenTitleDisplay
 
 /**
  * @Author maksonic on 25.05.2022

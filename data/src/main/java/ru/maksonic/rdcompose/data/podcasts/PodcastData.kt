@@ -7,7 +7,11 @@ import ru.maksonic.rdcompose.core.common.Abstract
  */
 data class PodcastData(
     val id: Long = 0,
+    val categoryId: String = "",
     val name: String = "",
     val image: String = "",
-    val soundFile: String = ""
+    val soundFile: String = "",
+    val isNew: Boolean = false,
+    val isRecommend: Boolean = false,
+    val isTop: Boolean = false,
 ) : Abstract.DataObject

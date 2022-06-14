@@ -23,13 +23,13 @@ class CategoriesProgram @Inject constructor(
 
     override suspend fun execute(cmd: Cmd, consumer: (Msg) -> Unit) {
         when (cmd) {
-            is Cmd.FetchCategories -> execution(fetchCategoriesUseCase(), consumer)
-            is Cmd.RefreshCategories -> execution(refreshCategoriesUseCase(), consumer)
+            is Cmd.FetchCategories -> executeUseCase(fetchCategoriesUseCase(), consumer)
+            is Cmd.RefreshCategories -> executeUseCase(refreshCategoriesUseCase(), consumer)
             is Cmd.NavigateToPodcastList -> navigateToPodcasts(cmd)
         }
     }
 
-    private suspend fun execution(
+    private suspend fun executeUseCase(
         useCase: Flow<Result<List<CategoryDomain>>>, consumer: (Msg) -> Unit
     ) {
         useCase.collect { categoriesRequest ->

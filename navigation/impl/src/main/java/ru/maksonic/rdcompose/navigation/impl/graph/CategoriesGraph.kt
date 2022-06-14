@@ -2,10 +2,8 @@ package ru.maksonic.rdcompose.navigation.impl.graph
 
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
+import androidx.navigation.*
 import androidx.navigation.compose.composable
-import androidx.navigation.navigation
 import ru.maksonic.rdcompose.core.store.KeyStore
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.destination.CategoriesDestination
@@ -30,11 +28,14 @@ class CategoriesGraph @Inject constructor(
             route = CategoriesDestination.route,
             startDestination = CategoriesDestination.Categories.route,
         ) {
-            composable(CategoriesDestination.Categories.route) {
+            composable(
+                CategoriesDestination.Categories.route,
+            ) {
                 CategoriesScreen(playerBottomSheetState)
             }
             composable(
-                CategoriesDestination.PodcastList.route.plus(args(keyStore.passedCategoryIdKey))
+                CategoriesDestination.PodcastList.route.plus(args(keyStore.passedCategoryIdKey)),
+                arguments = listOf(navArgument(keyStore.passedCategoryIdKey) { type = NavType.LongType })
             ) {
                 PodcastListScreen(playerBottomSheetState)
             }

@@ -38,6 +38,10 @@ object CoreModule {
 
     @Singleton
     @Provides
+    fun provideDataKeyStore(): KeyStore.DataKey = KeyStore.Data()
+
+    @Singleton
+    @Provides
     fun provideNavKeyStore(): KeyStore.NavigationKey = KeyStore.NavigationPassedKey()
 
     @Singleton

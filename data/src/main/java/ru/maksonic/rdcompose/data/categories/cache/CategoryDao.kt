@@ -16,10 +16,4 @@ abstract class CategoryDao : BaseDao<CategoryCache> {
 
     @Query("SELECT * FROM categories WHERE id = :itemId")
     abstract override fun fetchCacheItemById(itemId: Long): Flow<CategoryCache>
-
-    @Query("SELECT * FROM categories WHERE categoryId = :itemId")
-    abstract override fun fetchCacheItemByStringId(itemId: String): Flow<CategoryCache>
-
-    @Query("DELETE FROM categories WHERE id = :itemId")
-    abstract override suspend fun deleteCachedItemById(itemId: Long)
 }

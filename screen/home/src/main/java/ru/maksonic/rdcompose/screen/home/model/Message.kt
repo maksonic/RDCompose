@@ -18,6 +18,7 @@ sealed class Msg : Message {
         data class ShowStory(val storyIndex: Int) : Ui()
         object CloseStory : Ui()
         object RetryFetchingStories : Ui()
+        object FetchAllData : Ui()
 
         @OptIn(ExperimentalPagerApi::class)
         data class OnNextStoryClicked(
@@ -35,7 +36,12 @@ sealed class Msg : Message {
     sealed class Internal : Msg() {
         data class StoriesSuccess(val stories: List<AudioStoryUi>) : Internal()
         data class ViewedCurrentStory(val storyIndex: Boolean): Internal()
-        data class NewPodcastsSuccess(val podcasts: List<PodcastUi>): Internal()
-        data class Error(val errorMsg: String) : Internal()
+        data class SuccessData(
+            val newPodcasts: List<PodcastUi>,
+            val recommendPodcasts: List<PodcastUi>,
+            val topPodcasts: List<PodcastUi>,
+            val randomPodcasts: List<PodcastUi>,
+        ): Internal()
+        data class Error(val errorMsg: String?) : Internal()
     }
 }

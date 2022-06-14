@@ -7,7 +7,7 @@ import javax.inject.Inject
  * @Author maksonic on 26.05.2022
  */
 class FetchCategoriesUseCase @Inject constructor(
-    private val repository: CommonRepository<CategoryDomain>
+    private val repository: CategoriesRepository
 ) : BaseUseCase<Categories, Nothing> {
-    override suspend fun invoke(args: Nothing?) = repository.fetchDataList()
+    override suspend fun invoke(args: Nothing?) = repository.fetchCategories()
 }

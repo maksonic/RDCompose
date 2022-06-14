@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import ru.maksonic.rdcompose.feature.user_auth.R
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.IndicatorBottomSheet
+import ru.maksonic.rdcompose.shared.ui_widget.system.IndicatorBottomSheet
 
 /**
  * @Author maksonic on 24.05.2022

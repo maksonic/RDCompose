@@ -97,7 +97,7 @@ fun MainScreenUi(
             scaffoldState = playerBottomSheetState,
             sheetShape = RoundedCornerShape(topStart = sheetShape, topEnd = sheetShape),
             sheetContent = {
-                    PlayerBottomSheet(playerBottomSheetState)
+                PlayerBottomSheet(playerBottomSheetState)
             },
             sheetPeekHeight = RDTheme.componentSize.playerSheetPeekHeight,
             sheetBackgroundColor = RDTheme.color.surface,

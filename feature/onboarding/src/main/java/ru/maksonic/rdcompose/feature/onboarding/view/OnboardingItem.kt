@@ -1,45 +1,32 @@
 package ru.maksonic.rdcompose.feature.onboarding.view
 
-import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.composed
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
 import com.skydoves.landscapist.glide.GlideImage
-import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.feature.onboarding.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.system.scrollPage
 
 /**
  * @Author maksonic on 23.05.2022
  */
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 internal fun OnboardingItem(
     page: Int,
     model: Model,
-    pagerState: PagerState,
     modifier: Modifier = Modifier
 ) {
     val dp16 = RDTheme.padding.dp16
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
-            .fillMaxSize()
-            .scrollPage(pagerState)
+        modifier = modifier.fillMaxSize()
     ) {
         Box(
             modifier

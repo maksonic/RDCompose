@@ -1,19 +1,16 @@
-package ru.maksonic.rdcompose.shared.ui_widget
+package ru.maksonic.rdcompose.shared.ui_widget.component
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.res.painterResource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.skydoves.landscapist.ShimmerParams
 import com.skydoves.landscapist.glide.GlideImage
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_widget.R
 
 /**
  * @Author maksonic on 31.05.2022

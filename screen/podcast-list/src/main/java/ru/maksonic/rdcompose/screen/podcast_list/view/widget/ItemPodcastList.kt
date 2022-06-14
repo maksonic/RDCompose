@@ -1,4 +1,4 @@
-package ru.maksonic.rdcompose.screen.podcast_list.view
+package ru.maksonic.rdcompose.screen.podcast_list.view.widget
 
 import android.net.Uri
 import androidx.compose.foundation.layout.*
@@ -18,7 +18,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
-import ru.maksonic.rdcompose.shared.ui_widget.ImageWithShimmer
+import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable

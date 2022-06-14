@@ -22,17 +22,17 @@ class PodcastListViewModel @Inject constructor(
     navigator: MainNavigator
 ) : ElmRuntime<Model, Msg, Cmd>(
     initialModel = Model(baseModel = BaseModel(isLoading = true)),
-    initialCmd = setOf(Cmd.FetchPodcastList, Cmd.InitToolbarTitle, Cmd.FetchCategoryInfo),
+    initialCmd = setOf(Cmd.FetchData),
     subscriptions = listOf(podcastListProgram),
     navigator = navigator
 ) {
     override fun update(msg: Msg, model: Model): Update =
         when (msg) {
-            is Msg.Internal.FetchTopBarTitle -> model.copy(titleTopBar = msg.title) to emptySet()
+            Msg.Ui.SwipeRefreshPodcasts -> updateResult.swipeRefresh(model)
             is Msg.Ui.RetryFetchPodcasts -> updateResult.retryFetching(model)
             is Msg.Ui.OnPodcastClicked -> updateResult.onPodcastClicked(model, msg)
             is Msg.Internal.Success -> updateResult.success(model, msg)
+            is Msg.Internal.RefreshedPodcasts -> updateResult.refreshed(model, msg)
             is Msg.Internal.Error -> updateResult.error(model, msg)
-            is Msg.Internal.FetchedCategoryInfo -> updateResult.fetchCategoryInfo(model, msg)
         }
 }

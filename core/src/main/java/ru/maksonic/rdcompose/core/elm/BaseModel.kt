@@ -18,5 +18,5 @@ data class BaseModel(
     val isSuccess: Boolean = false,
     val isRefreshing: Boolean = false,
     val isError: Boolean = false,
-    val errorMsg: String = "",
+    val errorMsg: String? = "",
 ): StateModel
