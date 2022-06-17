@@ -51,56 +51,15 @@ private fun CategoriesScreenUi(
                 bottom = RDTheme.componentSize.playerCollapsedHeight
             )
     ) { padding ->
-
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(isRefreshing = model.value.baseModel.isRefreshing),
-            onRefresh = { sendMsg(Msg.Ui.RefreshCategories) },
-            indicator = { state, trigger ->
-                SwipeRefreshIndicator(
-                    state = state,
-                    refreshTriggerDistance = trigger,
-                    scale = true,
-                    contentColor = RDTheme.color.primary,
-                    backgroundColor = RDTheme.color.surface,
+        when {
+            model.baseModel.isLoading -> LoadingViewState(modifier.padding(padding))
+            model.baseModel.isSuccess -> SuccessCategoriesViewState(model, sendMsg)
+            model.baseModel.isError -> {
+                ErrorViewState(
+                    modifier.padding(padding),
+                    retryAction = { sendMsg(Msg.Ui.FetchCategories) },
+                    errorMessage = model.baseModel.errorMsg,
                 )
-            }
-        ) {
-            LazyColumn(
-                modifier
-                    .fillMaxHeight()
-                    .padding(padding)
-            ) {
-                item { ScreenTitleDisplay(title = stringResource(id = R.string.scr_categories)) }
-
-                when {
-                    model.value.baseModel.isLoading -> item {
-                        Box(modifier.fillParentMaxHeight(1f)) {
-                            LoadingViewState()
-                        }
-                    }
-                    model.value.baseModel.isSuccess -> {
-                        items(items = model.value.categories) { category ->
-                            ItemCardCategory(
-                                category = category,
-                                onClick = {
-                                    sendMsg(
-                                        Msg.Ui.OnCategoryClick(categoryId = category.categoryId)
-                                    )
-                                }
-                            )
-                        }
-                    }
-                    model.value.baseModel.isError -> {
-                        item {
-                            Box(modifier.fillParentMaxHeight(1f)) {
-                                ErrorViewState(
-                                    errorMessage = model.value.baseModel.errorMsg,
-                                    retryAction = { sendMsg(Msg.Ui.FetchCategories) }
-                                )
-                            }
-                        }
-                    }
-                }
             }
         }
     }
