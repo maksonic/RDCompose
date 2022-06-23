@@ -23,14 +23,13 @@ class HomeViewModel @Inject constructor(
     fetchContentProgram: FetchContentProgram,
     navigator: MainNavigator
 ) : ElmRuntime<Model, Msg, Cmd>(
-    initialCmd = setOf(Cmd.FetchStories, Cmd.FetchAllData),
+    initialCmd = setOf(Cmd.FetchStories, Cmd.FetchAllContent),
     initialModel = Model(BaseModel(isLoading = true)),
     subscriptions = listOf(audioStoriesProgram, fetchContentProgram),
     navigator = navigator
 ) {
     override fun update(msg: Msg, model: Model): Update =
         when (msg) {
-            is Msg.Ui.RetryFetchingStories -> updateResult.retryFetchingStories(model, msg)
             is Msg.Ui.ShowStory -> updateResult.showStory(model, msg)
             is Msg.Ui.CloseStory -> updateResult.closeStory(model, msg)
             is Msg.Internal.StoriesSuccess -> updateResult.storiesSuccess(model, msg)
@@ -38,7 +37,8 @@ class HomeViewModel @Inject constructor(
             is Msg.Ui.OnNextStoryClicked -> updateResult.onNextStory(model, msg)
             is Msg.Ui.OnPreviousStoryClicked -> updateResult.onPreviousStory(model, msg)
             is Msg.Internal.ViewedCurrentStory -> updateResult.viewCurrentStory(model, msg)
-            is Msg.Ui.FetchAllData -> updateResult.fetchingAllContent(model, msg)
+            is Msg.Ui.FetchAllData -> updateResult.fetching(model)
+            is Msg.Ui.RefreshHomeContent -> updateResult.refreshing(model)
             is Msg.Internal.SuccessData -> updateResult.fetchingSuccess(model, msg)
         }
 }

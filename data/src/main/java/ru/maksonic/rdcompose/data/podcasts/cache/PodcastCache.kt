@@ -3,6 +3,7 @@ package ru.maksonic.rdcompose.data.podcasts.cache
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.coroutines.flow.Flow
 import ru.maksonic.rdcompose.core.common.Abstract
 
 /**
@@ -13,7 +14,7 @@ data class PodcastCache(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     @ColumnInfo(name = "categoryId")
-    val categoryId: String = "",
+    val categoryId: Long = 0,
     val name: String = "",
     val image: String = "",
     val soundFile: String = "",
@@ -24,3 +25,5 @@ data class PodcastCache(
     @ColumnInfo(name = "isTop")
     val isTop: Boolean = false,
 ) : Abstract.CacheObject
+
+typealias PodcastsCache = Flow<Result<List<PodcastCache>>>

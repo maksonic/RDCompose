@@ -52,7 +52,9 @@ private fun CategoriesScreenUi(
             )
     ) { padding ->
         when {
-            model.baseModel.isLoading -> LoadingViewState(modifier.padding(padding))
+            model.baseModel.isLoading -> {
+                LoadingViewState(modifier.padding(top = RDTheme.componentSize.smallTopBarHeight))
+            }
             model.baseModel.isSuccess -> SuccessCategoriesViewState(model, sendMsg)
             model.baseModel.isError -> {
                 ErrorViewState(

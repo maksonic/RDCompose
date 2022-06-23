@@ -11,7 +11,7 @@ import ru.maksonic.rdcompose.core.common.Abstract
 @Serializable
 data class PodcastCloud(
     @SerialName("id") val id: Long = 0,
-    @SerialName("categoryId")val categoryId: String = "",
+    @SerialName("categoryId")val categoryId: Long = 0,
     @SerialName("name") val name: String = "",
     @SerialName("image") val image: String = "",
     @SerialName("soundfile") val soundFile: String = "",

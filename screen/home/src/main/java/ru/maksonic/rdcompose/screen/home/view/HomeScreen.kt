@@ -43,7 +43,6 @@ private fun HomeScreenUi(
 ) {
     PlayerBackPressed(playerBottomSheetState)
 
-
     Scaffold(
         backgroundColor = RDTheme.color.background,
         modifier = modifier
@@ -61,7 +60,6 @@ private fun HomeScreenUi(
             }
             model.baseModel.isError -> {
                 ErrorViewState(
-                    modifier.padding(top = RDTheme.componentSize.smallTopBarHeight),
                     retryAction = { sendMsg(Msg.Ui.FetchAllData) },
                     errorMessage = model.baseModel.errorMsg
                 )

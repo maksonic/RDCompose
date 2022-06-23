@@ -17,7 +17,7 @@ sealed class Msg : Message {
     sealed class Ui : Msg() {
         data class ShowStory(val storyIndex: Int) : Ui()
         object CloseStory : Ui()
-        object RetryFetchingStories : Ui()
+        object RefreshHomeContent : Ui()
         object FetchAllData : Ui()
 
         @OptIn(ExperimentalPagerApi::class)

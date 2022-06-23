@@ -12,8 +12,8 @@ class FirestorePodcastToCloudMapper @Inject constructor() :
     override fun invoke(documentSnapshot: DocumentSnapshot): PodcastCloud {
         val doc = documentSnapshot.data
         val id = doc?.get("id").toString().toLong()
+        val categoryId = doc?.get("categoryId").toString().toLong()
         val name = doc?.get("name").toString()
-        val categoryId = doc?.get("categoryId").toString()
         val image = doc?.get("image").toString()
         val soundFile = doc?.get("soundfile").toString()
         val isNew = doc?.get("isNew").toString().toBoolean()
