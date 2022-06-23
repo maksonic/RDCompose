@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PodcastUi(
     val id: Long = 0,
-    val categoryId: String = "",
+    val categoryId: Long = 0,
     val name: String = "",
     val image: String = "",
     val soundFile: String = "",

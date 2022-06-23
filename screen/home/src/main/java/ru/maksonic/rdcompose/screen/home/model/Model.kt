@@ -15,7 +15,7 @@ import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
 data class Model(
     val baseModel: BaseModel,
     val story: Story = Story(),
-    val content: HomeContent = HomeContent()
+    val content: HomeScreenContent = HomeScreenContent()
 ) : StateModel
 
 @Stable
@@ -33,7 +33,7 @@ data class Story(
 
 @Stable
 @Immutable
-data class HomeContent(
+data class HomeScreenContent(
     val newPodcasts: List<PodcastUi> = emptyList(),
     val recommendPodcasts: List<PodcastUi> = emptyList(),
     val topPodcasts: List<PodcastUi> = emptyList(),

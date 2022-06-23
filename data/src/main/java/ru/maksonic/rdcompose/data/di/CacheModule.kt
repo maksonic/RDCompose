@@ -14,9 +14,7 @@ import ru.maksonic.rdcompose.data.AppDatabase
 import ru.maksonic.rdcompose.data.DatabaseName
 import ru.maksonic.rdcompose.data.base.exception.ExceptionHandler
 import ru.maksonic.rdcompose.data.categories.cache.CategoriesCacheDataSource
-import ru.maksonic.rdcompose.data.categories.cache.CategoryCacheToDataMapper
 import ru.maksonic.rdcompose.data.categories.cache.CategoryDao
-import ru.maksonic.rdcompose.data.podcasts.cache.PodcastCacheToDataMapper
 import ru.maksonic.rdcompose.data.podcasts.cache.PodcastDao
 import ru.maksonic.rdcompose.data.podcasts.cache.PodcastsCacheDataSource
 import javax.inject.Singleton
@@ -50,19 +48,17 @@ object CacheModule {
     @Provides
     fun provideCategoriesCacheDataSource(
         dao: CategoryDao,
-        cacheMapper: CategoryCacheToDataMapper,
         exceptionHandler: ExceptionHandler,
         @IoDispatcher dispatcher: CoroutineDispatcher
     ): CategoriesCacheDataSource =
-        CategoriesCacheDataSource.Base(dao, cacheMapper, exceptionHandler, dispatcher)
+        CategoriesCacheDataSource.Base(dao, exceptionHandler, dispatcher)
 
     @Singleton
     @Provides
     fun providePodcastsCacheDataSource(
         dao: PodcastDao,
-        cacheMapper: PodcastCacheToDataMapper,
         exceptionHandler: ExceptionHandler,
         @IoDispatcher dispatcher: CoroutineDispatcher
     ): PodcastsCacheDataSource =
-        PodcastsCacheDataSource.Base(dao, cacheMapper, exceptionHandler, dispatcher)
+        PodcastsCacheDataSource.Base(dao, exceptionHandler, dispatcher)
 }

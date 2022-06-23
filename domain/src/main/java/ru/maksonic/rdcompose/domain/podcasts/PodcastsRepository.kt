@@ -1,16 +1,13 @@
 package ru.maksonic.rdcompose.domain.podcasts
 
-import kotlinx.coroutines.flow.Flow
+import ru.maksonic.rdcompose.domain.base.Repository
 
 /**
  * @Author maksonic on 13.06.2022
  */
-typealias Podcasts = Flow<Result<List<PodcastDomain>>>
-
-interface PodcastsRepository {
-    suspend fun fetchAllPodcasts(): Podcasts
-    fun refreshAllPodcasts(): Podcasts
-    fun fetchPodcastByCategoryId(categoryId: String): Podcasts
-    fun refreshPodcastByCategoryId(categoryId: String): Podcasts
-    fun fetchRecommendPodcasts(): Podcasts
+interface PodcastsRepository : Repository<PodcastDomain> {
+    suspend fun fetchPodcastByCategory(categoryId: Long): Podcasts
+    suspend fun refreshPodcastByCategory(categoryId: Long): Podcasts
+    suspend fun fetchHomeContent(): HomeContent
+    suspend fun refreshHomeContent(): HomeContent
 }

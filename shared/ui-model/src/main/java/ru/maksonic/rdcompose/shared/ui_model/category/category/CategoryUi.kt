@@ -8,9 +8,8 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class CategoryUi(
-    val id: Long? = null,
-    val categoryId: String = "",
+    val id: Long = 0,
     val name: String = "",
     val description: String = "",
-    val image: String? = "",
+    val image: String = "",
 ) : Parcelable

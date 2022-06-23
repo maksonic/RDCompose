@@ -8,9 +8,6 @@ import javax.inject.Inject
  * @Author maksonic on 26.05.2022
  */
 class CategoryCloudToDataMapper @Inject constructor() : Mapper<CategoryCloud, CategoryData> {
-    override fun mapTo(o: CategoryData) =
-        CategoryCloud(o.id, o.categoryId, o.name, o.description, o.image)
-
-    override fun mapFrom(i: CategoryCloud) =
-        CategoryData(i.id, i.categoryId, i.name, i.description, i.image)
+    override fun mapTo(o: CategoryData) = CategoryCloud(o.id, o.name, o.description, o.image)
+    override fun mapFrom(i: CategoryCloud) = CategoryData(i.id, i.name, i.description, i.image)
 }

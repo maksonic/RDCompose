@@ -9,8 +9,8 @@ import javax.inject.Inject
  */
 class CategoryDataToDomainMapper @Inject constructor() : Mapper<CategoryData, CategoryDomain> {
     override fun mapTo(o: CategoryDomain) =
-        CategoryData(o.id, o.categoryId, o.name, o.description, o.image)
+        CategoryData(o.id, o.name, o.description, o.image)
 
     override fun mapFrom(i: CategoryData) =
-        CategoryDomain(i.id, i.categoryId, i.name, i.description, i.image)
+        CategoryDomain(i.id, i.name, i.description, i.image)
 }

@@ -15,7 +15,10 @@ interface KeyStore {
 
     interface DataKey {
         val fetchDataCategoryId: String
+        val fetchDataPodcastId: String
         val fetchRecommendPodcasts: String
+        val fetchNewPodcasts: String
+        val fetchTopPodcasts: String
 
     }
     interface NavigationKey {
@@ -34,7 +37,10 @@ interface KeyStore {
 
     class Data @Inject constructor(): DataKey {
         override val fetchDataCategoryId = "id"
+        override val fetchDataPodcastId = "categoryId"
+        override val fetchNewPodcasts = "isNew"
         override val fetchRecommendPodcasts = "isRecommend"
+        override val fetchTopPodcasts = "isTop"
     }
 
     class NavigationPassedKey @Inject constructor() : NavigationKey {

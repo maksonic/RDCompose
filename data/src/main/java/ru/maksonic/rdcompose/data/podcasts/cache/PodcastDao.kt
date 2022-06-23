@@ -18,7 +18,7 @@ abstract class PodcastDao : BaseDao<PodcastCache> {
     abstract override suspend fun fetchCacheList(): List<PodcastCache>
 
     @Query("SELECT * FROM podcasts WHERE categoryId = :categoryId")
-    abstract suspend fun fetchCachePodcastsByCategoryId(categoryId: String): List<PodcastCache>
+    abstract suspend fun fetchCachePodcastsByCategoryId(categoryId: Long): List<PodcastCache>
 
     @Query("SELECT * FROM podcasts WHERE isNew = :isNew")
     abstract suspend fun fetchNewPodcasts(isNew: Boolean = true): List<PodcastCache>

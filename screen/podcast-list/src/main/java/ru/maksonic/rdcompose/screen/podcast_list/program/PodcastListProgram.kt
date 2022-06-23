@@ -2,15 +2,12 @@ package ru.maksonic.rdcompose.screen.podcast_list.program
 
 import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ExperimentalMaterialApi
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.core.elm.ElmProgram
 import ru.maksonic.rdcompose.core.store.KeyStore
-import ru.maksonic.rdcompose.domain.categories.FetchCategoryByIdUseCase
-import ru.maksonic.rdcompose.domain.podcasts.usecase.FetchPodcastsByCategoryUseCase
-import ru.maksonic.rdcompose.domain.podcasts.PodcastDomain
-import ru.maksonic.rdcompose.domain.podcasts.usecase.RefreshPodcastsByCategoryUseCase
+import ru.maksonic.rdcompose.domain.categories.usecase.FetchCategoryByIdUseCase
+import ru.maksonic.rdcompose.domain.podcasts.Podcasts
+import ru.maksonic.rdcompose.domain.podcasts.interactor.FetchPodcastsByCategoryInteractor
 import ru.maksonic.rdcompose.navigation.api.navigator.MainNavigator
 import ru.maksonic.rdcompose.screen.podcast_list.model.CategoryInfo
 import ru.maksonic.rdcompose.screen.podcast_list.model.Cmd
@@ -23,9 +20,8 @@ import javax.inject.Inject
  * @Author maksonic on 30.05.2022
  */
 class PodcastListProgram @Inject constructor(
-    private val fetchCategoryByIdUseCase: FetchCategoryByIdUseCase,
-    private val fetchPodcasts: FetchPodcastsByCategoryUseCase,
-    private val refreshPodcasts: RefreshPodcastsByCategoryUseCase,
+    private val interactor: FetchPodcastsByCategoryInteractor,
+    private val fetchCategory: FetchCategoryByIdUseCase,
     private val categoryMapper: CategoryDomainToUiMapper,
     private val mapper: PodcastDomainToUiMapper,
     private val keyStore: KeyStore.NavigationKey,
@@ -34,29 +30,30 @@ class PodcastListProgram @Inject constructor(
 
     override suspend fun execute(cmd: Cmd, consumer: (Msg) -> Unit) {
         when (cmd) {
-            is Cmd.FetchData ->
-                executeUseCase({ categoryId -> fetchPodcasts(categoryId) }, consumer)
-            is Cmd.RefreshData ->
-                executeUseCase({ categoryId -> refreshPodcasts(categoryId) }, consumer)
+            is Cmd.FetchData -> {
+                executeInteractor({ categoryId -> interactor.fetchData(categoryId) }, consumer)
+            }
+            is Cmd.RefreshData -> {
+                executeInteractor({ categoryId -> interactor.refreshData(categoryId) }, consumer)
+            }
             is Cmd.PlayPodcast -> playPodcast(cmd)
         }
     }
 
-    private suspend fun executeUseCase(
-        useCase: suspend (categoryId: String) -> Flow<Result<List<PodcastDomain>>>,
-        consumer: (Msg) -> Unit
+    private suspend fun executeInteractor(
+        useCase: suspend (Long) -> Podcasts, consumer: (Msg) -> Unit
     ) {
         val passedCategoryId = navigator.getLongArgument(keyStore.passedCategoryIdKey)
-        delay(2000)
-        fetchCategoryByIdUseCase(passedCategoryId).collect { findCategory ->
-            findCategory.onSuccess { categoryDomain ->
+        fetchCategory(passedCategoryId).collect { categoryResponse ->
+            categoryResponse.onSuccess { categoryDomain ->
                 val category = categoryMapper.mapFrom(categoryDomain)
-                useCase(category.categoryId).collect { podcastsResponse ->
+                useCase(category.id).collect { podcastsResponse ->
                     podcastsResponse.onSuccess { podcastsDomain ->
                         val podcasts = mapper.mapFromList(podcastsDomain)
                         consumer(
                             Msg.Internal.Success(
-                                podcasts, CategoryInfo(category.name, category.image)
+                                podcasts = podcasts,
+                                CategoryInfo(category.name, category.image)
                             )
                         )
                     }
@@ -65,7 +62,9 @@ class PodcastListProgram @Inject constructor(
                     }
                 }
             }
-            findCategory.onFailure { error -> consumer(Msg.Internal.Error(error.message)) }
+            categoryResponse.onFailure { error ->
+                consumer(Msg.Internal.Error(error.message))
+            }
         }
     }
 

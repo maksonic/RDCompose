@@ -29,13 +29,11 @@ object CloudModule {
     @Singleton
     @Provides
     fun provideCategoriesCloudDataSource(
-        firebaseApi: FirebaseApi,
         firestoreMapper: FirestoreCategoryToCloudMapper,
         exceptionHandler: ExceptionHandler,
         @IoDispatcher dispatcher: CoroutineDispatcher
     ): CategoriesCloudDataSource =
-        CategoriesCloudDataSource.Base(
-            firebaseApi = firebaseApi,
+        CategoriesCloudDataSource(
             firestoreMapper = firestoreMapper,
             exceptionHandler = exceptionHandler,
             dispatcher = dispatcher
@@ -44,15 +42,13 @@ object CloudModule {
     @Singleton
     @Provides
     fun providePodcastsCloudDataSource(
-        firebaseApi: FirebaseApi,
-        cloudDataSource: CategoriesCloudDataSource,
+        api: FirebaseApi,
         firestoreMapper: FirestorePodcastToCloudMapper,
         exceptionHandler: ExceptionHandler,
         @IoDispatcher dispatcher: CoroutineDispatcher
     ): PodcastsCloudDataSource =
         PodcastsCloudDataSource.Base(
-            firebaseApi = firebaseApi,
-            cloudDataSource = cloudDataSource,
+            api = api,
             firestoreMapper = firestoreMapper,
             exceptionHandler = exceptionHandler,
             dispatcher = dispatcher
