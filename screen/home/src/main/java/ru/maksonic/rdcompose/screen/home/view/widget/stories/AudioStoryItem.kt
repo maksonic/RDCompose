@@ -14,8 +14,8 @@ import ru.maksonic.rdcompose.screen.home.model.Msg
 import ru.maksonic.rdcompose.screen.home.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.stories.AudioStoryUi
-import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilShimmerImage
 
 /**
  * @Author maksonic on 06.06.2022
@@ -50,7 +50,7 @@ internal fun AudioStoryItem(
                 .clip(CircleShape),
             contentAlignment = Alignment.Center
         ) {
-            ImageWithShimmer(story.storyBackground)
+            CoilShimmerImage(data = story.storyBackground)
         }
     }
 }

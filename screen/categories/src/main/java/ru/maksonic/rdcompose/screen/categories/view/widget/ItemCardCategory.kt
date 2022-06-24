@@ -8,10 +8,11 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.category.CategoryUi
-import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilShimmerImage
 
 /**
  * @Author maksonic on 26.05.2022
@@ -39,7 +40,7 @@ internal fun ItemCardCategory(category: CategoryUi, onClick: () -> Unit, modifie
             contentAlignment = Alignment.BottomStart
         ) {
 
-            ImageWithShimmer(category.image)
+            CoilShimmerImage(data = category.image, modifier = modifier.fillMaxSize(1f))
 
             Column(
                 modifier
