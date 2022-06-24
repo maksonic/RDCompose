@@ -11,21 +11,26 @@ object Lib {
     }
 
     object Accompanist {
-        private const val version = "0.24.9-beta"
+        private const val version = "0.24.12-rc"
         const val NAVIGATION_ANIMATION = "com.google.accompanist:accompanist-navigation-animation:$version"
         const val PAGER = "com.google.accompanist:accompanist-pager:$version"
+        const val PLACEHOLDER = "com.google.accompanist:accompanist-placeholder-material:$version"
         const val PAGER_INDICATORS = "com.google.accompanist:accompanist-pager-indicators:$version"
         const val SYSTEM_UI = "com.google.accompanist:accompanist-systemuicontroller:$version"
         const val SWIPE_REFRESH = "com.google.accompanist:accompanist-swiperefresh:$version"
     }
 
+    object Coil {
+        private const val version = "2.1.0"
+        const val COMPOSE = "io.coil-kt:coil-compose:$version"
+    }
     object Compose {
         private const val material3Version = "1.0.0-alpha12"
         const val ACTIVITY = "androidx.activity:activity-compose:1.4.0"
         const val COMPILER = "androidx.compose.compiler:compiler:$composeVersion"
+        const val FOUNDATION = "androidx.compose.foundation:foundation:$composeVersion"
         const val MATERIAL = "androidx.compose.material:material:$composeVersion"
         const val MATERIAL3 = "androidx.compose.material3:material3:$material3Version"
-
         const val NAVIGATION = "androidx.navigation:navigation-compose:2.5.0-alpha02"
         const val UI = "androidx.compose.ui:ui:$composeVersion"
         const val UI_PREVIEW = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
@@ -68,11 +73,6 @@ object Lib {
             private const val version = "1.3.2"
             const val JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
         }
-    }
-
-    object Landscapist {
-        private const val version = "1.5.2"
-        const val GLIDE = "com.github.skydoves:landscapist-glide:$version"
     }
 
     object Lifecycle {

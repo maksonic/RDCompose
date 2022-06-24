@@ -9,9 +9,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
-import com.skydoves.landscapist.glide.GlideImage
 import ru.maksonic.rdcompose.feature.onboarding.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilSimpleImage
 
 /**
  * @Author maksonic on 23.05.2022
@@ -28,21 +28,30 @@ internal fun OnboardingItem(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier.fillMaxSize()
     ) {
-        Box(
-            modifier
+        val paddingImage = if (page == 0) RDTheme.padding.dp8 else RDTheme.padding.dp32
+        CoilSimpleImage(
+            data = model.onboardingList[page].image,
+            contentScale = ContentScale.Fit,
+            modifier = modifier
                 .weight(1f)
-                .padding(top = RDTheme.padding.dp24),
-            contentAlignment = Alignment.Center
-        ) {
-            GlideImage(
-                imageModel = model.onboardingList[page].image,
-                contentScale = ContentScale.Fit,
-                modifier = modifier
-                    .fillMaxSize()
-                    .padding(start = RDTheme.padding.dp16, end = RDTheme.padding.dp16),
-                contentDescription = ""
-            )
-        }
+                .padding(
+                    start = paddingImage,
+                    end = paddingImage
+                ),
+        )
+        /* Box(
+             modifier
+                 .weight(1f)
+                 .padding(top = RDTheme.padding.dp24),
+             contentAlignment = Alignment.Center
+         ) {
+             CoilSimpleImage(
+                 data = model.onboardingList[page].image,
+                 modifier = modifier
+                     .fillMaxSize()
+                     .padding(start = RDTheme.padding.dp16, end = RDTheme.padding.dp16),
+             )
+         }*/
         Spacer(modifier.size(dp16))
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

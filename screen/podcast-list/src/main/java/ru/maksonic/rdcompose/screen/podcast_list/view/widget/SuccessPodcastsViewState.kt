@@ -10,6 +10,7 @@ import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import kotlinx.coroutines.CoroutineScope
 import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.screen.podcast_list.model.Msg
 import ru.maksonic.rdcompose.screen.podcast_list.view.Message
@@ -25,6 +26,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.system.SwipeRefreshDefault
 internal fun SuccessPodcastsViewState(
     model: Model,
     sendMsg: Message,
+    scope: CoroutineScope,
     playerSheet: BottomSheetScaffoldState,
     lazyListState: LazyListState,
     modifier: Modifier = Modifier
@@ -49,7 +51,7 @@ internal fun SuccessPodcastsViewState(
                     )
                 }
                 items(model.podcasts) { podcast ->
-                    ItemPodcastList(podcast)
+                    ItemPodcastList(sendMsg, podcast, scope, playerSheet)
                 }
             }
         }

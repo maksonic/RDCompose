@@ -12,10 +12,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.OutlinedSecondaryButton
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilShimmerImage
 
 /**
  * @Author maksonic on 30.05.2022
@@ -47,7 +47,7 @@ internal fun CategoryHeader(model: Model, modifier: Modifier = Modifier) {
                 shape = RDTheme.shape.cornerNormal,
                 backgroundColor = RDTheme.color.surface
             ) {
-                ImageWithShimmer(model.categoryInfo.categoryImage)
+                CoilShimmerImage(data = model.categoryInfo.categoryImage)
             }
 
             Column(

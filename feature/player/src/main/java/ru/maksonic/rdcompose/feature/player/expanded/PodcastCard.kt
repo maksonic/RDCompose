@@ -1,16 +1,13 @@
 package ru.maksonic.rdcompose.feature.player.expanded
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
-import ru.maksonic.rdcompose.shared.ui_widget.R.*
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilSimpleImage
 
 /**
  * @Author maksonic on 02.06.2022
@@ -30,12 +27,11 @@ fun PodcastCard(modifier: Modifier = Modifier) {
         shape = RDTheme.shape.cornerBig,
         elevation = RDTheme.elevation.dp8,
     ) {
-        Box(
-            modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-
-            ImageWithShimmer(drawable.podcast_image)
-        }
+        CoilSimpleImage(
+            data = RDTheme.image.placeholder,
+            modifier = modifier
+                .fillMaxSize()
+                .aspectRatio(1f)
+        )
     }
 }

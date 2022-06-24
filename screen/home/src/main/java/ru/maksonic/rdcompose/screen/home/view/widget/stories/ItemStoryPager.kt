@@ -12,16 +12,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import com.skydoves.landscapist.glide.GlideImage
 import kotlinx.coroutines.CoroutineScope
 import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.screen.home.model.Msg
 import ru.maksonic.rdcompose.screen.home.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilSimpleImage
 
 /**
  * @Author maksonic on 07.06.2022
@@ -72,11 +71,9 @@ internal fun ItemStoryPager(
             }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
-            GlideImage(
-                imageModel = model.story.stories[page].storyBackground,
-                contentScale = ContentScale.Crop,
-                modifier = modifier
-                    .fillMaxSize(1f)
+            CoilSimpleImage(
+                data = model.story.stories[page].storyBackground,
+                modifier = modifier.fillMaxSize(1f)
             )
             Box(
                 modifier
@@ -84,19 +81,15 @@ internal fun ItemStoryPager(
                     .background(RDTheme.color.primary.copy(alpha = 0.5f))
             )
         } else {
-            GlideImage(
-                imageModel = model.story.stories[page].storyBackground,
-                contentScale = ContentScale.Crop,
+            CoilSimpleImage(
+                data = model.story.stories[page].storyBackground,
                 modifier = modifier
                     .fillMaxSize(1f)
                     .blur(15.dp)
             )
         }
 
-        GlideImage(
-            imageModel = model.story.stories[page].storyBackground,
-            contentScale = ContentScale.Crop,
-            modifier = interactiveModifier
-        )
+        CoilSimpleImage(
+            data = model.story.stories[page].storyBackground, modifier = interactiveModifier)
     }
 }

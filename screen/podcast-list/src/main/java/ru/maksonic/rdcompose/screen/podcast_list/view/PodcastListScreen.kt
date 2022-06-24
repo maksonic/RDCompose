@@ -8,10 +8,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.maksonic.rdcompose.core.utils.PlayerBackPressed
@@ -49,6 +46,7 @@ private fun PodcastListScreenUi(
 ) {
     PlayerBackPressed(playerBottomSheetState)
 
+    val scope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
     val titleVisibility = remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } }
     val alphaBg = remember {
@@ -83,6 +81,7 @@ private fun PodcastListScreenUi(
                     SuccessPodcastsViewState(
                         model = model,
                         sendMsg = sendMsg,
+                        scope = scope,
                         playerSheet = playerBottomSheetState,
                         lazyListState = lazyListState,
                     )

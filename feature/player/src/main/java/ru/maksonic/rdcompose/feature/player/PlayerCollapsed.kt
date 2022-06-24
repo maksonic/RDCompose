@@ -15,11 +15,11 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import ru.maksonic.rdcompose.feature.player.utils.currentFraction
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
-import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.system.IndicatorBottomSheet
 import ru.maksonic.rdcompose.shared.ui_widget.R.drawable
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.noRippleClickable
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilSimpleImage
 
 /**
  * @Author maksonic on 01.06.2022
@@ -51,8 +51,9 @@ fun PlayerCollapsed(modifier: Modifier = Modifier, scaffoldState: BottomSheetSca
                 shape = RDTheme.shape.cornerSmall,
                 elevation = RDTheme.elevation.elevationDisable
             ) {
-                ImageWithShimmer(drawable.podcast_image,
-                    modifier.aspectRatio(1f)
+                CoilSimpleImage(
+                    data = RDTheme.image.placeholder,
+                    modifier = modifier.aspectRatio(1f)
                 )
             }
 

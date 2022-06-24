@@ -53,6 +53,5 @@ dependencies {
     implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)
     implementation(Lib.Dagger.VIEWMODEL)
-    implementation(Lib.Landscapist.GLIDE)
     kapt(Lib.Dagger.COMPILER)
 }

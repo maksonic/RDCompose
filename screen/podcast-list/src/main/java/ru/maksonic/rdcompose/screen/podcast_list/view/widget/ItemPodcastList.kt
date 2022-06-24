@@ -2,9 +2,7 @@ package ru.maksonic.rdcompose.screen.podcast_list.view.widget
 
 import android.net.Uri
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -16,19 +14,26 @@ import androidx.media3.common.MediaItem
 import androidx.media3.datasource.DefaultDataSource
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import kotlinx.coroutines.CoroutineScope
+import ru.maksonic.rdcompose.screen.podcast_list.model.Msg
+import ru.maksonic.rdcompose.screen.podcast_list.view.Message
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
-import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 import ru.maksonic.rdcompose.shared.ui_widget.R
 import ru.maksonic.rdcompose.shared.ui_widget.button.IconActionButton
 import ru.maksonic.rdcompose.shared.ui_widget.button.rippleClickable
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilShimmerImage
 
 /**
  * @Author maksonic on 30.05.2022
  */
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 internal fun ItemPodcastList(
+    sendMsg: Message,
     podcast: PodcastUi,
+    scope: CoroutineScope,
+    playerSheet: BottomSheetScaffoldState,
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -54,9 +59,9 @@ internal fun ItemPodcastList(
                 if (player.isPlaying) {
                     player.pause()
                 } else {
+                    sendMsg(Msg.Ui.OnPodcastClicked(scope, playerSheet))
                     player.play()
                 }
-                //     sendMsg(Msg.Ui.OnPodcastClicked(scope, playerSheet))
             },
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -70,7 +75,7 @@ internal fun ItemPodcastList(
             shape = RDTheme.shape.cornerSmall,
             elevation = RDTheme.elevation.elevationDisable
         ) {
-            ImageWithShimmer(podcast.image, modifier.aspectRatio(1f))
+            CoilShimmerImage(data = podcast.image, modifier = modifier.aspectRatio(1f))
         }
 
         Text(

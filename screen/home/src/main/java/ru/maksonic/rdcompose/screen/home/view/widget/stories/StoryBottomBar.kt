@@ -15,7 +15,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.button.IconCircleAction
  * @Author maksonic on 08.06.2022
  */
 @Composable
-fun StoryBottomBar(modifier: Modifier = Modifier) {
+internal fun StoryBottomBar(modifier: Modifier = Modifier) {
     val isFavorite = remember { mutableStateOf(false) }
     val favoriteIcon =
         if (isFavorite.value) R.drawable.ic_favorite_filled else R.drawable.ic_favorite_outlined

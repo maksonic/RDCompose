@@ -59,7 +59,6 @@ internal fun StoryTopBar(
             model,
             sendMsg,
             progress = progress,
-            stepDuration = 3000,
             currentStep = currentStep,
             isPaused = isPaused.value,
 
@@ -74,14 +73,13 @@ internal fun StoryTopBar(
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun StoriesProgressIndicator(
+private fun StoriesProgressIndicator(
     modifier: Modifier = Modifier,
     scope: CoroutineScope,
     pagerState: PagerState,
     model: Model,
     sendMsg: Message,
     progress: Animatable<Float, AnimationVector1D>,
-    stepDuration: Int,
     currentStep: Int,
     isPaused: Boolean = false,
 ) {
@@ -100,7 +98,7 @@ fun StoriesProgressIndicator(
             progress.animateTo(
                 1f,
                 animationSpec = tween(
-                    durationMillis = ((1f - progress.value) * stepDuration).toInt(),
+                    durationMillis = ((1f - progress.value) * 3000).toInt(),
                     easing = LinearEasing
                 )
             )

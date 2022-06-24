@@ -44,11 +44,12 @@ android {
 
 dependencies {
     implementation(project(Module.Shared.THEME))
-    implementation (Lib.Landscapist.GLIDE)
     implementation(Lib.Accompanist.PAGER)
+    implementation(Lib.Accompanist.PLACEHOLDER)
+    implementation(Lib.Coil.COMPOSE)
     implementation(Lib.Accompanist.SWIPE_REFRESH)
-    implementation(Lib.Compose.UI)
     implementation(Lib.Compose.MATERIAL)
+    implementation(Lib.Compose.UI)
     implementation(Lib.Dagger.HILT)
     kapt(Lib.Dagger.COMPILER)
 }

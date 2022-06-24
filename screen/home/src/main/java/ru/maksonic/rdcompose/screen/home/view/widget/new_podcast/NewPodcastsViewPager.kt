@@ -9,18 +9,18 @@ import androidx.compose.ui.Modifier
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
-import ru.maksonic.rdcompose.screen.home.model.Model
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilShimmerImage
+import ru.maksonic.rdcompose.shared.ui_widget.component.CoilSimpleImage
 import ru.maksonic.rdcompose.shared.ui_widget.component.HorizontalPagerLightScroll
-import ru.maksonic.rdcompose.shared.ui_widget.component.ImageWithShimmer
 
 /**
  * @Author maksonic on 10.06.2022
  */
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun NewPodcastsViewPager(newPodcasts: List<PodcastUi>, modifier: Modifier = Modifier) {
+internal fun NewPodcastsViewPager(newPodcasts: List<PodcastUi>, modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(initialPage = 0)
 
     Column(
@@ -47,7 +47,7 @@ fun NewPodcastsViewPager(newPodcasts: List<PodcastUi>, modifier: Modifier = Modi
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun NewPodcastItem(newPodcasts: List<PodcastUi>, page: Int, modifier: Modifier = Modifier) {
+private fun NewPodcastItem(newPodcasts: List<PodcastUi>, page: Int, modifier: Modifier = Modifier) {
 
     Card(
         backgroundColor = RDTheme.color.surface,
@@ -63,6 +63,6 @@ fun NewPodcastItem(newPodcasts: List<PodcastUi>, page: Int, modifier: Modifier =
                 bottom = RDTheme.padding.dp16
             )
     ) {
-        ImageWithShimmer(source = newPodcasts[page].image)
+        CoilShimmerImage(data = newPodcasts[page].image)
     }
 }
