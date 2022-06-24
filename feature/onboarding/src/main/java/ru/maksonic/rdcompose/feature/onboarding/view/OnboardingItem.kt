@@ -39,19 +39,6 @@ internal fun OnboardingItem(
                     end = paddingImage
                 ),
         )
-        /* Box(
-             modifier
-                 .weight(1f)
-                 .padding(top = RDTheme.padding.dp24),
-             contentAlignment = Alignment.Center
-         ) {
-             CoilSimpleImage(
-                 data = model.onboardingList[page].image,
-                 modifier = modifier
-                     .fillMaxSize()
-                     .padding(start = RDTheme.padding.dp16, end = RDTheme.padding.dp16),
-             )
-         }*/
         Spacer(modifier.size(dp16))
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
