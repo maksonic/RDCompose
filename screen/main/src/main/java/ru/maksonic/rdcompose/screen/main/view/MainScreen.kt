@@ -60,7 +60,7 @@ fun MainScreen(
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MainScreenUi(
+private fun MainScreenUi(
     homeGraphBuilder: GraphBuilder,
     categoriesGraphBuilder: GraphBuilder,
     collectionsGraphBuilder: GraphBuilder,

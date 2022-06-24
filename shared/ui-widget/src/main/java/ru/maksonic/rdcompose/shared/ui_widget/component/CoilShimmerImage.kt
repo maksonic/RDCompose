@@ -27,11 +27,6 @@ import ru.maksonic.rdcompose.shared.ui_widget.R
 /**
  * @Author maksonic on 23.06.2022
  */
-data class PlaceholderImage(
-    val portrait: Int,
-    val landscape: Int
-)
-
 @Composable
 fun CoilSimpleImage(
     modifier: Modifier = Modifier,
@@ -51,7 +46,11 @@ fun CoilShimmerImage(
     modifier: Modifier = Modifier,
     data: Any?,
     contentScale: ContentScale = ContentScale.Crop,
+    isLandscape: Boolean = false
 ) {
+    val placeholder = if (isLandscape) RDTheme.image.placeholderLandscape
+    else RDTheme.image.placeholder
+
     val context = LocalContext.current
     val imageLoader = ImageLoader.Builder(context)
         .respectCacheHeaders(false)
@@ -85,7 +84,7 @@ fun CoilShimmerImage(
                     )
             )
             is AsyncImagePainter.State.Error -> Image(
-                painterResource(RDTheme.image.placeholder),
+                painterResource(placeholder),
                 contentScale = contentScale,
                 contentDescription = ""
             )

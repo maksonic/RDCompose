@@ -63,6 +63,6 @@ private fun NewPodcastItem(newPodcasts: List<PodcastUi>, page: Int, modifier: Mo
                 bottom = RDTheme.padding.dp16
             )
     ) {
-        CoilShimmerImage(data = newPodcasts[page].image)
+        CoilShimmerImage(data = newPodcasts[page].image, isLandscape = true)
     }
 }
