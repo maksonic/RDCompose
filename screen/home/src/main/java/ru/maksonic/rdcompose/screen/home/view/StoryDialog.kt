@@ -26,7 +26,7 @@ import ru.maksonic.rdcompose.shared.ui_widget.system.OverscrollEffect
  * @Author maksonic on 07.06.2022
  */
 @Composable
-fun StoryDialog(model: Model, sendMsg: Message) {
+internal fun StoryDialog(model: Model, sendMsg: Message) {
 
     StoryDialogUi(model, sendMsg)
 }

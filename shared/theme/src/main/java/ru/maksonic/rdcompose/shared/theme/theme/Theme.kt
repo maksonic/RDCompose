@@ -64,7 +64,7 @@ fun MainTheme(
 
 @Composable
 fun HighContrastTheme(
-    darkTheme: Boolean = false,
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
     RDComposeTheme(

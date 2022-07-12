@@ -18,7 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import ru.maksonic.rdcompose.core.utils.PlayerBackPressed
-import ru.maksonic.rdcompose.feature.player.PlayerBottomSheet
+import ru.maksonic.rdcompose.feature.player.view.PlayerBottomSheet
 import ru.maksonic.rdcompose.navigation.api.GraphBuilder
 import ru.maksonic.rdcompose.navigation.api.destination.HomeDestination
 import ru.maksonic.rdcompose.screen.main.model.Model
@@ -60,7 +60,7 @@ fun MainScreen(
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MainScreenUi(
+private fun MainScreenUi(
     homeGraphBuilder: GraphBuilder,
     categoriesGraphBuilder: GraphBuilder,
     collectionsGraphBuilder: GraphBuilder,
