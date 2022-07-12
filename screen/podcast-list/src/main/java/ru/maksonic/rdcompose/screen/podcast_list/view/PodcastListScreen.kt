@@ -1,5 +1,7 @@
 package ru.maksonic.rdcompose.screen.podcast_list.view
 
+import android.content.Context
+import android.net.Uri
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,7 +12,16 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
+import androidx.media3.common.MediaItem
+import androidx.media3.datasource.DefaultDataSource
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.MediaSource
+import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import ru.maksonic.rdcompose.core.utils.PlayerBackPressed
 import ru.maksonic.rdcompose.screen.podcast_list.model.Model
 import ru.maksonic.rdcompose.screen.podcast_list.model.Msg
@@ -25,6 +36,11 @@ import ru.maksonic.rdcompose.shared.ui_widget.viewstate.LoadingViewState
  * @Author maksonic on 26.05.2022
  */
 internal typealias Message = (Msg) -> Unit
+
+fun extractMediaSourceFromUri(context: Context, uri: String): MediaSource {
+    return ProgressiveMediaSource.Factory(DefaultDataSource.Factory(context))
+        .createMediaSource(MediaItem.fromUri(Uri.parse(uri)))
+}
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -46,11 +62,26 @@ private fun PodcastListScreenUi(
 ) {
     PlayerBackPressed(playerBottomSheetState)
 
+    val ctx = LocalContext.current
+    val mediaSource = remember { mutableStateOf(extractMediaSourceFromUri(ctx, "")) }
     val scope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
     val titleVisibility = remember { derivedStateOf { lazyListState.firstVisibleItemIndex > 0 } }
     val alphaBg = remember {
         derivedStateOf { if (lazyListState.firstVisibleItemIndex > 0) 1f else 0.7f }
+    }
+    val trackSelector = DefaultTrackSelector(ctx)
+    val exoPlayer = ExoPlayer.Builder(ctx).setTrackSelector(trackSelector).build()
+    exoPlayer.apply {
+        // AudioAttributes here from exoplayer package !!!
+        val attr = AudioAttributes.Builder().setUsage(C.USAGE_MEDIA)
+            .setContentType(C.CONTENT_TYPE_MUSIC)
+            .build()
+        // In 2.9.X you don't need to manually handle audio focus :D
+        setAudioAttributes(attr, true)
+        setMediaSource(mediaSource.value)
+        // THAT IS ALL YOU NEED
+        playWhenReady = true
     }
 
     Scaffold(

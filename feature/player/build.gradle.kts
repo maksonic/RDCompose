@@ -50,5 +50,7 @@ dependencies {
     implementation(Lib.Compose.MATERIAL)
     implementation(Lib.Dagger.HILT)
     implementation(Lib.Dagger.VIEWMODEL)
+    implementation(Lib.ExoPlayer.EXOPLAYER)
+    implementation(Lib.ExoPlayer.SESSION)
     kapt(Lib.Dagger.COMPILER)
 }

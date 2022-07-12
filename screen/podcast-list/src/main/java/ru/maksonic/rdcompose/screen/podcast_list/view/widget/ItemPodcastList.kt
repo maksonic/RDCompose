@@ -1,10 +1,13 @@
 package ru.maksonic.rdcompose.screen.podcast_list.view.widget
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.net.Uri
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -13,10 +16,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.media3.common.MediaItem
 import androidx.media3.datasource.DefaultDataSource
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import kotlinx.coroutines.CoroutineScope
 import ru.maksonic.rdcompose.screen.podcast_list.model.Msg
 import ru.maksonic.rdcompose.screen.podcast_list.view.Message
+import ru.maksonic.rdcompose.screen.podcast_list.view.extractMediaSourceFromUri
 import ru.maksonic.rdcompose.shared.theme.theme.RDTheme
 import ru.maksonic.rdcompose.shared.ui_model.category.podcast.PodcastUi
 import ru.maksonic.rdcompose.shared.ui_widget.R
@@ -36,32 +41,13 @@ internal fun ItemPodcastList(
     playerSheet: BottomSheetScaffoldState,
     modifier: Modifier = Modifier
 ) {
-    val context = LocalContext.current
-    val musicUri = MediaItem.fromUri(Uri.parse(podcast.soundFile))
-    val player = ExoPlayer.Builder(context).build()
-
-    LaunchedEffect(podcast) {
-        player.apply {
-            val dataSourceFactory = DefaultDataSource.Factory(context)
-            val source = ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(musicUri)
-            setMediaSource(source)
-            playWhenReady = false
-            prepare()
-        }
-    }
 
     Row(
         modifier
             .fillMaxWidth()
             .height(RDTheme.componentSize.itemNormalListHeight)
             .rippleClickable(rippleColor = RDTheme.color.primary) {
-                if (player.isPlaying) {
-                    player.pause()
-                } else {
-                    sendMsg(Msg.Ui.OnPodcastClicked(scope, playerSheet))
-                    player.play()
-                }
+                sendMsg(Msg.Ui.OnPodcastClicked(scope, playerSheet))
             },
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -89,7 +75,8 @@ internal fun ItemPodcastList(
                 .padding(start = RDTheme.padding.dp8, end = RDTheme.padding.dp8)
         )
 
-        IconActionButton(onClick = { player.pause() }, modifier.padding(end = RDTheme.padding.dp8)) {
+        IconActionButton(onClick = {
+        }, modifier.padding(end = RDTheme.padding.dp8)) {
             Icon(
                 painterResource(id = R.drawable.ic_more_vertical),
                 tint = RDTheme.color.controlNormal,
